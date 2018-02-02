@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+/*
+	更改vuex的store中的状态唯一方法是提交mutation,vuex中的mutations非常类似于事件：每个mutation都有一个字符串的事件类型和一个回调函数。这个回调函数就是我们实际进行状态更改的地方，并且它会接收state作为第一个参数。
+
+	const store = new Vuex.Store({
+		state:{
+			count:1
+		},
+		mutations:{
+			increment(state){
+				//变更状态
+				state.count++
+			}
+		}
+	})
+所以状态改变得时候不是调用该函数，而是需要提交用来触发该函数
+store.commit('increment') 这里面也可以传入额外的参数
+比如说一个对象之类的
+ mutations:{
+	increment(state,n){
+		state.count=state.count+n
+	}
+ }
+ store.commit('increment',100)
+ 在大多数情况下， 载荷应该是一个对象，这样可以包含多个字段并记录的mutation会更易读。
+ store.commit('increment',{
+	amount:10
+ })
+另一种提交方式
+store.commit({
+	type:'increment',
+	amount:10
+})
+当时用对象风格的提交方式，整个对象都作为载荷传给mutation函数
+
+mutations需遵守Vue的响应规则
+1.在初始化之前初始化好所有的初始屬性
+2.以新對象替換老對象
+3.在對象上添加新屬性 應該使用 vue.set(obj,'','')
+
+
+mutation 必須是同步函數
+
+
+*/
+
+
+
+	</script>
+</body>
+</html>

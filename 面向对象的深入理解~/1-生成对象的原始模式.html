@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>生成对象的原始模式</title>
+	</head>
+	<body>
+			
+	</body>
+<script>
+	//把属性和方法封装成一个对象
+	//一、生成对象的原始模式
+	//把猫看成一个对象，有名字和颜色这两个属性
+	 var cat={
+	 	name:'',
+	 	color:''
+	 }
+	 var cat1={}//创建一个空对象
+	 cat1.name='大毛';
+	 cat1.color='黄色';
+	 var  cat2={}
+	 cat2.name='二毛';
+	 cat2.color='黑色';
+	//二、原型模式的改进
+	function Cat(name,color){
+		return {
+			name:name,
+			color:color,
+		}
+	}
+	var cat1=Cat('大毛','黑色');
+	var cat2=Cat("二毛",'绿色');
+
+	
+</script>	
+
+
+
+</html>

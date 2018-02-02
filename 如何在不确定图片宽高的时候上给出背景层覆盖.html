@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			如何在不确定图片宽高的时候上给出背景层覆盖
+		</title>
+	</head>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+		max-width:1200px;
+		margin:0 auto;
+		}
+		.box img{
+			width:100%;
+		}
+		.box li {
+			float:left;
+			width:33%;
+			border:1px solid #eee;
+		}
+		li{
+			list-style:none;
+			position: relative;
+		}
+		.gray{
+			position:absolute;
+			width:100%;
+			height:100%;
+			background:red;
+			left:0px;
+			top:0px;
+		/*主要就是这点定位之后给上宽高100%  默认是其相对于relative的父亲元素宽高*/
+			
+		}
+		.clearfix:after{
+			content:"";
+			height:0px;
+			clear:both;
+			display:block;
+			visibility:hidden;
+		}
+	</style>
+	<body>
+		<div class="box clearfix">
+			<li>
+			<img src="image/u=591918543,1544904101&fm=23&gp=0.jpg" alt="" />
+			<div class="gray">
+				
+			</div>
+			</li>
+			<li>
+			<img src="image/u=591918543,1544904101&fm=23&gp=0.jpg" alt="" />
+			</li>
+			<li>
+			<img src="image/u=591918543,1544904101&fm=23&gp=0.jpg" alt="" />
+			</li>
+		</div>
+	</body>
+</html>

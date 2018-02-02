@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>es6箭头函数的深入使用</title>
+</head>
+<body>
+
+
+
+
+
+<script type="text/javascript">
+/*
+ES6中函数的扩展
+
+1.函数默认值得写法
+2.与解构赋值可以一起使用
+3.函数的length属性 函数的length属性主要是看参数的多少，如果参数有默认值 就不算入其中，重要的是es5默认值得写法是不算默认值得 函数的length属性，不包括 rest 参数
+4.函数的作用域 context
+这个作用域是指参数初始化的时候生成的一个作用域，是参数形成的单独作用域， 要知道函数的参数 是默认声明的。到初始化结束，作用域就会消失。在不设置参数时，是不会出现的
+举两个例子  
+两个例子变成了一堆例子==
+let x=1;
+function b(x,y=x){
+	let x=5
+	console.log(y)
+} 
+b(3)
+这分别有二个作用域 一个是 全局x=1 另一个是参数的作用域  在传入3的时候 x=3 所以 y=3	 其中 函数 x,y都是默认声明的
+
+function b(x,y){
+	let x=1;
+	console.log(x,y)
+}
+b(4,6)
+报错  Identifier 'x' has already been declared 说明x已经被声明了 这是let的一种用法 叫做暂时性死区  在全局声明过的变量不得在局部或是函数内部重新声明
+
+function b(x,y=x){
+	let x=6;
+	console.log(x,y)
+}
+b(2,5) //在此上下文中不允许重复参数名 也就是说参数内部的作用域和函数内部的作用域都是同一个作用域 
+
+function (y=x){
+	let x=2;
+	console.log(y)
+};
+f() 
+报错是因为 在参数作用域中x未声明 所以说x is not define
+
+var x=1;
+function foo(x,y=function(){x=2;console.log(x)}){
+	var x=3;
+	console.log(x);
+	y();
+	console.log(x)
+}
+foo();
+
+function a(){
+	var x=5
+}
+a()
+console.log(x)
+var x=5 与不var的区别 是 var了 说明函数内部这个变量和外部的就不鸟了
+
+
+function a(x,t){
+	console.log(x,t) 
+	var x=3;
+	console.log(x)
+}
+a()//函数还是执行的 只是都是undefined
+
+
+5.rest参数
+ES6引入了rest参数 用来接收函数多余的参数，这样就不需要arguments对象了，该变量将多余的参数放入数组中 
+其形式为 ...变量名
+举个栗子
+function c(...b){
+	console.log(b)
+}
+c(1,2,3,4,5,6)  //	(6) [1, 2, 3, 4, 5, 6] 数组
+注意，rest 参数之后不能再有其他参数（即只能是最后一个参数），否则会报错。
+
+
+6.es5函数内部可以设定为严格模式 es2016做了一点修改，规定只要函数参数使用了默认值、结构赋值、或者扩展运算符就不能显示的设定为严格模式，否则会报错
+两种方法可以规避这种限制。第一种是设定全局性的严格模式，这是合法的。
+第二种是把函数包在一个无参数的立即执行函数里面。
+
+
+7.name属性
+函数的name属性 就是该函数的函数名
+
+
+8.重点 箭头函数
+箭头函数的简单应用
+基本用法
+var f=v=>v;
+var f=function(v){
+	return v
+};
+不需要参数或者多个参数
+var f= () =>5;
+var f=function(){return 5};
+var sum=(num1,num2)=>num1+num2
+var function sum(num1,num2){
+	return num1+num2
+}
+如果箭头函数多于一条语句 ，就要使用大括号将它们括起来，并且用return 语句返回
+var sum=(x,y)=>{var z=x+y;return x*z} 这样也可以
+
+相当于是只用参数 然后 => 括号里面写 var的语句
+如果箭头函数返回的是一个对象 那么对象必须要用（）括起来
+
+箭头函数还可以和变量结构结合使用
+
+箭头函数使得表达更加简洁
+const b=n=>n%2 == 0;b(4)true
+
+箭头函数的另一个作用是 简化回调函数
+const numbers = (...nums) => nums;
+
+numbers(1, 2, 3, 4, 5)
+
+箭头函数的注意点：
+1.函数体内this的对象，就是定义时所在的对象，而不是使用时所在的对象
+2.不可以当做构造函数，也就是说不可以使用new命令，否则会抛出一个错误
+3.不可以使用arguments对象，如果要用，可以用rest参数代替。
+4.不可以使用yield命令，因此箭头函数不能用作 generator函数
+
+在箭头函数中，this是固定的
+、
+
+*/		
+
+
+
+
+
+</script>
+</body>
+</html>

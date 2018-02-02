@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue-demo2</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<style>
+		aside{
+			float:left;
+			width:300px;
+			/*padding-top:50px;
+			padding-left:20px;*/
+			box-sizing:border-box;
+		}
+		.container{
+			float:left;
+		}
+		.firstnav{
+			padding:10px;
+			padding-bottom:5px;
+			border-bottom:1px solid #ddd;
+			background:#F8F8F8;
+		}
+		.secondnav>a{
+			display:block;
+			padding:5px;
+			padding-left:10px;
+		}
+		.thirednav>li{
+			padding:5px;
+			padding-left:20px;
+		}
+		
+	</style>
+	<body>
+		<div id="app" class='clearfix'>
+		<aside>
+			<ul>
+			<li class='firstnav'>
+				<a href="#">首页</a>
+				<ul>
+					<li class='secondnav'>
+						<a href="#">功能页1</a>
+				
+					</li>
+					<li class='secondnav'>
+						<a href="#">功能页2</a>
+				
+					</li>
+					<li class='secondnav'>
+						<a href="#">功能页3</a>
+				
+					</li>
+					
+				</ul>
+
+			</li>
+			
+		<li class='firstnav'>
+				<a href="#">系统功能</a>
+				<ul>
+					<li class='secondnav'>
+						<a href="#">我是二级菜单1</a>
+						<ul class='thirednav'>
+							<li>
+								<a href="#">我是三级菜单3</a>
+							</li>
+							<li>
+								<a href="#">我是三级菜单3</a>
+							</li>
+							<li>
+								<a href="#">我是三级菜单3</a>
+							</li>
+						</ul>
+					</li>
+					<li class='secondnav'>
+						<a href="#">我是二级菜单2</a>
+					</li>
+					<li class='secondnav'>
+						<a href="#">我是二级菜单3</a>
+					</li>
+				</ul>
+
+			</li>
+			<li class='firstnav'>
+				<a href="#">我是一级菜单A</a>
+				<ul>
+					<li class='secondnav'>
+						<a href="#">我是二级菜单1</a>
+						<ul class='thirednav'>
+							<li >
+								<a href="#">我是三级菜单3</a>
+							</li>
+						</ul>
+					</li>
+					<li class='secondnav'>
+						<a href="#">我是二级菜单2</a>
+						<ul class='thirednav'>
+							<li >
+								<a href="#">我是三级菜单3</a>
+							</li>
+						</ul>
+					</li>
+					<li class='secondnav'>
+						<a href="#">我是二级菜单3</a>
+					</li>
+				</ul>
+
+			</li>
+		</ul>
+			
+			
+		</aside>
+		<div class="container">
+			<table class='table firsttable table-bordered table-hover table-responsive'>
+				<caption>信息统计表</caption>
+				<thead>
+					<tr >
+						<th>序号</th>
+						<th >姓名</th>
+						<th>年龄</th>
+						<th>爱好</th>
+						<th>身高</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for='(index,person) in news' v-cloak >
+						<th>{{$index+1}}</th>
+						<th>{{person.name}}</th>
+						<th>{{person.age}}</th>
+						<th>{{person.love}}</th>
+						<th>{{person.height}}</th>
+						<th><button class='btn btn-primary btn-sm alertr' data-toggle="modal" data-target="#myModal" v-on:click='alter(person,index)'>修改</button><button class='btn btn-danger btn-sm del' v-on:click='del(index)'>删除</button></th>
+					</tr>
+				</tbody>
+			</table>
+			
+			<form action="" class='form-horizontal' role='form'>
+				<div class="form-group">
+				<label for="addname" class='col-sm-1 control-label'>姓名</label>
+				<div class="col-sm-10">
+					<input type="text" class='form-control' id='addname' placeholder="请输入您的姓名" v-model='person.name'/>
+				</div>
+				</div>
+				<div class="form-group">
+				<label for="addage" class='col-sm-1 control-label'>年龄</label>
+				<div class="col-sm-10">
+					<input type="text" class='form-control' id='addage' placeholder="请输入您的年龄" v-model='person.age'/>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label for="addlove" class='col-sm-1 control-label'>爱好</label>
+				<div class="col-sm-10">
+					<input type="text" class='form-control' id='addlove' placeholder="请输入您的爱好" v-model='person.love'/>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label for="addheight" class='col-sm-1 control-label'>身高</label>
+				<div class="col-sm-10">
+					<input type="text" class='form-control' id='addheight' placeholder="请输入您的身高" v-model='person.height'/>
+				</div>
+				</div>
+				
+				
+				
+			</form>
+			<button class='btn btn-block btn-lg add' v-on:click='addNew'>添加</button>
+			
+	
+	<!--模态框 用于修改数据-->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">请修改数据</h4>
+            </div>
+            <div class="modal-body">
+            	<form action="" class='form-horizontal'>
+            		<div class="form-group">
+            		<label for="a1" class='control-label col-sm-2 text-center'>姓名</label>
+            		<div class="col-sm-10">
+            			<input type="text" class='form-control' id='a1' v-model='edit.name'/>
+            		</div>
+            		
+            		</div>
+            		
+            		<div class="form-group">
+            		<label for="a2" class='control-label col-sm-2 text-center' >年龄</label>
+            		<div class="col-sm-10">
+            			<input type="text" class='form-control' id='a2' v-model='edit.age'/>
+            		</div>
+            		
+            		</div>
+            		
+            		<div class="form-group">
+            		<label for="a3" class='control-label col-sm-2 text-center' >爱好</label>
+            		<div class="col-sm-10">
+            			<input type="text" class='form-control' id='a3'  v-model='edit.love'/>
+            		</div>
+            		
+            		</div>
+            		
+            		<div class="form-group">
+            		<label for="a4" class='control-label col-sm-2 text-center'>身高</label>
+            		<div class="col-sm-10">
+            			<input type="text" class='form-control' id='a4' v-model='edit.height'/>
+            		</div>
+            		
+            		</div>
+            	</form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" v-on:click='sureClick(edit)' data-dismiss="modal">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+        
+    </div>
+	
+	
+			
+		</div>
+		
+		</div>
+		
+	</body>
+	<script src="js/vue.js"></script>
+	<script src='js/jquery-1.11.1.min.js'></script>
+	<script src='js/bootstrap.min.js'></script>
+	<script>
+		
+		new Vue({
+			el:'#app',
+			data:{
+				getIndex:'',
+				person:{name:'',age:'','love':'',"height":''},
+				
+				news:[{name:"张三",age:'18','love':'唱歌',height:'180cm'},
+					  {name:"李四",age:'19','love':'看书',height:'160cm'},
+					  {name:"王五",age:'20','love':'睡觉',height:'165cm'},
+				      {name:"赵六",age:'21','love':'跑步',height:'175cm'},],
+				edit:{name:'',age:'',love:'',height:''}
+			},
+			methods:{
+			
+				addNew:function(){
+					this.person.$index=this.news.length+1;
+					console.log(this)
+					this.news.push(this.person);
+					this.person={name:'',age:'',love:'',height:''}
+				},
+				del: function(index){
+						this.news.splice(index,1);
+				},
+				alter:function(person,index){
+					this.edit.name=person.name;
+					this.edit.age=person.age;
+					this.edit.love=person.love;
+					this.edit.height=person.height;
+					getIndex=index;
+				},
+				sureClick:function(edit){
+					this.news[getIndex].name=edit.name;
+					this.news[getIndex].age=edit.age;
+					this.news[getIndex].love=edit.love;
+					this.news[getIndex].height=edit.height;
+					
+				
+				},
+				
+			}
+			
+		})
+		$(function(){
+		$('.firstnav>a').click(function(event){
+			if($(this).parents('.firstnav').find('.secondnav').css('display')=='none'){  
+				$(this).parents('.firstnav').siblings().find('.secondnav').slideUp(200); //控制二级菜单当一个出现是其他的菜单隐藏掉
+				$(this).parents('.firstnav').find('.secondnav').slideDown(200); //控制二级菜单的出现
+				event.stopPropagation();
+			}else{
+				$(this).parents('.firstnav').find('.secondnav').slideUp(200); //控制二级菜单的消失
+				
+			}
+			//控制三级菜单的出现消失~~
+
+		})
+		$('.secondnav>a').click(function(event){
+			$(this).parents('.secondnav').prevAll('.secondnav').find('.thirednav').slideUp(100);
+			$(this).parents('.secondnav').nextAll('.secondnav').find('.thirednav').slideUp(100);
+				if($(this).parents('.secondnav').find('.thirednav').css('display')=='none'){
+					$(this).parents('.secondnav').find('.thirednav').slideDown(100);
+				
+				}else{
+					$(this).parents('.secondnav').find('.thirednav').slideUp(100);
+				
+				}
+				
+			})
+		})
+		
+	</script>
+</html>

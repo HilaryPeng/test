@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		//JavaScript 中的所有事物都是对象：字符串、数值、数组、函数...
+		//javascritp提供多个内建对象，比如string、dat、array等
+		//JavaScript允许自定义对象
+		
+		//js中 什么是对象  就是说带有属性和方法的特殊数据类型。
+		//属性  方法
+		//比如一个字符串
+		var text="hello world!";
+		var a=text.length;
+		console.log(a);
+		//text.length 就是属性 属性不带括号 
+		var b= text.toUpperCase();
+		//text.toUpperCase() 就是对象的方法。 是带括号的
+		console.log(b);
+		
+		
+		//创建对象有两种不同的方法：
+		//1.定义并创建对象的实例
+		//2.使用函数来定义对象，然后创建新的对象实例；
+		
+		//列入：1.new 出来一个Object；
+		var person=new Object();
+		person.name="黄致鹏";  //这都是我的属性
+		person.age="19";
+		person.length="180";
+		
+		console.log(person);
+		var person1={name:"黄致鹏",age:18,length:180,};
+		console.log(person1);
+		
+		//工厂模式？ 我也不太懂   下面是用构造函数来构造对象
+		function person3(name,age,length,sex){
+			this.name=name;
+			this.age=age;
+			this.length=length;
+			this.sex=sex;
+		function sex(a){
+			this.name=a;
+		}
+		}
+		//给对象上面添加方法；
+		var personclon=new person3("小妹妹",18,155);
+		
+		//这个工厂模式可以创建很多内容；
+		console.log(personclon);
+		var personclon1=new person3("干姐",20,165,"男");
+		console.log(personclon1);
+		person3.sex(agjl)
+		console.log(person3);
+		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	/*
+	有时候我们需要从store中的state中派生出一些状态，例如对列表进行过滤并计数：
+	如果有多个组件需要用到此属性，我们要么复制该函数，或者抽取到一个共享函数然后在多处导入它  都不是很理想
+	vuex中允许我们在store中定义 getter ，就像是store的计算属性一样，getter的返回值会根据他的依赖被缓存出来，只有当他的依赖值发生了改变才会被重新计算。
+
+	getter 接收state作为其第一个参数
+
+const store =new Vuex.Store({
+	state:{
+		todos:[
+		{
+			id:1,text:'huangzhipeng',done:true
+		},
+		{
+			id:2,text:'wangyangqin',done:false
+		}]
+	},
+	getter:{
+		doneTodos:state=> {
+		retrun state.todos.filter(todo=>todo.done)
+		}
+	}
+
+})
+这个getter的作用大概意思就是 如果需要对着共同的数值要进行一个计算或者判断，在每一个计算属性里面写并不太好 ，而是拿到store中，进行一个计算 这样都可以进行过滤等操作
+getters会暴露为store.getters对象
+getters也可以接受其他的getters作为其第二个参数 
+
+	*/
+
+
+</script>
+</html>

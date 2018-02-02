@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		for(let i=0;i<10;i++){
+			setTimeout(function(){
+				console.log(i);
+			},1000)
+		}
+		for(let i=-10;i<0;i++){
+			console.log(i)
+		}
+		//其实循环的谁先输出 和执行顺序还是有一部分关系的 也就是说 其实上面是比下面先执行 但是 由于计时器的问题 所以下面循环会先输出  
+
+
+	//其实我的问题不在于计时器  而是 如果同时两个循环对一个对象进行操作，第一个操作完在操作第二个 逻辑是没有任何问题的 ；但是由于执行第一个的时候 事件较长 而第二个已经执行完了 那么会对这个对象造成影响么？
+	
+	</script>
+</body>
+</html>

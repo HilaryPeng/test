@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='../js/vue.min.js'></script>
+	<style>
+	/*.fade-enter-active,.fade-leving-active{
+		transition:opacity 1s;
+	}
+	.fade-enter,.fade-leave-to{
+		opacity:0;
+	}*/
+	.slide-fade-enter-active{
+		transition:all .3s ;
+	}
+	.slide-fade-leave-active{
+		transition:all .8s ;
+	}
+	.slide-fade-enter{
+		transform:translateX(10px);
+		opacity: 0;
+	}
+	.slide-fade-leave-to{
+		transform:translateX(10px);
+		opacity: 0;
+	}
+	/*大概是这么写  给v-enter-active 和v-leave-active 定义过渡 给v-enter和v-leave-to 定义是怎么进入和消失的*/
+
+	/*
+	1.v-enter:定义进入过渡的开始阶段。表示元素插入时
+	2.v-enter-active:定义过渡的状态 生效开始
+	
+	5.v-leave-active:定义过渡的状态
+	6.v-leave-to:定义离开过渡的结束状态
+	一般不进行定义的是 v-leave 和v-enter-to
+
+	3.v-enter-to：定义进入过渡的结束状态
+	4.v-leave:定义离开过渡的开始状态
+	
+	 */
+	</style>
+</head>
+<body>
+
+	<div id="demo">
+		<button v-on:click='show=!show'>toggle</button>
+	<transition name='slide-fade'>
+		<p v-if='show'>hello</p>
+	</transition>
+	</div>
+
+	<script>
+	/*
+	深入响应式原理
+	vue中如何追踪变化？
+	把一个普通的JavaScript对象传给vue实例的data选项，vue将遍历此对象所有的属性，并使用Object.defineProperty吧这些属性全部转为getter/setter,这个仅仅ES5支持，
+	而且无法shim的特性，所以vue不支持ie8以及更低版本浏览器的原因
+
+	用户看不到setter/getter ，但是在内部他们让vue追踪依赖,在属性访问和修改时通知变化。
+	每个组件实例都有相应的watcher实例对象。它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的setter被调用时，会通知wather重新计算。从而使其关联的组件得以更新。
+
+	所有的属性data 对象上存在才能让 Vue 转换它，这样才能让它是响应的。
+	vue不允许在已经创建的实例上动态添加新的根级响应式属性，然而它可以使用vue.set(object,key,value)方法将响应的属性添加到嵌套的对象上。
+
+
+	data 对象就像组件状态的概要，提前声明所有的响应式属性，可以让组件代码在以后重新阅读或其他开发人员阅读时更易于被理解。
+
+	2.组件的过渡
+	<transition>
+	当插入或删除包含在transition组件中的元素时，vue将做以下处理
+	1.自动嗅探目标元素是否应用了css过渡或者动画，如果是，在恰当的时机添加、删除css类名。
+	2.如果过渡组件提供了JavaScript钩子函数。在恰当的时机被调用。
+	3.什么都没有就在下一帧中执行。
+	
+	过渡的-css-类名
+	会有6个css类名在enter/leave的过渡中切换
+	1.v-enter:定义进入过渡的开始阶段。表示元素插入时
+	2.v-enter-active:定义过渡的状态 生效开始
+	3.v-enter-to：定义进入过渡的结束状态
+	4.v-leave:定义离开过渡的开始状态
+	5.v-leave-active:定义过渡的状态
+	6.v-leave-to:定义离开过渡的结束状态
+	
+	ease 规定速度效果的速度曲线 ease 由快到慢  linear 恒速 ease-in 加速  ease-out 减速 ease-in-out 先减速再加速，渐显渐隐
+	css动画用法同css过渡。区别是在动画中v-enter类名的节点插入dom后不会立即删除，而是在animationend事件触发时删除
+	 */
+	var app=new Vue({
+		el:"#demo",
+		data:{
+			show:false,
+		}
+	})
+	</script>
+</body>
+</html>

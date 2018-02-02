@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='js/vue.min.js'></script>
+</head>
+<body>
+    <div id='app'>
+        <span v-bind:title='message'>
+            鼠标悬停几秒查看此处动态绑定的提示信息
+        </span>
+    </div>
+    <div id="app3">
+        <p v-if='see'>你可以看到我</p>
+    </div>
+    <div id="app4">
+        <ul>
+            <li v-for='i in list'>
+                {{i.name}}+{{i.age}}岁
+            </li>
+        </ul>
+    </div>
+    <div id="app5">
+        <p>{{msg}}</p>
+        <button v-on:click="check">点击我消息改变</button>
+        <input type="text" v-model='task' style='display:block'>
+        <p>{{task}}</p>
+    </div>
+    <script>
+       var app= new Vue({
+            el:"#app",
+            data: {
+                message:'页面加载与'+new Date(),
+            }
+        })
+        var app3=new Vue({
+            el:"#app3",
+            data:{
+                see:false
+            }
+        });
+        var app4=new Vue({
+            el:"#app4",
+            data:{
+                list:[{name:'黄志鹏',age:18},{name:'汪洋亲',age:19}]
+            }
+        });
+        var app5=new Vue({
+            el:"#app5",
+            data:{
+                msg:"为我绑定一个消息",
+                task:'理工'
+            },
+            methods:{
+                check:function(){
+                    this.msg='是不是变了'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

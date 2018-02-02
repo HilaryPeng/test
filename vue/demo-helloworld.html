@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>hello world！</title>
+	</head>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<body>
+		<div id="app" title="这是一个帅哥">
+		 {{message}}
+		</div>
+		<div id="app-2">
+	  <span v-bind:title="name">
+	    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+	  </span>
+	</div>
+	<div id="app3">
+		<p v-if="seen">我是一个p标签</p>
+	</div>
+	</body>
+	<ul id="app4" >
+		<li v-for="our in people" >
+			{{our.name}}
+		</li>
+	</ul>
+	<script>
+		var app=new Vue({
+			el:"#app",
+			data:{
+				message:'Hello World!'
+			}
+		});
+		//双向绑定 和angular差不多 是通过 
+		var app2=new Vue({
+			el:'#app-2',
+			 data: {
+    	name: '页面加载于 ' + new Date(),
+  }
+		})
+		//控制title属性
+		//学到了 标签的title属性；
+		var app3=new Vue({
+			el:"#app3",
+			data:{
+				seen:true, //or false;
+			}
+		})
+		//v-if 控制显示隐藏
+		var app4=new Vue({
+			el:"#app4",
+			data:{
+				people:[{name:"黄致鹏"},{name:"汪洋琴"},{name:"李帆"}]
+			}
+		})
+	</script>
+</html>

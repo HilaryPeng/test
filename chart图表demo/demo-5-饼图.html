@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>demo-5-饼形图</title>
+		<script src='js/Chart.min.js'></script>
+	</head>
+
+	<body>
+		<canvas id="myCake" width="400" height="400"></canvas>
+
+	</body>
+	<script>
+		var data = [{
+				value: 30,   //百分比？
+				color: "#F38630" //颜色
+			},
+			{
+				value: 50,
+				color: "#E0E4CC"
+			},{
+				value: 50,
+				color: "#dadada"
+			},
+			{
+				value: 50,
+				color: "#cddcdd"
+			},
+			
+		]
+
+		var myPie = new Chart(document.getElementById('myCake').getContext('2d')).Pie(data);
+	</script>
+
+</html>

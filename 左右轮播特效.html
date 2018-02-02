@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>左右轮播特效</title>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.container{
+				max-width:1200px;
+				margin:0 auto;
+				overflow:hidden;
+			}
+			.view{
+				overflow:hidden;
+				width:3000px;
+				
+			}
+			
+			.box img{
+				width:100%;
+			}
+			.test{
+				width:1200px;
+			}
+			.box{
+				float:left;
+				width:300px;
+				padding:10px;
+				box-sizing:border-box;
+			}
+		</style>
+	</head> 
+	<body>
+		<div class="container">
+			
+			<div class="view clearfix">
+				
+				<div class="box">
+					<img src="image/kecheng1.jpg" alt="" />
+				</div>
+				<div class="box">
+					<img src="image/kecheng2.jpg" alt="" />
+				</div>
+				<div class="box">
+					<img src="image/kecheng3.jpg" alt="" />
+				</div>
+				<div class="box">
+					<img src="image/kecheng4.jpg" alt="" />
+				</div>
+				<div class="box">
+					<img src="image/kecheng5.jpg" alt="" />
+				</div>
+				<div class="box">
+					<img src="image/kecheng6.jpg" alt="" />
+				</div>
+				<div class="box">
+					<img src="image/kecheng7.jpg" alt="" />
+				</div>
+			
+			</div>
+			<div class="ding">
+				<span><</span>	
+				<span>></span>
+			</div>
+		</div>
+	</body>
+	
+	<script>
+		$(function(){
+//			var width=$(".box").width();
+//			$(".view").width(7*width);
+//			console.log($(".box").width())
+			
+		})
+		
+		
+	</script>
+</html>

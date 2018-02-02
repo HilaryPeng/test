@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>跨域请求数据</title>
+		<script src="../js/jquery-1.9.1.min.js"></script>
+	</head>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			width:1000px;
+			margin:0 auto;
+		}
+		ul{
+			list-style: none;
+		}
+		.img{
+			width:100px;
+			height:100px;
+		}
+		.clearfix:after{
+			content:"";
+			height:0px;
+			display:block;
+			clear:both;
+			visibility: hidden;
+		}
+		.left{
+			float:left;
+			
+		}
+		.right{
+			float:left;
+			padding:20px;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<ul class="box">
+			<li class="clearfix">
+				<div class="left">
+				<img src="image/1-1F105000013.jpg" alt=""  class="img"/></div>
+				<div class="right">
+				<p class="address">地址：万镇路38号</p>
+				<p>名字：曹杨实验小学室外操场</p></div>
+			<>
+		</ul>
+		<button class="btn">点击添加数据<tton>
+		</div>
+		
+	</body>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script>
+		$(function(){
+			$(".btn").click(function(){
+				 $.ajax({  
+                       url:"http://platform-api.1yd.me/api/stadium_resources",
+                       dataType:"json",
+                       type:"get",
+                       data:{
+					       	"id": 4,
+				            "userId": 231482,
+				            "amount": 2000
+   					 },
+   					 success:function(data){
+   					 	console.log(data);
+   					 
+   					 
+   					 	for(var i=0;i<data.length;i++){
+   					 		console.log(data[i].name)
+   					 		$(".box").append("<li class='clearfix'><div class='left'><img src='"+data[i].photo+"' class='img'></div><div class='right'><p class='address'>地址："+data[i].address+"</p><p>名字："+data[i].name+"</p></div></li>")
+   					 	}
+   					 },
+                          error:function(msg){
+                          	console.log(msg);
+                          }
+					})
+			 })
+			})
+			
+		// 在浏览器属性上加上--disable-web-security  记得前面有一个空格
+		//49版本之前的只需要用上面的 49版本之后跨域更严格了。如果设置chrome浏览器为支持跨域模式，需要指定出一个个人信息目录，而不能使用默认的目录。
+		//在c盘新建文件夹 C:\MyChromeDevUserData; 在浏览器属性加上--disable-web-security --user-data-dir=C:\MyChromeDevUserData 然后打开浏览器 发现可以跨域了！
+		
+	</script>
+<ml>

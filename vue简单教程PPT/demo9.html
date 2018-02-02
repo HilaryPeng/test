@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src='js/vue.js'></script>
+  <style>
+
+  </style>
+</head>
+<body>
+	<div id="app">
+		{{message}}
+    {{msg2}}
+    <button @click='doSomthing'>做一些事情</button>
+  </div>
+  <script>
+    /*
+	1.构造器
+    每个vue.js应用都是通过构造函数vue创建的一个Vue的根实例启动的：
+    vue构造器可以进行扩展，从而预定义选项创建可复用的组件构造器：
+    例如
+ 	var Mycomponent=Vue.extend({
+    	//扩展选项
+    })
+    //其中Mycomponent相当于一个构造函数
+    //所有的Mycomponent 实例都将以预定义的扩展选项被扩展
+    var mycomponentInstance=new Mycomponent();
+	
+	每个vue实例都会代理其data对象所有的属性
+   	var data = {a:1};
+   	var vm= new Vue({
+   		data:data
+   	})
+   	vm.a===data.a //ture
+   	vm.a=2;
+   	data.a //2 
+   	只有被代理的属性是响应的。也就是值得任何改变都是触发试图的重新渲染。如果在实例创建之后添加新的属性到实力上，不会触发视图更新。
+
+	
+	2.属性与方法：
+   	new 出来vue的实例会有自己的一些属性和方法：例子如下
+   	这些属性与方法都有前缀$,以便与带来的data属性区分。
+	  var data={a:1};
+    var vm=new Vue({
+    	el:'#example',
+    	data:data
+    })
+
+		this.vm.$data===this.data //true
+		vm.$el=document.getElementById('example');
+		//以上是属性 下面是方法
+		vm.$watch('a',function(newVal,oldVal){
+	//这个回调是在vm.a改变之后调用
+	//
+
+	})
+	尤其注意的是 不要在实例属性或者回调函数中使用箭头函数。因为箭头函数绑定的永远是父级上下文。所以其中的this有时候会不如预想的那样是vue的实例。
+	而且this.myMethod是未定义的
+	
+	3.实例生命周期
+		每个vue的实例在创建之前都要经过一系列的初始化过程。例如：实例需要配置数据观测。编译模板，挂载实例到DOM，然后在数据变化时更新DOM。在这个过程中，实例会调用
+		一些生命周期钩子。这就给我们提供了执行自定义逻辑的机会。
+		比如 created这个钩子在实例被创建之后被调用
+		 var vm=new Vue({
+		el:"#example",
+		data:{
+			a:1
+		},
+		created:function(){
+			console.log(this.a);
+			//钩子中this的指向是其vue的实例
+		}
+	 })
+	 这个例子表示 在创建实例之后执行了一个叫做created的函数
+	 
+	 还有一些其他的实例 例如：mounted updated destroyed  beforeCreate
+	   
+	   var vm=new Vue({
+		el:"#example",
+		data:{
+			a:1
+		},
+		beforeCreate:function(){
+			console.log(this.a) //undefined
+		},  //new 来时还未进行初始化一些东西的时候的事件函数
+		created:function(){
+			console.log(this.a);
+			//钩子中this的指向是其vue的实例
+		}
+	 })
+	 
+	理解实例生命周期：
+			
+ */
+ 
+ var app = new Vue({
+  el: '#app',
+  data: {
+    message : "xuxiao is boy" ,
+    msg:1
+  },
+  methods:{
+    doSomthing:function(){
+      //alert('world')
+    }
+  },
+  computed:{
+    msg2:function(){
+      return this.msg+1
+    }
+  },
+  beforeCreate: function () {
+   console.group('beforeCreate 创建前状态===============》');
+               console.log("%c%s", "color:red" , "el     : " + this.$el); //undefined
+               console.log("%c%s", "color:red","data   : " + this.$data); //undefined 
+               console.log("%c%s", "color:red","message: " + this.message);
+               console.log("%c%s", "color:red","msg2: " + this.msg2);
+               console.log("%c%s", "color:red","methods: " + this.doSomthing);  
+             },
+             created: function () {
+              console.group('created 创建完毕状态===============》');
+            console.log("%c%s", "color:red","el     : " + this.$el); //undefined
+               console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化 
+               console.log("%c%s", "color:red","message: " + this.message); //已被初始化
+               console.log("%c%s", "color:red","msg2: " + this.msg2);
+               console.log("%c%s", "color:red","methods: " + this.doSomthing) 
+             },
+             beforeMount: function () {
+              console.group('beforeMount 挂载前状态===============》');
+            console.log("%c%s", "color:red","el     : " + (this.$el)); //已被初始化
+            console.log(this.$el);
+               console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化  
+               console.log("%c%s", "color:red","message: " + this.message); //已被初始化 
+               console.log("%c%s", "color:red","msg2: " + this.msg2); 
+               console.log("%c%s", "color:red","methods: " + this.doSomthing) 
+             },
+             mounted: function () {
+              console.group('mounted 挂载结束状态===============》');
+            console.log("%c%s", "color:red","el     : " + this.$el); //已被初始化
+            console.log(this.$el);    
+               console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化
+               console.log("%c%s", "color:red","message: " + this.message); //已被初始化 
+               console.log("%c%s", "color:red","msg2: " + this.msg2);
+               console.log("%c%s", "color:red","methods: " + this.doSomthing) 
+             },
+             beforeUpdate: function () {
+              console.group('beforeUpdate 更新前状态===============》');
+              console.log("%c%s", "color:red","el     : " + this.$el);
+              console.log(this.$el);   
+              console.log("%c%s", "color:red","data   : " + this.$data); 
+              console.log("%c%s", "color:red","message: " + this.message); 
+              console.log("%c%s", "color:red","msg2: " + this.msg2);
+              console.log("%c%s", "color:red","methods: " + this.doSomthing) ;
+              console.log(this) 
+            },
+            updated: function () {
+              console.group('updated 更新完成状态===============》');
+              console.log("%c%s", "color:red","el     : " + this.$el);
+              console.log(this.$el); 
+              console.log("%c%s", "color:red","data   : " + this.$data); 
+              console.log("%c%s", "color:red","message: " + this.message); 
+            },
+            beforeDestroy: function () {
+              console.group('beforeDestroy 销毁前状态===============》');
+              console.log("%c%s", "color:red","el     : " + this.$el);
+              console.log(this.$el);    
+              console.log("%c%s", "color:red","data   : " + this.$data); 
+              console.log("%c%s", "color:red","message: " + this.message);
+
+            },
+            destroyed: function () {
+              console.group('destroyed 销毁完成状态===============》');
+              console.log("%c%s", "color:red","el     : " + this.$el);
+              console.log(this.$el);  
+              console.log("%c%s", "color:red","data   : " + this.$data); 
+              console.log("%c%s", "color:red","message: " + this.message)
+            }
+          })
+
+/*可以进行 转换数值 ，然后并销毁实例 来查看其状态、 然后感觉解释是很清楚 认识了大概的流程 但是感觉缺少的是模板的加载与生命钩子 还有子父组件之间的通信
+钩子函数的用法比如了
+beforeCreate: 可以在这里加一个loading事件，
+created:这里结束loading事件，做一些初始化，实现函数自执行
+mounted:这里可以发起ajax请求，拿回数据，配合路由钩子做一些事情
+beforeDestroy:你确认删除组件么。提示
+*/
+</script>
+</body>
+</html>

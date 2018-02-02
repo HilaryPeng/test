@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>es6模块化的语法</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript" src='../js/b.js'></script>
+<script type="text/javascript">
+	/*
+	历史上，JavaScript一直没有模块体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。
+	es6之前，制定了一些模块加载方案，主要有common js 和AMD两种。前者用于服务器，后者用于浏览器，ES6在语言标准的层面上，实现了模块功能，而且实现的相当简单，完全可以取代commonjs和AMD规范，成为浏览器和服务器通用的模块解决方案
+
+	ES6模块的思想 是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输出和输入的变量。commonjs和AMD都只能在运行时确定这些东西，
+
+	commonJS 
+	let {state , exists , readFile} = require ('fs');
+	相当于 
+	let _fs= require('fs'),
+	let state = _fs.state,
+	left exists= _fs.exists
+
+	代码的实质是整体加载fs模块，生成一个对象(_fs),然后再从这个对象上面读取三个方法，这种加载称为 运行时加载，因为只有运行时才能得到这个对象。
+	ES6模块不是对象，而是通过export 命令显示 指定输出的代码，在通过import 命令输入
+
+	import {state, exists, readFild} form 'fs'
+	这个就是编译时加载效率别commonJs更高，但是无法引用es6模块本身。
+	ES6模块的好处：
+	1.不需要UMD模块格式，
+	2.将来浏览器的新API就能用模块格式提供，不在必须做成全局变量或navigator 对象的属性
+	3.不在需要对象作为命名空间 ，未来这些可以通过模块提供
+
+
+
+	严格模式
+
+	ES6的模块自动采用严格模式，不管头部有没有加上 "use strict"；
+	主要有以下限制：
+	1.变量必须先声明在使用
+	2.函数的参数不能有同名属性，否则报错
+	3.不能使用with语句
+	4.不能对只读属性赋值，否则报错
+	5.不能删除不可删除的属性，否则报错
+	6.不能使用前缀0表示八进制数，否则报错
+	7.不能删除变量 delete prop 
+	8.禁止this指向全局对象
+严格模式是ES5引入的
+在ES6模块之中，顶层的this指向undefined，即不应该在顶层代码使用this
+
+	export 命令
+	模块功能主要由两个命令组成：export和import。export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。
+	也就是说 使用export命令定义了模块的对外接口以后，其他js文件就能通过import命令加载这个模块
+
+	//a.js
+	var  sex='boy';
+	var echo=function(value){
+		console.log(value)
+	}
+	export {sex,echo}  //记得大括号哦
+
+	//b.js
+	import {sex,echo} from './a.js' 
+	console.log(sex) 
+	echo(sex);
+
+	可以看出b.js使用import命令的时候，用户需要知道a.js所暴露出的变量标识符，否则无法加载。 可以使用export default 命令，为模块指定默认输出，这样就不需要知道所要加载模块的变量名。
+	var sex='nam',
+	export default sex(sex不能加大括号)
+	当为默认值得时候 import 过来的模块可以为他起任意的变量名 因为是默认值
+
+	输入es-checker 检测 发现 export 和import 都还不可以再浏览器中使用
+	
+
+
+
+	*/
+
+
+
+</script>
+</html>

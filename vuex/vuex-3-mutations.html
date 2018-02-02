@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mutations</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+/*
+	mutations
+	更改vuex统一状态树里面的数据只能通过vuex的方法来进行改变 ，也就是一个迂回 通过其他事件来"提交"然后触发vuex里面的事件才能够进行状态树的改变~
+	其官方解释：不能直接调用一个mutation handler .这个选项更像是事件注册：当触发一个类型为increment的mutation是，调用此函数。要唤醒一个mutation handler，需要以响应的type调用store.commit方法
+
+	具体理解mutations的结构：
+
+	mutations（突变）非常类似于事件，那么其就不是事件，每个mutations都有一个字符串的事件类型和一个回调函数。这个回调函数就是我们实际进行状态更改的地方，并且它会接收state作为第一个参数。
+
+	提交载荷 其意思为可以向commit传入额外的参数，对应的事件也会有额外的接收参数，即mutation的载荷
+			mutations: {
+		  increment (state, n) { //接收一个参数
+		    state.count += n
+		  }
+		}
+		store.commit('increment', 10) //传递一个参数
+	那么我们的建议是 传入的这个参数是一个对象更好，可以包含多个字段这样可读性会更好
+
+	提交方式也有好几种：
+		add:function(){
+				this.$store.commit('add')
+			},
+			addtwo:function(){
+				this.$store.commit('addtwo',{num:50})
+			},
+			reduce:function(){
+				this.$store.commit({
+					type:'reduce',
+					num:10
+				})
+			}
+	其对应的hanler函数为：
+	add:(state)=>state.count++,
+	addtwo:(state,data)=>{return state.count+=data.num},
+	reduce:(state,data)=>{return state.count-=data.num}
+
+那么mutations需要更深理解的是：
+mutation需要遵循vue的响应规则
+既然vuex中的store中的状态是响应的，那么我们变更状态时，监视vue的状态组件也会更新。意味我们需要遵循与vue一样的一些事项：
+1.提前在store中初始化好我们需要的数据，变量，属性
+2.在store中添加新的属性时，应该使用 Vue.set(obj,'name','黄致鹏')或者使用对象的扩展符 state.obj={...state.obj,name:"黄致鹏"}
+
+这一点：使用常量替代Mutation事件类型 
+ 使用常量替代mutation事件类型在各种Flux实现中是很常见的模式。那么我确实不知道这个东西。其重要作用是可以linter之类的工具发挥作用，同时把这些常量放在单独的文件中可以让你的代码和坐着对整个app包含的mutation一目了然
+ 哦 大概就是写成 SOME_MuTATION ='SOME_MUZTATION'
+ 意思是我们一看就知道这个是一个方法？ 大家看的懂？？
+
+最重要的 Mutation必须是同步函数
+那么我写了例子之后 发现 确实如果不是同步的操作的话 其是不分先后执行的 官方的翻译理解起来大概是希望devtools需要捕捉到前一状态和后一状态的快照 然后异步操作之后再操作其他的是不会按顺序执行的，那么我们希望放到action里面可以进行异步操作   来试一下
+
+他的辅助函数mapMutation 将组建中的methods映射为stroe.commit调用
+其用法
+<button @click='addtwo({num:50})'>点击增加参数</button>
+			...mapMutations([
+				'add',
+				'addtwo'
+				]),
+参数可以这样带过去的
+*/	
+</script>
+</html>

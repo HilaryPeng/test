@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>时间</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<script>
+
+    function fun_submit(){
+        var date1 = new Date();
+       console.log(date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate())
+        var date2 = new Date(date1);
+        console.log(date1.getDate()+7);
+        date2.setDate(date1.getDate()+7);
+        var times = date2.getFullYear()+"-"+(date2.getMonth()+1)+"-"+date2.getDate();
+        console.log(times);
+    }
+    
+  function getDate(strDate){
+  var date = eval('new Date(' + strDate.replace(/\d+(?=-[^-]+$)/, 
+  function (a) { return parseInt(a, 10) - 1; }).match(/\d+/g) + ')');
+  return date;
+  console.log(date);
+	}
+    console.log(getDate("2015-12-28"));
+</script>
+<body>
+    <input type="button" value="7天后的时间" onclick="fun_submit();"/>
+</body>
+
+</html>

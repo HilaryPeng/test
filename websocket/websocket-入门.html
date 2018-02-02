@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>什么是webstocket</title>
+	</head>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			width:1200px;
+			margin:0 auto;
+		}
+		
+	</style>
+	<body>
+		<div class="container">
+		<p>webstocket是基于tcp的一种新的网络协议，她实现了允许服务器主动发送信息给客户端</p>
+		<h5>产生背景</h5>
+		<p>长久以来，创建实现客户端和用户端双工通讯的webapp都会造成http轮询的滥用，客户端不断的发送不同的http呼叫来进行询问。产生了以下几个问题</p>
+		<p>1.服务器被迫为每个客户端使用不同的底层TCP连接：一个用于向客户端发送消息，其他用于接收每个传入消息</p>
+		<p>2.有线协议有很高的开销，每一个客户端和服务器之间都有HTTP头。</p>
+		<p>3.客户端脚本被迫维护从传出连接到传入连接的映射来追踪回复。</p>
+		<p>握手协议例子</p>
+		<p>Upgrade: websocket
+			Connection: Upgrade 这两句话希望将http协议升级到webstockt协议</p>
+			<p>Sec-WebSocket-Key是浏览器随机生成的base64 encode的值，用来询问服务器是否是支持WebSocket。</p>
+		</div>
+	</body>
+</html>

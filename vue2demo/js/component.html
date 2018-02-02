@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组件</title>
+</head>
+<script src='vue.min.js '></script>
+<body>
+	<div id="app">
+		<my-component></my-component>
+		<my-text></my-text>
+	<table>
+		<my-row></my-row>
+		<tr is='my-row'></tr>
+	</table>
+	<my-button></my-button>
+	<my-button2></my-button2>
+	<my-button2></my-button2>
+	<my-button2></my-button2>
+
+	</div>
+	
+	<script>
+
+	Vue.component('myComponent',{
+		template:"<div>我是一个模板</div>"
+	});
+	Vue.component('my-button',{
+		template:'<span>{{message}}</span>',
+		data:function(){
+			return {
+				message:'挂机了'
+			}
+		}
+	});
+	Vue.component('my-button2',{
+		template:'<button v-on:click="counter++">{{counter}}</button>',
+		data:function(){
+			return {
+				counter:0,
+				message:'估计'
+			}
+		}
+	})
+
+
+
+	var Child={
+		template:'<div>我是第二个模板</div>'
+	}
+	var Child2={
+		template:'<tr>我是表格中的内容</tr>'
+	}
+	var app=new Vue({
+		el:"#app",
+		data:{
+			counter:0
+		},
+		components:{
+			'my-text':Child,
+			'my-row':Child2
+		}
+	})
+/*
+	局部注册
+	刚才的vue.component是在全局进行了一个组件注册。
+	局部注册 不必在全局注册每个组件，通过使用组件实例选项注册，可以使组件仅在另一个实例的作用域中可用
+	DOM 模板解析说明
+	当时用DOM作为模板时，你会收到HTML的一些限制，因为只有在李兰器解析和表转化HTML后才能获取模板内容。尤其像是这些元素 ul,ol,table,select限制了能被它包裹的元素。而一些像option这样的元素只能出现在某些其他元素内部。
+	自定义组件my-row会被认为是一些无效的内容。 
+	因为table中应该是tr或者th不能有这些标签。
+	所以可以使用特殊的is属性 
+
+	以上Child2实例虽然内容出现了。但是没有表格里面;所以需要的就是用到is这个特殊属性.这样内容就在表单里面了
+	这些限制在使用 .vue组件和内联模板字符串 还有script type='x-template'时不会有限制。
+
+	模板里面的data一定是函数
+	这是规则 现在我们来注册一个模板来看
+	为什么点击一个会三个同时有状态 是因为他们三个共享了一个data我们可以通过为每个组件返回全新的data对象来解决问题
+	同时也避免了在全局声明变量的问题
+	
+
+	组件意味着协同工作，通常父子组件会是这样的关系：组件A在它的模板中使用了组件B。他们之间必然需要相互通信：父组件要给子组件传递数据，子组件需要将它内部发生的事情告知给父组件。然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。着保证了每个组件可以在相对隔离的环境中书写和理解，也提高了组件的可维护性和可重用性。
+
+
+	组件之间是相互独立的。这意味这不能再子组件的模板内直接引用父组件的数据。要让子组件使用父组件的数据，我们需要通过子组件的props选项。
+	
+ */
+	</script>
+</body>
+</html>

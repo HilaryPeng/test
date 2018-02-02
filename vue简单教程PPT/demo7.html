@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>props</title>
+	<script type="text/javascript" src='js/vue.js'></script>
+</head>
+<body>
+	<div id="app">
+		<p>{{name}}</p>
+		<input type="" name="" v-model='name'>
+		<child :msg='message' @link='parentdo'></child>
+		<child2 :message2='message2' @changeparent='parentdo2'></child2>
+	</div>
+
+
+	<script type="text/javascript">
+		Vue.component("child",{
+			template:`<div><span>我是得到的数据：</span>{{msg}} <button @click='dosomthing'>点击传输数据</button></div>`,
+			props:['msg'],
+			data:function(){
+				return {
+
+				}
+			},
+			methods:{
+				dosomthing:function(){
+					this.$emit('link');
+
+
+				}
+
+			}
+		})
+		Vue.component('child2',{
+			template:`<div>我是模板2 获得的父亲的数据为：<span>{{message2}}</span><button @click='changeone'>点击我改变1中的数据</button></div>`,
+			props:['message2'],
+			methods:{
+				changeone:function(){
+					this.$emit('changeparent');
+				}
+			}
+		})
+
+
+
+		var app= new Vue({
+			el:"#app",
+			data:{
+				message:'this is a  number that is parent  give  childeren',
+				message2:'i am two number',
+				name:'黄致鹏'
+			},
+			methods:{
+				parentdo:function(){
+					//alert('我收到了 子元素传递给我的数据');
+					this.message='i change ';
+					console.log(this)
+				},
+				parentdo2:function(){
+					this.message='模板二给我说 要模板一的数据改变'
+				}
+			}
+		})
+//现在要通过模板1中的一些变化控制模板2中的变化
+//相当于说 通过通过父亲这个中介来控制兄弟之间的变化！！
+//但我觉得更简单的就是 通过$parent ,$child 来实现之间的变化
+	</script>
+</body>
+</html>

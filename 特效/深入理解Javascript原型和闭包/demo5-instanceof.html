@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>instanceof</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+
+/*
+	对于值类型，可以通过typeof 判断，但在判断引用类型的时候返回值只有Object和Function ，这种时候就需要用到instanceof .
+
+*/
+	function Foo(){}
+	var f1=new Foo();
+	console.log(f1 instanceof Foo);
+	console.log(f1 instanceof Object);
+/*
+	其中f1这个对象是被Foo创建，
+	instanceof的判断规则 ，第一个变量是一个对象，第二个变量一般是一个函数。
+	沿着对象的__proto__这条线来找，同时沿着B得prototype这条线来找，如果两条线能找到同一个引用，即同一个对象，那么就返回true 否则返回false
+
+
+
+*/
+console.log(Object instanceof Function);
+console.log(Function instanceof Object);
+console.log(Function instanceof Function);
+console.log(Object instanceof Object);
+//全部为ture
+
+	</script>
+</body>
+</html>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="echarts.js"></script>
+<body>
+
+</body>
+<script>
+    /*
+        echarts:
+        全局echarts，在script中引入echart.js或者在AMD环境中通过require('echart'）获得。
+        var myChart=echarts.init(document.getElementById('box'));
+        初始化一个echart对象。
+       一、 init所用的参数：
+        1.dom
+         var myChart=echarts.init(document.getElementById('box'))
+        2.theme
+        应用的主题。可以是配置好的对象。
+        3.opts
+          a.devicePixelRatio
+            设置像素比 默认取浏览器的值。就是1 windowdevicePixelRatio.
+          b.renderer
+            渲染器，目前仅支持canvas
+          c.width height
+            可以指定实例的宽度和高度，如果不传值，那么默认为0
+
+        二、connect
+            多个图表实现联动。
+            echarts.connect([chart1, chart2]);
+        三、echarts.disconnect
+            接触图表实例的联动，如果只需要移除单个实例，可以通过将该图表实例group设为空。
+        四、echarts.dispose()
+            销毁实例，实例销毁后无法再被调用。
+        五、echarts.getLnstanceByDom
+            获取DOM 上的实例
+        六、echarts.registerMap
+            注册可用的地图，必须再包括geo组件或者map图表类型的时候才能用到。
+
+
+
+
+       echartsInstance.group()
+       图表的分组，用于联动
+       echartsInstance.setOption();
+       设置图表实例的配置项以及数据，万能接口，所有的参数和修改都可以通过setOption完成，Echart会合并
+       新的参数和数据，然后刷新图表，如果开启动画的话。Echarts找到两组数据之间的差异然后通过合适的动画
+       去表现数据的变化。
+       chart.setOption(option, notMerge, lazyUpdate);
+        option 就是指配置项和数据
+        notMerge 可选，是否不跟之前设置的option进行合并，默认为false,即合并。
+        lazyUpdate 可选，在设置完option后是否不立即更新图表，默认为false，即立即更新。
+        silent 可选，阻止调用setOption时抛出事件，默认为false，即抛出事件。
+
+        echartsInstance.getWidth获取Echarts实例容器的宽度。
+        echartsInstance.getHeight获取实例的高度。
+        echartsInstance.getDom获取实例容器的DOM
+        echartsInstance.getOption 返回获取当前实例中维护的option对象，返回的时一个数组。
+        echartsInstance.resize 改变图表尺寸，在容器发生大小改变时需要手动调用。
+
+        echartsInstance.dispatchAction 触发图表行为，例如图例开关legendToggleSelect，数据区域缩放dataZoom
+        显示提示框showTip等等，
+        echartsInstance.on 绑定事件处理函数
+        事件分为两种，一种是鼠标事件，在鼠标点击某个图形上触发，还有一种是调用dispatchAction 后触发事件。
+        echartsInstance.off 解绑事件处理函数
+        echartsInstance.showLoading()显示动画加载效果。可以在加载数据前动手调用改接口显示加载动画。
+        在数据加载完成后调用hideLoading隐藏加载动画
+     echartsInstance.showLoading() 隐藏动画
+     echartsInstance.getConnectedDataURL 导出联动的图表图片，返回一个base64的url,可以设置为Image的src.
+     echartsInstance.clear清空当前实例，会移除实例中所有的组件和图表
+
+
+
+
+     action
+     Echarts中支持的图表的行为，通过dispatchAction触发。
+     action.highlight  高亮指定的数据图形。
+     action.downplay 取消高亮指定的数据图形。
+
+
+
+     events
+      在图表中主要通过on来添加事件处理函数。
+      分为两种
+     myChart.on('click', function (params) {
+     console.log(params);
+     });
+
+     myChart.on('legendselectchanged', function (params) {
+     console.log(params);
+     });
+
+
+
+
+     */
+</script>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+  <ul>
+    <li v-for="list in lists" @click="show($index)">
+      <span v-show="$index !== i">{{ list }}</span>
+    </li>
+  </ul>
+</div>
+</body>
+<script type="text/javascript" src='js/vue.js'></script>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    lists: [1, 1, 1],
+    i: -1 
+  },
+  methods: {
+    show (index) {
+      this.i = index
+    }
+  }
+})
+</script>
+</html>

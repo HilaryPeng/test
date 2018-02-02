@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body { 
+    color:#000; 
+    background-color:#fff; 
+    } 
+input.invalid { 
+    background-color:#FF9; 
+    border:2px red inset; 
+    } 
+label.invalid { 
+    color:#F00; 
+    font-weight:bold; 
+    } 
+	</style>
+</head>
+<body>
+	<form action="#">  
+    <p><label for="userName">Your name:<input type="text" size="30" id="userName" class="reqd"/></label></p> 
+    <p><label for="passwd1">Choose a password:<input type="password" id="passwd1" class="reqd"/></label></p> 
+    <p><label for="passwd2">Verify password:<input type="password" id="passwd2" class="reqd passwd1"/></label></p> 
+    <p><input type="submit" value="Submit"/>&nbsp;<input type="reset"/></p> 
+</form> 
+</body>
+<script type="text/javascript">
+	window.onload = initForms; 
+ 
+function initForms() { 
+    for (var i=0; i< document.forms.length; i++) { 
+        document.forms[i].onSubmit = validForm; 
+//为每个表单的onsubmit添加一个事件处理程序：调用validForm。当onsubmit处理程序返回false值时，表单就不会被传递回服务器。
+//但是，即使出现了false，我们仍然继续循环遍历所有标签
+    } 
+} 
+ 
+function validForm() { 
+	console.log(123)
+    var allGood = true; 
+    console.log("start allGood=",allGood); 
+    var allInputs = document.getElementsByTagName("input"); //返回一个包含页面上所有<input>标签
+//的数组，然后就可以遍历allInputs数组来寻找有问题的内容了
+ 
+    for (var i=0; i<allInputs.length; i++) { 
+        if (!validTag(allInputs[i])) { 
+            allGood = false; 
+        } 
+//传递给validTag（）函数的是allInputs[i]，也就是当前正处理的对象。如果任何标签导致validTag()返回false，
+//就将allGood设置为false。
+    } 
+   
+    return allGood;//只有在返回true值时，服务器才会收到表单
+ 
+    function validTag(thisInput) { //thisInput为当前的〈input〉标签对象
+    //检查每个〈input〉标签，了解是否有什么东西阻止表单提交这个页面
+        var outClass = ""; 
+        var allClasses = thisInput.className.split(" "); 
+        //检查每个class属性（class可以设置多个属性）
+
+
+
+        for (var j=0; j<allClasses.length; j++) { //遍历每个标签的class属性
+
+            outClass += validBasedOnClass(allClasses[j]) + " "; 
+
+        } 
+
+        thisInput.className = outClass; 
+        //结束allClasses循环时，我们获得outClass的内容替换当前标签的class属性
+
+
+        if (outClass.indexOf("invalid") > -1) { //检查新属性
+            thisInput.focus(); 
+
+            if (thisInput.nodeName == "INPUT") { 
+
+                thisInput.select(); 
+
+            }//当前的标签若是<input>标签，就选择它的值，让用户能够轻松地修改它 
+
+            return false; 
+
+        } 
+        //在新的class属性中如果包含invalid，就说明有的表单没被填写，就执行大括号内的的操作：获得焦点等。
+
+       然后返回false
+
+
+        return true;//如果新的class属性不包含invalid，则返回true 
+
+ 
+
+        function validBasedOnClass(thisClass) {//对标签的（class）属性进行操作
+            console.log("当前的class为:",thisClass); 
+
+            var classBack = ""; //要返回的新属性
+            switch(thisClass) {//检查当前的一个class属性
+                case "": 
+
+                case "invalid": 
+
+                    if(thisClass != "" && crossCheck(thisInput,"passwd1")){classBack = "reqd";} 
+
+                    console.log("this invalid,thisClass=",thisClass); 
+
+                    break; 
+
+                //当class属性为invalid（且不为空不是第一种情况），那么它就是验证密码表单项，那么就根据passwd1
+
+//字段对其进行验证，验证成功就去掉invalid属性（去掉红框背景色等）
+
+                case "reqd": 
+
+                    if (allGood && thisInput.value == "") { 
+
+                        classBack = "invalid "; 
+
+                    } 
+
+                    classBack += thisClass; 
+
+                    break;                 
+//如果正在处理的属性是reqd（必须填写），allGood是true（即此处之前的表单项都没有问题，此处是第一处导致不能提交的。见下图）
+
+//而且当前标签的当前值为空，那么将classBack设置为invalid，说明有问题，我们希望告知用户。在此之后，无论是否有问题，
+
+//我们都将当前的class属性追加到clasBack中，使它不会丢失。（比如passwd2空的class="reqd passwd1"，返回值classBack=invalidpasswd1 或 reqdpasswd1）
+
+
+                default: 
+
+                    if(allGood && !crossCheck(thisInput,thisClass)){//thisInput为当前的标签，thisClass为当前的class属性(passwd1) 
+
+                        classBack = "invalid "; //注意invalid后的空格一定不能丢，如果丢了
+
+                      //若reqd属性后还有别的属性会使两个属性字符串连写，两个class属性都不会有效。
+                      //比如Verify password:空的class=“reqd passwd1”,没有空格新属性会变成invalidpasswd1而不是invalid passwd1。
+
+
+                    } 
+
+                    classBack += thisClass; 
+
+            } 
+
+            return classBack; 
+
+        }  
+
+        function crossCheck(inTag,otherFieldID){ //根据其他字段对字段进行验证
+
+            if(!document.getElementById(otherFieldID)){ 
+
+                return false; //另一个字段不存在，就无法进行检查
+
+                } 
+
+            //alert(inTag.value); 
+
+            return (inTag.value == document.getElementById(otherFieldID).value); 
+
+            //如果两个字段都存在，比较两个字段得值，如果相同，就返回true
+
+            }//end of crossCheck
+
+    } 
+
+} 
+
+</script>
+</html>

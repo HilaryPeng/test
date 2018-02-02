@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计时器中箭头函数的使用</title>
+</head>
+<body>
+	<p id='time'></p>
+	<div id="btn">开始</div>
+</body>
+<script type="text/javascript">
+	var time=document.getElementById('time');
+	var btn=document.getElementById('btn');
+	btn.onclick=function(){
+		setInterval(()=>{
+			console.log(this)
+			return	this.innerHTML=new Date()
+		},1000)
+	}
+</script>
+</html>

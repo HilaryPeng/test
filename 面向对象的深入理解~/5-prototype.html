@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+		//二、prototype模式
+		//这个好理解，用猫的prototype属性指向Animate的实例，就可以继承Animate了
+		function Animal(){
+			this.species='动物';
+		}
+		function Cat(name,color){
+			this.name=name;
+			this.color=color;
+		}
+		Cat.prototype=new Animal();
+		//将这个cat的prototype对象指向一个Animal的实例，相当于完全删除了prototype对象原先的值，然后赋予一个新值，
+		Cat.prototype.constructor=Cat; //为什么要加这一行  ；可以把这行去掉，发现cat1对象的prototype指向的是animate这是不对的。造成了继承链的紊乱。
+		var cat1=new Cat('黑毛','红色');
+		//编程时 需要务必遵循
+		// 如果    o.prototype={}; 下面一定要写 o.prototype.constructor=o; 为新的prototype对象加上constructor属性并指向原来的构造函数
+		
+		
+		
+	</script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box1{
+			width:400px;
+			height:400px;
+			background:black;
+			margin:0 auto;
+			display:none;
+			/*父级元素给到一个相对定位，他子元素进行绝对定位的时候
+			 就会相对父亲元素来进行定位，如果父亲元素没有相对定位的时候就相对于窗口定位*/
+		}
+		.box{
+			width:100px;
+			height:100px;
+			background:red;
+			margin:0 auto;
+			position:relative;
+			left:10px;
+			top:10px;
+		}
+		
+	</style>
+	<body>
+		<div class="box1"></div>
+		<div class="box">
+		</div>
+		<!--绝对定位的时候 这个元素的高度就不占空间 了
+			相对定位的时候还有占空间的
+			固定定位就不占空间了
+		
+			一般情况下，绝对定位
+			相对于浏览器窗口，
+			相对于设置了position：relative或者 父级元素。
+			
+			
+			
+		-->
+	</body>
+</html>

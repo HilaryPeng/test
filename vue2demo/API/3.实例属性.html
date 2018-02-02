@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='../js/vue.min.js'></script>
+</head>
+<body>
+	
+
+
+	<script>
+	
+	// app.$emit('test','hi');
+	/*
+	vm.$data
+	这个是代理了对其data对象属性的访问
+	vm.$props
+	一个对象，代表当前组件收到的props
+	vm.$el
+	vue实例使用的根DOM元素
+	vm.$options
+	用于当前vue实例的初始化选项。
+	vm.$parent
+	类型 vue instance
+	父实例
+
+	vm.$root
+	当前组件树的根Vue实例。
+
+	vm.$children
+	当前实例的直接子组件。需要注意$children 并不保证顺序，也不是响应式的。
+
+	vm.$slots
+	用来访问被slot分发的内容。每个具名slot有其相应的属性
+	
+	vm.$scopedSlots
+	vm.$refs
+	vm.isServer
+	vm.$attrs
+	vm.$listeners
+
+	实例方法：
+	vm.$watch (expOrfn,callback,[options])
+	观察vue实例变化的一个表达式或者计算属性函数。
+	回调函数得到的参数为新值和旧值。表达式只接受监督的键路径。
+	选项 deep 可以注意监听数组的变动不需要这么做
+	选项 immediate 在选项参数中指定 immediate:true 将立即以表达式的当前值触发回调。
+
+	vm.$set(targe,key,value)
+	vm.$delete(target,key)
+
+	实例方法
+	vm.$on
+	监听当前实例上的自定义事件，事件可以由vm.$emit触发。回调函数会接收所有传入事件触发函数的额外参数
+	vm.$on('test',function(msg){
+	console.log(msg)
+	})
+	vm.$emit('test','hi');
+	不太懂
+
+	vm.$once(event,callback)
+	监听一个事件，但是只触发一次。在第一次触发之后移除监听器
+
+	vm.$off([event,callback])
+	移除自定义事件监听器
+	如果没有提供参数，则移除所有的事件监听器。
+	如果只提供了事件，则移除该事件所有的监听器
+	如果同时提供了事件与回调，则只移除这个回调的监听器
+
+	vm.$emit(event,[..args])
+	触发当前实例上的事件，附加参数都会传给监听器回调
+
+	vm.$mount
+	返回值 vm-实例自身
+	如果vue实例在实例化时没有收到el选项，则它处于"未挂载"状态，没有关联的DOM元素。可以使用vm.$mount()手动的挂载一个未挂载的实例。
+
+	vm.$forceUpdate()
+	迫使vue重新渲染实例。仅影响实例本身和插入插槽内容的子组件。而不是所有子组件。
+
+	vm.$nextTick([callback])
+	将回调延迟到下次DOM更新循环之后执行。在修改数据之后立即使用它，然后等待DMO更新，它跟全局方法vue.nextTick一样。
+
+	vm.$destroy()
+	完全销毁一个实例
+
+
+	指令：
+	v-text
+	v-html
+	v-for
+	v-once
+	v-on
+	v-bind
+	v-if
+	v-show
+	v-else
+	v-else-if
+	v-pre 跳过这个元素和他的子元素编译过程。可以用来显示原始
+	Mustache标签。跳过大量没有指令的节点会加快编译
+	v-cloak 可以当实例准备完毕再出现
+
+
+	特殊属性
+	key 
+	标识唯一。虚拟DOM会进行一个算法计算使用最小的限度来进行更换加载元素。而有了它就会完成的触发组件的生命周期钩子。并触发过渡。
+	ref:
+	ref被用来给元素或子组件注册引用信息。
+
+	 */
+	</script>
+</body>
+</html>

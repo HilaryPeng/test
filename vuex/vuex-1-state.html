@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+/*
+	vuex简单介绍
+	1.状态存储是响应的，所有的数据共享同一种状态
+	2.不能通过方法来改变状态，只能通过提交mutation(突变)来进行状态改变
+	state:
+	管理所有的数据 最简单的我们可以通过计算属性来获取state中的某个数据
+	至于使用方法已经掌握 
+
+
+	下面写一下mapState辅助函数:
+	为什么会有这个辅助函数，如果我们没要读取state中的一个状态都要使用一下计算属性，那么会重复很多次 没必要那么mapState的作用就是来帮助我们生成计算属性，让我们少写几遍多余的数据声明
+	那么总结一下mapState的用法
+	简单使用 
+	computed:mapState({ //这点是对象
+		 	count:'count',  声明即可
+		 	msg:'msg',
+		 	peng:function(state){
+		 		return state.count+this.alt
+		 	}如果是混合状态的话 那么我们需要写成函数的形式来进行返回
+		 
+		 })
+	computed:mapState([ 这点是数组 直接写字符串即可
+				当映射的计算名称与state子节点名称向同时，我们也可以传一个字符串数组 那么其区别是更节约代码量
+				 映射 this.count 为 store.state.count
+			'count',
+			'msg'
+			])
+	混合使用
+	computed: {
+	  localComputed () {  }, 这个就是该组件使用的计算属性 而非其他属性
+	  // 使用对象展开运算符将此对象混入到外部对象中 对象的展开运算符 相当于一个赋值吧
+	  ...mapState({
+	    //
+	  })
+	}
+
+写一下对象扩展符的用法 可以进行赋值 与合并对象 浅拷贝 深拷贝需要拷贝其__proto__的值
+	var a={name:'黄致鹏',age:18},
+	c={...a} 
+c的值就是{name:'黄致鹏',age:18}
+...mapState的意思大概就是通过这个来进行一个混淆 将两个对象同时赋给一个对象里面了
+var b={sex:'男'},
+c={...a,...b}
+得到c={name:'黄致鹏',age:'18',sex:'男'}
+
+
+
+
+
+*/
+
+
+	</script>
+</body>
+</html>

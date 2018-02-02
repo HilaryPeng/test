@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组件</title>
+</head>
+<script src='vue.min.js'></script>
+<body>
+	<div id="app">
+	<child message='hello'></child>
+
+
+	<child message='hello2'></child>
+	<input type="text" v-model='parentnum'>
+	<child2 v-bind:text='parentnum'></child2>
+	</div>
+
+
+	<div id="demo">
+	<p>挂机了抗拒</p>
+		<p>{{total}}</p>	
+		<btn-counter v-on:parentevent='getAll'></btn-counter>
+		<btn-counter v-on:parentevent='getAll'></btn-counter>
+	</div>	
+
+
+	<script>
+
+
+	// 注册全局组件
+	Vue.component('child',{
+		props:['message'],  
+		template:'<div>{{message}}</div>'
+	})
+
+	Vue.component('child2',{
+		props:['text'],  //通过props来接收父组件给的参数
+		template:'<input type="text" v-model="text">'
+	});
+	
+	Vue.component('btn-counter',{
+		template:'<button v-on:click="getNumber">{{counter}}</button>',
+		data:function(){
+			return {
+				counter:0
+			}
+		},
+		methods:{
+			getNumber:function(){
+				this.counter++;
+				this.$emit('parentevent');
+			}
+		}
+
+	})
+
+
+
+	// 实例化
+	var app=new Vue({
+		el:"#app",
+		data:{
+			parentnum:'hllll'
+		}
+	});
+	var demo=new Vue({
+		el:"#demo",
+		data:{
+			total:0
+		},
+		methods:{
+			getAll:function(){
+				this.total++
+			}
+		}
+	})
+
+
+/*
+	组件之间是相互独立的。这意味这不能再子组件的模板内直接引用父组件的数据。要让子组件使用父组件的数据，我们需要通过子组件的props选项。
+	奇怪的是好像不能通过实例化出来的对象给予通信与计算
+	
+	HTML特性是不区分大小写的。所以，当时用的不是字符串模板，camlCased明明的prop需哟啊转换为相对应的kebab-case命名：
+	我们尽量使用-来进行字符串模板的命名吧
+
+	动态的prop
+	在模板中，要动态的绑定父组件的数据到子模板的props，与绑定到任何普通的HTML特性相类似，就是用v-bind.每当父组件的数据变化时就会传到给子组件
+
+
+	这样就解决了我之上的疑问 实例化的对象通过props向组件通信并赋值。
+	
+
+	字面量语法VS动态语法
+	父子组件通信传递的时候 经常会把字面量语法传递数值。也就是你传递数值的时候以为是数值其实是字符串。传递数值时应该用v-bind绑定。 其实我的建议就是一定要用v-bind绑定 。这样就好了
+
+
+	单向数据流
+	prop是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来。这是为了防止子组件无意修改了父组件的状态
+	每次父组件更新时，子组件的所有prop都会更新为最新值。意味这我们不应该在子组件内部改变prop。如果这么做了 ，vue会在控制台给出警告。
+	为什么我们会想到修改props的数据呢
+	1.想把prop传入的数据当做局部数据来使用。
+	2.想把数据处理后在进行输出
+	处理的方法是 在新建一个变量 通过他来处理数据并输出
+
+	或者定义计算属性。处理完prop的值并返回
+	没搞出来
+	注意在JavaScript他中对象和数组是引用类型。指向同一个内存空间，如果prop是一个对象或者数组。子组件的内部改变会改变他父组件的状态
+
+
+	prop验证
+	我们可以为组件的props执行验证规格。验证传入的数据是否合格，如果不合格 就会发出警告 。验证格式，需要用对象的形式传入，不能用字符串数组
+
+
+	Vue.component('example',{
+		props:{
+			//基础类型简则 null意思是任何类型都可以
+			propA:Number, //表示是数字
+			propB:[String,Number], //多种类型
+			propC:{
+				type:String,
+				required:true
+			}, //必传 且是字符串
+			propD:{
+				type:Number,
+				default:100
+			},//类型为数字 默认值为100
+			propE:{
+				type:Object,
+				default:function(){
+					return {meeage:'hello'}
+				}
+			},// 传入的为数组或者对象 默认值应该由一个工厂函数返回
+			propD:{
+				validator:function(value){
+					return value>10
+				}//自定义的验证函数，表示值要大于10
+			}
+		}
+	});
+
+	非Prop属性
+	<bs-date-input data-3d-date-picker="true"></bs-date-input>
+	添加属性 data-3d-date-picker="true" 之后，它会被自动添加到 bs-date-input 的根元素上
+
+	替换/覆盖现有的特性
+
+	自定义事件
+
+	我们知道，父组件是通过props传递数据给子组件，但是子组件怎么跟父组件通信呢？这个时候Vue的自定义事件系统就用上了
+
+	使用v-on绑定自定义事件
+	$on(eventName)监听事件
+	$emit(eventName)触发事件
+	Vue的事件系统分离自浏览器的API。on和emit不是addEventListener和dispatchEvent的别名。
+	另外，父组件可以在使用子组件的地方直接用v-on来监听子组件触发的事件
+
+	理一下逻辑。
+	大概是这样子。
+	在子组件上可以绑定一个事件。事件名字要写到模板上，然后通过触发这个事件 触发$emit()让他来执行父元素的事件 
+	模板上绑定的事件为a的话  当a被触发时 在模板里写到 $emit(b);
+	b为绑定到父元素上自定义的名字 对应的一个c 为父元素的事件。！
+
+
+
+	使用自定义事件来定义表单输入组件
+	自定义事件可以用来创建自定义创建的表单输入组件，使用v-model来进行数据双向绑定。
+	
+
+
+ */
+	</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href='css/animate.css'>
+	<script src='../js/vue.min.js'></script>
+	<style>
+	.fade-enter-active,.conponent-fade-leave-active{
+		transition:opacity .3s;
+	}
+	.fade-enter,.fade-leave-to{
+		opacity:0;
+	}
+	
+	</style>
+</head>
+<body>
+	<div id="app">
+		<button @click="show=!show">点击我切换状态</button>
+		<transition
+					appear
+				appear-class='animated tada'
+				appear-to-class='animated tada'
+				appear-active-class='animated tada'
+			name="text"
+			enter-active-class='animated tada'
+			leave-active-class='animated bounceOutLeft'
+			>
+			<p v-if='show'>
+				黄致鹏
+			</p>
+			<!-- <p v-if='!show'>
+				汪洋
+			</p> -->
+
+		</transition>
+		<transition>
+			 <button v-bind:key="isEditing">
+  		  {{ isEditing ? 'Save' : 'Edit' }}
+ 		 </button>
+		</transition>
+
+	</div>
+
+	<div id="demo">
+		<transition name='fade' mode='out-in'>
+			<component v-bind:is='view'></component>
+		</transition>
+
+	</div>
+</body>
+<script>
+	var app=new Vue({
+		el:"#app",
+		data:{
+			show:true,
+			isEditing:true
+		}
+	})
+	var demo=new Vue({
+		el:"#demo",
+		data:{
+			view:"v-a"
+		},
+		component:{
+			'v-a':{
+				template:'<div>Component A</div>'
+			},
+			'v-b':{
+				template:'<div>Component B</div>'
+			}
+
+		}
+	})
+	//自定义过渡类名。配合animate.css使用
+	/*
+	enter-class
+	enter-active-class
+	enter-to-class (2.1.8+)
+	leave-class
+	leave-active-class
+	leave-to-class
+	
+	vue为了知道过渡的完成，必须设置相应的事件监听器。他可以是transitionend或animationend，这取决于给元素应用的css规则。
+	但是如果一些场景，同一个元素设置了两种过渡效果，animation很快完成了，但transition还没有结束。就需要使用type特性并设置animtation或transition明确声明你需要的vue监听的类型。
+	
+	<transition:duration="1000">
+	这个duration的属性是定制一个过渡效果的时间 感觉是可以强制性的结束该动画
+	
+	动画的钩子
+	可以在属性声明JavaScript钩子
+	<transition v-on:before-enter='beforeEnter'
+				v-on:enter='enter'
+				v-on:after-enter='afterEnter'
+				v-on:enter-cancelled='enterCancelled'
+				v-on:befor-leave='enterCancelled'
+				v-on:leave='leave'
+				v-on:after-leave='afterLeave'
+				v-on:leave-cancelled='leaveCancelled'>
+	</transition>
+	可以这样和生命周期的钩子函数同样。
+	在动画的每个阶段可以控制这些函数来写一些事件
+	需要注意的是 当只用JavaScript过渡的时候，在enter和leave中，回调函数done是必须的。否则，他们会被同步调用，过渡会立即完成。
+
+
+
+	初始渲染的过渡
+	可以通过appear特性设置节点的在初始渲染的过渡
+	一进入画面的过渡效果
+	<transition appear
+				appear-class='custom-appear-class'
+				appear-to-class='custom-appear-to-class'
+				appear-active-class='custom-appear-active-class'>
+	</transition>
+	自定义css类名
+
+	自定义js钩子
+	<transition
+		appear
+		v-on:before-appear='customBeforeAppearHook'
+		v-on:appear='customAppearHook'
+		v-on:after-appear='customAfterAppearHook'
+		v-on:appear-cancelled="customAppearCancelledHook"></transition>
+
+	在相同标签名的元素切换时，需要通过key特性来设置唯一的值来标记以让vue区分他们
+
+	过渡问题
+	in-out 新元素先进行过渡，完成之后当前元素过渡离开
+	out-in 当前元素先进行过渡，完成之后新元素过渡进入
+
+	多个组件的过渡
+	多个组件的过渡简单很多。我们不需要key特性，相反只需要使用动态组件
+
+	 */
+</script>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+ <script>
+  var test = window.location.href;  //得到http地址 例如 是百度 就会得到http://baidu.com
+  console.log(test);
+  function GetQueryString(name){     
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+       var r = window.location.search.substr(1).match(reg);
+       if(r!=null)return  unescape(r[2]); return null;
+  }
+  console.log(GetQueryString("app_id"));
+  console.log(GetQueryString("redirect_uri"));
+ 
+ </script>
+</html>

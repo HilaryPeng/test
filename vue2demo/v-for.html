@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='js/vue.min.js'></script>
+	<style>
+		ul{
+			list-style:none;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+	<!-- 最简单 -->
+		<ul>
+			<li v-for="item in items">{{item.name}}</li>
+		</ul>
+		<!-- 索引 -->
+		<ul>
+			<li v-for="(item,index) in items">{{item.name}}{{index}}</li>
+		</ul>
+		<!-- 模板渲染 -->
+		<ul>
+
+	  <template v-for="item of items">
+	    <li>{{ item.msg }}</li>
+	    <li class="divider">123</li>
+	  </template>
+	</ul>
+	
+	<!-- 对象迭代 -->
+	<ul>
+			<li v-for='itm in object' >{{itm}}</li>
+	</ul>
+	<!-- 对象提供第二个参数为键名 -->
+	<ul>
+			<li v-for='(itm,a) in object' >{{a}}:{{itm}}</li>
+	</ul>
+	<!-- 第三个为索引 -->
+	<ul>
+			<li v-for='(itm,a,b) in object' >{{a}}:{{itm}}</li>
+	</ul>
+	<!-- 整数迭代 -->
+	<ul>
+		<li v-for='n in 10'>{{n}}</li>
+	</ul>
+	<!-- 模板 -->
+
+	<li v-for="n  in  even(numbers)">{{n}}</li>
+
+	</div>
+
+	<div id="todo-list-example">
+  <input
+    v-model="newTodoText"
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div>
+
+	<script>
+	/*
+	v-for是根据一组数组的选项列表进行渲染。采用了 item in items的语法。 items是原数组 item是数组元素迭代的别名
+
+	v-for 指令需要以 item in items 形式的特殊语法， items 是源数据数组并且 item 是数组元素迭代的别名。
+
+	在v-for中，我们拥有对父作用域属性的完全访问权限。v-for支持一个可选的第二个参数当前项的索引。
+	
+	如同v-if模板。我们也可以通过带有v-for的<template>标签来渲染多个元素块
+
+	组件和v-for
+
+	组件中不能自动把数据传递到组件里。因为组件有自己独立的作用域。为了传递迭代数据到组件里。我们要用props
+	模板以及v-for的渲染要仔细学一些 看不大懂
+
+	v-for with v-if
+	在同一节点的时候v-for的优先级是高于v-if的 所以说明v-if将分别重复运行与每个v-for循环中。也就是说当你想为仅有的一些项渲染节点时，这种优先级别的机制会十分有作用。
+	尽量在写的时候绑定上唯一的key属性
+
+	数据更新检测
+	当这些数组通过这些方法运作时，会触发视图的更新
+	push()  想最后添加一个新的元素。然后返回新的长度
+	pop() 删除最后一个元素，然后返回删除的值
+	shift() 删除第一个元素，然后返回删除的值
+	unshift() 向开头添加一个元素。返回新的长度
+	splice() 里面有参数 可以删除 从第几位到第几位 并可以填入替代的元素
+	sort()  排序
+	reverse() 颠倒数组中的顺序
+
+	注意事项：当某些东西改变数组的时候vue并不能检测变动的数组
+	1.直接用索引设置一个项
+	2.修改数组的长度
+
+	显示过滤之后的排序结果
+
+	 */
+
+	var app=new Vue({
+		el:"#app",
+		data:{
+			items:[{name:'黄致鹏',msg:'link1'},{name:'杨柄',msg:'lgesg1'}],
+			object:{
+				firstname:'黄致鹏',
+				love:"love",
+				lastname:'陈锦'
+			},
+			numbers:[1,2,3,4,5]
+		},
+		methods:{
+			even:function(numbers){
+				return numbers.filter(function(number){
+					return number%2 === 0
+				})
+			}
+		}
+		
+	})
+
+
+	Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    </li>\
+  ',
+  props: ['title']
+})
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
+      this.newTodoText = ''
+    }
+  }
+})
+	</script>
+</body>
+</html>

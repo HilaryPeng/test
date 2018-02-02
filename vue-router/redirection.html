@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>路由的重定向</title>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	</head>
+	<body>
+		<!--别名的意思-->
+		<div id="app">
+			<h1>Route Alias</h1>
+			<ul>
+				<li><router-link to='/foo'>
+					
+					点击我去foo 模板
+				</router-link></li>
+				<li>
+					<router-link to='/home/bar-alias'>
+						
+						点击我去bar模板
+					</router-link>
+				</li>
+				<li>
+					<router-link to='/baz'>
+						点击我去bar模板
+					</router-link>
+				</li>
+				
+				<li>
+					<router-link to='/home/baz-alias'>
+						点击我我该去哪里
+					</router-link>
+				</li>
+
+			</ul>
+			<router-view class='view'></router-view>
+		</div>
+		<script>
+			const  Foo = {
+				template:'<div>我是foo模板</div>'
+			}
+			const Bar={
+				template:'<div>我是Bar模板</div>'
+			}
+			const Baz={
+				template:'<div>我是Baz模板</div>'
+			}
+			const A={
+				template:"<div>我是模板A</div>"
+			}
+			const Home={
+				template:'<div><p>Home</p><router-view></router-view></div>'
+			}
+			const router= new VueRouter({
+				routes:[{
+					path:'/Home',
+					component:Home,
+					children:[
+					{
+					path:'foo',component:Foo,alias:'/foo'	
+					},
+					{
+						path:'bar',component:Bar,alias:'bar-alias'
+					},
+					{
+						path:'baz',component:Baz,alias:['/baz','baz-alias']
+					}
+					]
+				},
+				{
+					path:'/bar',
+					component:Foo
+				}
+				]
+			})
+			new Vue({
+				router,
+				
+			}).$mount("#app")
+			//想知道路由的路径和模板是不是可以混合使用配置一个  可以就是说 名字是名字 模板是模板 互相不鸟
+		</script>
+	</body>
+</html>

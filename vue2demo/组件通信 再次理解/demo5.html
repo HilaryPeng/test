@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>input例子</title>
+	<script type="text/javascript" src='../js/vue.min.js'></script>
+</head>
+<body>
+
+	<div id="app">
+		<child></child>
+	<div>我是父组件的数据 <input type="text" v-model='parentNum'></div>
+	</div>
+
+	<script type="text/javascript">
+	
+//子组件里面的数据 输入完毕传递给父组件
+		Vue.component('child',{
+			template:`<div>
+			子组件里面的数据
+			<input v-model='childnumber' type='text' v-on:change='getNumber'>
+			</div>`,
+			data:function(){
+				return {
+					childnumber:''
+				}
+			},
+			methods:{
+				getNumber:function(){
+					this.$parent.parentNum= this.childnumber;
+					this.childnumber='';
+				}
+			}
+
+		})
+
+		var app=new Vue({
+			el:'#app',
+			data:{
+				parentNum:''
+			}
+		})
+
+
+
+
+
+
+
+
+	</script>
+
+</body>
+</html>

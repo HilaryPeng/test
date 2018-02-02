@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button class='btn'>点我看我会不会触发</button>
+		<button class='btn2'>第二个事件</button>
+	</body>
+	<script src='js/jquery-3.1.1.min.js'></script>
+	<script>
+		$(function(){
+			$('.btn').click(function() {
+			console.log('1231');
+			$('.btn2').unbind().click(function() {
+				console.log("看我重复多少次");
+			})
+		})
+		})
+		//发现没点一次btn其btn2的事件就会触发一遍。 
+		
+	</script>
+
+</html>

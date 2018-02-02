@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组件的深入理解</title>
+	<script type="text/javascript" src='js/vue2.js'></script>
+</head>
+<body>
+	<div id="app">
+		<change-input ref='input'></change-input>
+	</div>
+	<script type="text/javascript">
+	/*
+	组件的概念：
+	vue中的组件是非常重要的理念，并且也是最强大的功能之一，组件可以复用，可以封装。
+	组件的使用：
+	注册了才能使用：分为全局注册和局部注册
+	全局注册： Vue.component('myName',{
+		//配置项
+		template:'<div>模板</div>', 可以用es6的字符串模板
+		props:[] , 用来接收父模板的数据
+		data(){return {
+			
+		}},  //这点必须是一个函数
+		methods:{},
+		computed:{},其中应该还可加入钩子函数
+	})
+	//组件中的data必须为函数这点要注意一下
+	
+	局部注册：
+	var Child={
+		template:``,
+		data:function(){return {}} //
+		....
+	}
+	new Vue({
+		el:'',
+		data:,
+		....
+		compontens:{
+			'name':Child
+		}
+	})
+	在HTML中 <name></name>
+
+	需要注意一点的是is的用法，在HTML中有些字符串是不能正常解析的
+	所以就要用到is
+
+	组件间的数据传递就用props 可以直接拿到父组件的数据，然后通过触发事件
+	提交$emit() 即可提交更新父组件的数据来个例子！
+	
+	
+Vue.component('myName',{
+		//配置项
+		template:`<div>模板<span>{{msg}}</span><button @click='dosomething'>提交</button></div>`,
+		props:['msg'] , 
+		data(){return {
+			
+		}},  //这点必须是一个函数
+		methods:{
+			dosomething:function(){
+				this.$emit('doit');
+			}
+		}
+	})
+var app=new Vue({
+	el:"#app",
+	data:{
+		msg:'123456'
+	},
+	methods:{
+		submit:function(){
+			console.log(123);
+			this.msg='change'
+		}
+	}
+})
+
+其中#app中 <my-name v-bind:msg='msg' @doit='submit'></my-name>
+		   <span>{{msg}}</span>
+
+由于2.0的版本是不能与父组件来实时共享状态，所以我们要通过一些方法来触发状态，也就是说v-model这个指令是有问题的
+写一个v-modle的字符组件共享
+
+
+	*/	
+
+//
+
+//这里注册一个模板
+Vue.component('changeInput',{
+	template:`<div><h2>子组件的框：</h2><input type="text" /></div>`,
+	data:function(){
+		return {
+			msg:'123456'
+		}
+	}
+})
+
+
+var app= new Vue({
+	el:"#app",
+	data:{
+		msg:'123456'
+	},
+	methods:{
+		tink:function(){
+			this.msg=''
+		}
+	}
+})
+console.log(this.app.$refs.input.msg)
+
+
+	</script>
+</body>
+</html>

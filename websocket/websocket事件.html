@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script>
+	//WebSocket事件：
+		//而一个WebSocket对象分四类不同事件。
+		
+		ws.open=function(e){
+			console.log("Connection on..")
+			//协议握手结束，服务器响应webstocket连接请求，触发open事件。可以确定服务器处理了连接的	请求。
+			
+		};
+		ws.onmessage=function(e){
+			//当消息被接受会触发消息事件，响应的回调函数叫做onmessage。如下
+			if(typeof e.data==='string'){
+				console.log('string message received',e,e.data);
+			}else{
+				console.log("Other message received",e,e.data);
+			}
+			//除了文本消息，WebSocket消息机制还能处理二进制数据，有Blob和ArrayBuffer两种类型，在读取到数据之前需要决定好数据的类型。
+		};
+		//      如果发生意外的失败会触发error事件，相应的函数称为onerror,错误会导致连接关闭。如果你收到一个错误事件，那么你很快会收到一个关闭事件，在关闭事件中也许会告诉你错误的原因。而对错误事件的处理比较适合做重连的逻辑
+		ws.onerror=function(e){
+			console.log('WebSocket Error:',e);
+			//
+			handleErrors(e);
+		};
+		
+		//  连接失败和成功的关闭握手都会触发关闭事件，
+		//WebSocket的对象的readyState属性就代表连接的状态（2代表正在关闭，3代表已经关闭）
+		ws.onclose=function(e){
+			console.log('Connection closed',e);
+		}
+	//WebSocket 方法：
+ 		//WebSocket 对象有两个方法：send()和close()
+		//当服务端和客户端建立了消息之后，可以通过send来发送消息。
+		ws.send("hello , 我是发送的消息");
+		//一般发送消息是在open事件触发后在回掉函数里发生事件
+		var ws = new WebSocket("ws://echo.websocket.org")
+		ws.onopen = function(e) {
+		ws.send("Initial data");
+		}  //正确的示例
+		
+		//Blob对象和JavaScript File API一起使用的时候相当有用，可以发送或接受文件，大部分的多媒体文件，图像，视频和音频文件。这一章末尾会结合File API提供读取文件内容来发送WebSocket消息的实例代码。
+		 
+		 //ws.close方法
+		 ws.close(1000,'Closing normally');
+		 //这里面有两个可选的参数，code(normally)和reson(string);告诉服务端为什么终止连接， 前面是状态吗，后面是原因~。
+		 
+		 
+	//WebSocket属性：
+	     //它有三个属性，分别是readyState,bufferedAmount和Protocol.
+	  //1.readyState对象通过只读属性来传递状态，它有四个值分别为以下
+		// 0  连接正在进行，但还没有建立连接
+		// 1  连接已经建立，可以发送消息
+		// 2  连接正在进行关闭握手
+		// 3  连接已经关闭或者不能打开
+		
+	   //2.bufferedAmount：
+	       //有时候需要检查传输数据的大小，尤其是客户端传输大量数据的时候，虽然send()方法会马上执行，但数据并不是马上传输。浏览器会缓存应用流出的数据，你可以使用bufferedAmount属性检查已经进入队列但还未被传输的数据大小。这个值不包含协议框架、操作系统缓存和网络软件的开销。
+	   
+	   
+	   
+	   //3.protocol:
+	   		//在构造函数中，protocol参数让服务端知道客户端使用的WebSocket协议。而WebSocket对象的这个属性就是指最终服务端确定下来的协议名称，当服务端没有没有和客户端建立协议或者握手之前，这个属性都是空的
+	</script>
+</html>

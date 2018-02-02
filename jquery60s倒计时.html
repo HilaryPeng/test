@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>原生JS60s倒计时</title>
+	</head>
+	<body>
+<input type="button" id="btn" value="免费获取验证码" onclick="settime(this)" />
+<!--首先这个必须是一个按钮 需要有一个不能点击的属性-->
+<script type="text/javascript"> 
+		var countdown=60;  //定义一个变量为60s
+function settime(val) {  //点击执行函数 传值
+	console.log(val);
+			if (countdown == 0) { 
+			val.removeAttribute("disabled");    
+			val.value="免费获取验证码"; 
+			countdown = 60; 
+//			clearTimeout(function(){settime(val)},1000);
+			}else{ 
+			val.setAttribute("disabled", true); 
+			val.value="重新发送(" + countdown + ")"; 
+			countdown--; 
+			setTimeout(function(){settime(val)},1000);-
+			} 
+			 
+	} 
+</script>
+		
+	</body>
+</html>

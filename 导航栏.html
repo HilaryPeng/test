@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>导航栏</title>
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<style>
+		
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.one{
+				height:80px;
+				background:red;
+				position:fixed;
+				width:100%;
+			}
+			.box{
+				height:40px;
+				background:yellow;
+				padding-top:80px;
+				transition:height .7s;
+			}
+			.container{
+				background:pink;
+				height:2000px;
+			}
+			nav{
+				height:auto;
+				overflow: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<nav><div class='one'>我是一级导航栏我是一级导航栏我是一级导航栏我是一级导航栏</div>
+			<div class="box">我是二级导航栏二级导航栏</div>
+		</nav>
+		<div class="container">
+			我是内容
+		</div>
+	</body>
+	<script>
+	$(window).scroll(function(){
+		var height=$(".one").offset().top;
+		
+		if(height<80){
+			$(".box").css("height","40px");
+			
+		}else{
+			$(".box").css("height","0px");
+		}
+	})
+		 
+	</script>
+</html>

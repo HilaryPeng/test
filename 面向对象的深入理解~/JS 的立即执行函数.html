@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id='btn'></button>
+		<script>
+
+			/* 
+			 自执行函数表达式
+			 (function (){}())//推荐使用这个
+			 (function(){})()//这个也可以用
+			 
+			 
+			函数的概念：
+			 函数声明： function box(){}
+			函数表达式： var box=function(){}
+			匿名函数： function(){}  属于函数表达式
+			
+			
+			函数声明和函数表达式的区别：JS在进行预解析时 遇到函数声明会提升，而函数表达式必须JS顺序执行到此函数时才会逐行解析。函数表达式后面加括号可以立即执行函数。函数声明不可以，只能以FnName()的方式调用
+			box();
+			function box(){
+				console.log('111')
+			}正常 声明会被提升
+			
+			
+			
+			
+			 
+			 
+			 
+			 
+			 jquery中的ready事件是在dom树加载完毕后就马上执行的，如果有图片的话，会在图片加载之前触发
+			 window.onload 是在所有元素加载完毕后触发，在图片加载后触发
+			 * 
+			 * 
+			 * 
+			 * 
+			 * 
+			 * 
+			 * 
+			 * 
+			 * */
+			(function(a){console.log(a)})('13')
+			(function(a){alert(a); })("123")
+			(function(a){ alert(a);}("123"))
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>vue-demo1</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<script src="js/vue2.js"></script>
+</head>
+<style>
+	ul{
+		list-style: none;
+	}
+	
+</style>
+<body>
+	<div class="content container" id='container'>
+		<h5>1. v-model与{{}}绑定</h5>
+		<input type="text" v-model='msg'/>
+		<p class=''>{{msg}}</p>
+	</div>
+	
+	<div id="box" class='container'>
+		<h5>2.v-for</h5>
+		<ul>
+			<li v-for='(person,index) in data'>{{index}}+{{person.name}}</li>
+		</ul>
+	</div>
+	<div id="box2" class="container">
+		<h5>3. v-if</h5>
+		
+	</div>
+	
+</body>
+<script>
+	new Vue({
+		el:"#container",
+		data:{
+			msg:'fsag'
+		}
+	})
+	new Vue({
+		el:"#box",
+		data:{
+			data:[{"name":"黄致鹏"},{"name":'阿汪'},{"name":'list'}]
+		}
+	})
+	
+</script>
+</html>

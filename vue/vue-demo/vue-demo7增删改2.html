@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>用户管理</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<style>
+		th a{
+			margin-left:15px;
+		}
+		
+	</style>
+	<body>
+		<div id="app">
+			<div class="container">
+			<table class='table table-bordered table-hover table-responsive'>
+				<caption>用户管理</caption>
+				<thead>
+					<tr>
+						<th>用户名</th>
+						<th>年龄</th>
+						<th>毕业学校</th>
+						<th>备注</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for='row in rows'>
+						<th >{{row.Name}}</th>
+						<th >{{row.Age}}</th>
+						<th >{{row.School}}</th>
+						<th >{{row.Remark}}</th>
+						
+						<th ><a href="#" v-on:click='edit(row)'>编辑</a><a href="#" v-on:click="Del(row.Id)">删除</a></th>
+					</tr>
+					<tr>
+						<th>
+							<input type="text"  class='form-control' v-model='rowtemplate.Name'/>
+						</th>
+						<th>
+							<input type="text"  class='form-control' v-model='rowtemplate.Age'/>
+						</th>
+						<th>
+							<select class='form-control' v-model='rowtemplate.School'>
+								<option value='中山小学'>中山小学</option>
+								<option value='复兴小学' selected>复兴小学</option>
+								<option value='光明小学'>光明小学</option>
+							</select>
+						</th>
+						
+						<th>
+							<input type="text"  class='form-control' v-model='rowtemplate.Remark'/>
+						</th>
+						<th>
+							<button class='btn btn-primary btn-sm' v-on:click='Save'>确认</button>
+						</th>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+
+	</body>
+	<script src='js/jquery-1.11.1.min.js'></script>
+	<script src='js/bootstrap.min.js'></script>
+	<script src='js/vue.js'></script>
+	<script>
+		var data={
+			rows: [
+					{ Id: 1, Name: '小明', Age: 18, School: '光明小学', Remark: '三好学生' },
+					{ Id: 2, Name: '小刚', Age: 20, School: '复兴中学', Remark: '优秀班干部' },
+					{ Id: 3, Name: '吉姆格林', Age: 19, School: '光明小学', Remark: '吉姆做了汽车公司经理' },
+					{ Id: 4, Name: '李雷', Age: 25, School: '复兴中学', Remark: '不老实的家伙' },
+					{ Id: 5, Name: '韩梅梅', Age: 22, School: '光明小学', Remark: '在一起' },
+				],
+				rowtemplate: { Id: 0, Name: '', Age: '', School: '', Remark: '' },
+		}
+		new Vue({
+			el: '#app',
+			data: data,
+			methods: {
+				Save:function(){
+					if(this.rowtemplate.Id==0){
+						//设置新增的行
+						this.rowtemplate.Id=this.rows.length+1;
+						this.rows.push(this.rowtemplate);
+						 //这是清空表格
+					}
+					//Save end 这是添加数据
+					this.rowtemplate={ Id: 0, Name: '', Age: '', School: '', Remark: '' }
+				},
+				//添加数据end
+				Del:function(id){
+					for(var i=0;i<=this.rows.length;i++){
+				
+						if(this.rows[i].Id==id){
+							this.rows.splice(id-1,1);  //因为i是从0开始的，而ID是从1开始的 当对照上时相差1.
+							break;
+						}
+					}
+				},
+				//修改数据
+				edit:function(e){
+					console.log(e);
+					this.rowtemplate=e;  //不能单个对照属性值，那么需要还要判断AD ，直接让这个对象全部复制即可！
+				}
+			}
+
+		})
+	</script>
+
+</html>

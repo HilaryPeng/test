@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src='jquery-3.1.1.min.js'></script>
+</head>
+<body>
+	<ul>
+		<li>linklnklink1</li>
+		<li>linklnklink2</li>
+		<li>linklnklink3</li>
+		<li>linklnklink4</li>
+		<li>linklnklink5</li>
+	</ul>
+	<button>begin</button>
+</body>
+<script type="text/javascript">
+	$("button").click(function(){
+		$("ul li").each(function(){
+			console.log($(this).text())
+		})
+	})
+
+
+</script>
+</html>

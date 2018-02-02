@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>过渡状态</title>
+	<script src='../js/vue.min.js'></script>
+	<script src="https://unpkg.com/tween.js@16.3.4"></script>
+</head>
+<body>
+	<div id="demo">
+		<input type="number" v-model.number='number' step="20">
+		<p>{{animatedNumber}}</p>
+
+	</div>
+	<script>
+		var demo=new Vue({
+			el:"#demo",
+			data:{
+				number:0,
+				animatedNumber:0
+			},
+			watch:{
+				number:function(newValue,oldValue){
+					var vm=this;
+					function animate(){
+						if(TWEEN.update()){
+							requestAnimationFrame(animate)
+						}
+					};
+					new TWEEN.Tween({tweeningNumber:oldValue}).easing(TWEEN.Easing.Quadratic.Out).to({tweeningNumber:newValue},500).onUpdate(function(){
+						vm.animatedNumber=this.tweeningNumber.toFixed(0)
+					}).start();
+					animate();
+				}
+			}
+
+		})
+/*
+	什么是过渡状态。
+	1.数字和运算
+	2.颜色的显示
+	3.svg节点的位置
+	4.元素大小和其他的属性
+	所有的原始数字都被事先存储起来，可以直接转换到数字。做到这一步，我们就可以结合 Vue 的响应式和组件系统，使用第三方库来实现切换元素的过渡状态。
+	怎么实现，通过什么实现
+	通过watcher我们能监听到任何数值属性的数值更新。
+
+	例子 come on
+
+ */
+	</script>
+</body>
+</html>

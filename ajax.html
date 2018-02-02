@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script>
+	//shijian 点击手机号的时候
+		$.ajax({
+			type:"post",
+			url:"localhost:8080/Financial/userProperty.do", //
+			data:{
+				//这里写你传的参数； 
+				//useid 
+				//参数应该是 金额 每页行数  页数序列号
+//				"max":  ;
+//				"pageSize":  ;
+//				"pageNumer":  ;
+				
+			},
+			success:function(data){
+				console.log(data);
+				//这是后台返给你的数据
+				
+			},
+			error:function(msg){
+				
+			},
+			dataType:"json",
+		})
+	</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>子组件向父组件通信</title>
+	<script type="text/javascript" src='../js/vue.min.js'></script>
+</head>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
+</style>
+<body>
+		<div id="app">
+			<my-comment v-bind:message='msg' v-on:giveparent='addTotle'></my-comment>
+			<!-- 在这里绑定方法 来实现监听子组件的值变化 并在这里通过事件传递给父组件 -->
+			<!-- 这点尤其注意的是 giveparent千万不能用大小写 。会报错。。 这里解析完是不分大小写的  而下面的Js会区分大小写 所以如果一样会报错-->
+			<!-- 这里的v-on 就是vue的自定义事件 -->
+			<p>我是父模板中的数据message我的值是：{{msg2}}</p>
+		</div>
+
+	<script type="text/javascript">
+		//创建一个组件
+		Vue.component('my-comment',{
+			props:['message'],
+			template:`
+				<div class='red'>我是创建的模板 我的数据是#app给我的 是{{message}}
+				<p><button @click='doMe'>点击我 进行一个方法之后再回传给父组件</button></p>
+				</div>
+			`,
+			
+			methods:{
+				doMe:function(){
+					//dosomeing
+					this.message =this.message+1;
+					this.$emit('giveparent');
+				}
+			}
+
+		})
+
+		var app=new Vue({
+			el:"#app",
+			data:{
+				msg:1000,
+				msg2:0,
+			},
+			methods:{
+				addTotle:function(){
+					console.log(this.msg);
+					console.log(this.message)
+					this.msg++;
+					this.msg2=this.msg+10
+				}
+			}
+
+		})
+/*
+	总结 ： 子组件向父组件传递通信 主要通过事件 来触发$mount('...') 然后触发这个 触发绑定到父元素的事件 从而实现通信！可以改变msg的数据 或者其他操作之类的操作
+	也就是说通过自定义事件 父组件通过v-on的自定义事件监听子组件触发的事件 。子组件会通过$mount(name)来触发父组件自定的这个事件
+*/
+
+	</script>
+</body>
+</html>

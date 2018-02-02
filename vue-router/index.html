@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>我是首页</h1>
+		<p>
+			<router-link to='/user/foo'>去列表页1</router-link>
+			<router-link to='/user/bar'>去列表页2</router-link>
+			<router-link to='/user/foo/profile'>/user/foo/profile</router-link>
+			<router-link to='/user/foo/posts'>user/foo/posts</router-link>
+			<router-link to='/user/bar/posts'>user/foo/posts</router-link>
+
+			<!-- 要注意，当 <router-link> 对应的路由匹配成功，将自动设置 class 属性值 .router-link-active.-->
+
+		</p>
+		<!-- 路由出口 这里面是路由的组件渲染 -->
+
+		<router-view></router-view>
+		<button id='btn' v-on:click='doSomething'>点击我跳转路由</button>
+	</div>
+	
+	<script src='js/index.js'></script>
+	<script>
+	console.log(app)
+	</script>
+</body>
+</html>

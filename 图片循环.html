@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='js/jquery-3.1.1.min.js'></script>
+</head>
+<body>
+	<img src="image/kecheng1.jpg" alt="" id='img'>
+	<button id='btn'>开始</button>
+</body>
+
+<script>
+	$(function(){
+		var i=1,t;
+		function start(){
+			i++;
+			if(i>7){
+				i=1;
+				clearInterval(t);
+			};
+			var img=`image/kecheng${i}.jpg`
+			$('#img').attr('src',img);
+		};
+		$('#btn').click(function(){
+			 t= setInterval(start,100);
+		})
+
+	})
+</script>
+
+</html>

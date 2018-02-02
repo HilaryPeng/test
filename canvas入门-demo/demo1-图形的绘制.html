@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+		<meta charset="UTF-8">
+		<title>canvas入门</title>
+	</head>
+	<body>
+		<canvas id="firstcanvas" style="width:300px;height:200px;border:1px solid red">
+			格拉接过来
+		</canvas>
+	</body>
+	<script>
+		var a=document.getElementById('firstcanvas');
+		var ctx=a.getContext("2d");//是内建的html5对象，拥有多种绘制途径，矩形，圆形，字符以及添加图像的想法
+//		ctx.fillStyle="#FF0000";
+//		ctx.fillRect(0,0,150,75);
+		ctx.moveTo(0,0);
+		ctx.lineTo(400,200);
+		ctx.stroke();
+	</script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="demo-richbase-master/lib/jquery.js"></script>
+    <script>
+//        $(function(){
+//            var  input = $('#J_input');
+//            function getNum(){
+//                return input.val().length;
+//            };
+//            //渲染容器
+//            function reader(){
+//                var num=getNum();
+//
+//                if(J_input_count.length==0){
+//                    input.after(`<span id="J_input_count"></span>`)
+//
+//
+//                }
+//                console.log($('#J_input_count').length);
+//                $('#J_input_count').html(num+'个字');
+//
+//
+//
+//            }
+//        input.on('keyup',function(){
+//            reader()
+//
+//        })
+//        reader()
+//
+//
+//        })
+
+        //高级一点的写法
+        var textCount={
+            input:null,
+            init:function(config){
+                this.input=$(config.id);
+                this.bind();
+                return this;
+
+            },
+            bind:function(){
+                var  self=this;
+                this.input.on('keyup',function(){
+                    self.reader();
+
+                })
+            },
+            getNum:function(){
+                return this.input.val().length;
+            },
+            //渲染元素
+            render:function(){
+                var num=this.getNum();
+                if ($('#J_input_count').length == 0) {
+                    this.input.after('<span id="J_input_count"></span>');
+                };
+
+                $('#J_input_count').html(num+'个字');
+
+            }
+
+
+        }
+$({
+    textCount.init({
+    id:'#J_input';
+     }).reader();
+
+})
+
+    </script>
+</head>
+<body>
+<input type="text" id="J_input"/>
+</body>
+</html>

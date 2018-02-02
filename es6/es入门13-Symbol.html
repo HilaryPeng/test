@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+<meta charset='utf-8'>
+<title></title>
+</head>
+<body>
+
+
+<script>
+/*
+Symbol
+	1.概述
+	ES5的对象属性名字都是字符串，这容易造成命名的冲突。比如你使用了一个他人提供的对象，又想为这个对象添加新的方法。新方法的名字就有可能与现有方法产生命名冲突，如果有一个属性能有保证
+	每个属性都是独一无二的就好了，这就是ES6引入Symbol的原因。
+	
+	ES6中新的Symbol相当于一种新的数据类型。表示独一无二的值，是第七种数据类型，其他分别是undefined,null,string,number,boolean,object.
+	Symbo值通过symbol函数生成。对象的属性名可以有两种类型。一种是原来独有的字符串，另一种就是新增的symbol类型。凡是symbol类型，那就是独一无二的。可以保证不会与其他命名冲突。
+	let s=symbol();
+	type of s //symbol.
+	什么叫做独一无二
+	var foo=Symbol();
+	var foo1=Symbol();
+	s1 === s2 //false;
+	
+	
+	不能对symbol使用new，因为生成的symbol是一个原始类型的值，不是对象，也就是说。由于symbol值不是对象，所以不能添加属性。它是一种类似于字符串的数据类型。
+	symbol不能于其他类型的值进行运算，会报错。
+	但是可以将其值转换为字符串。也可以转换为布尔值。但是不能转换为数值。
+	var  sym=Symbol('myschool')
+	String(sym); //两种方法转换。
+	sym.toString();//
+	
+	var sym=Symbol();
+	Boolead(sym) //true;
+	!sym //false;
+	if(sym) //
+	
+	
+	2.作为属性名字Symbol
+	var mysymbol=Symbol();
+	var a={};
+	a[mysymbol]='hello';
+	同理，在对象的内部，使用 Symbol 值定义属性时，Symbol 值必须放在方括号之中。
+
+	3.消除魔术字符串。
+	魔术字符串是指在代码中多次出现，于代码形成强耦合的某一个具体的字符串或者数值。风格良好的代码，应该尽量消除魔术字符串，改由含义清晰的变量代替。
+	我的理解就是当封装的方法中如果由某个字符串必须传值的时候使用，这个时候每次调用的时候就要进行赋值。所以说写成变量的方法更好。因此特别适合symbol
+	
+	4.属性名的遍历
+	想要获取属性的symbol值，平常所用的for()..in..
+	for..of 中获得不到。并且也不会出现到object.keys()、object.getOwnPropertyName(),JSON.stringify()返回。
+	所以规定了一个方法用来获取symbol的值 
+	Object.getOwnPropertySymbols方法。
+	
+	5.Symbol.for() ,Symbol.keyfor()
+	symbol.for()可以重新使用赋给同一个symbol值。并且可以相同。
+	var s1 = Symbol.for('foo');
+	var s2 = Symbol.for('foo');
+	s1===s2; //true
+	
+	
+
+
+
+
+*/
+
+
+</script>
+</body>

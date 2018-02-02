@@ -1,0 +1,157 @@
+body {
+    color: #333;
+}
+
+em {
+    font-style: normal;
+}
+
+header {
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    width: 100%;
+    background-color: #387ef5;
+    position: relative;
+}
+
+header button {
+    height: 100%;
+    width: 30px;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 0;
+    display: block;
+    background-image: url(../images/back.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-background-size: 40% auto;
+    background-size: 40% auto;
+}
+
+header .title {
+    color: #fff;
+    font-size: 16px;
+}
+
+header .header-right {
+    position: absolute;
+    right: 10px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.weui-cell__ft .weui-input{
+    text-align: right;
+    color: #333;
+}
+a {
+    color: #333;
+}
+
+:focus {
+    outline: 0;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.content .weui-cells {
+    margin-top: -1px;
+}
+
+
+
+.text-666 {
+    color: #666;
+}
+
+.pull-right {
+    float: right;
+}
+
+.spancolor {
+    color: #999;
+}
+
+.status {
+    font-size: 14px;
+}
+
+.overhidden {
+    display: block;
+    width: 195px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.content .weui-cell {
+    padding: 5px 15px;
+}
+
+.weui-cell_access .noArrow:after {
+    display: none;
+}
+
+header .right-title {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    line-height: 34px;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+button.weui-form-preview__btn {
+    background-color: #387EF5;
+}
+
+.weui-form-preview__btn_primary {
+    color: #FFFFFF;
+}
+
+button.weui-form-preview__btn:active {
+    color: hsla(0, 0%, 100%, .4);
+    background-color: #5391fa;
+}
+
+.signatureTc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(100, 100, 100, .5);
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: none;
+    box-sizing: border-box;
+}
+svg{
+	padding: 0 5px;
+    box-sizing: border-box;
+}
+.card {
+    margin: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+.blue {
+    color: #0C60EE !important;
+}
+
+.red {
+    color: #E42112 !important;
+}
+
+.green {
+    color: #28A54C !important;
+}
+.weui-picker-modal-visible{
+    z-index: 1000;
+}

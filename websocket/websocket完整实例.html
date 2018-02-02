@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>例子</title>
+	</head>
+
+	<body>
+		<div id="output"></div>
+	</body>
+	<script>
+		//初始化连接事件
+		function setup() {
+			output = document.getElementById("output");
+			ws = new WebSocket('ws://echo.websocket.org');
+			//监听open;
+			ws.onopen = function(e) {
+				console.log("握手完成");
+				sendMessage('hello webstockt')
+			}
+			//监听close
+			ws.close = function(e) {
+				console.log("Disconnected" + e.reason);
+			}
+			ws.onerror = function(e) {
+				console.log("错误" + e);
+			}
+			ws.onmessage = function(e) {
+				console.log('我收到了消息才输出的' + e);
+				console.log(e.data)
+			}
+		}
+		//发送消息
+		function sendMessage(msg) {
+			ws.send(msg);
+		}
+
+		setup();
+	</script>
+
+</html>

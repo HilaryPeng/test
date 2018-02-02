@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		
+		//三、直接继承Animal.prototype
+		function Animal(){
+			
+		}
+		Animal.prototype.level='动物';
+		function Cat(name,color){
+			this.name=name;
+			this.color=color;
+			
+		}
+		Cat.prototype=Animal.prototype;
+		Cat.prototype.constructor=Cat;
+		var cat1=new Cat('大毛','黑色');
+		//优点 执行效率高，节省内存；缺点时 Cat.prototype与Animal.prototype指向了同一个对象，对任意Cat.prototype的修改都会影响到Animal。
+		　console.log(Animal.prototype.constructor); // Cat
+
+		
+	</script>
+</html>

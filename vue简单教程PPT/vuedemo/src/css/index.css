@@ -1,0 +1,39 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+p{
+	margin: 0;
+}
+#login{
+	background:red;
+}
+.clearfix:after{
+	content:'';
+	display:block;
+	clear: both;
+	height:0px;
+	visibility: hidden;
+}
+.contenttitle{
+	font-size:18px;
+	padding-bottom:20px;
+	border-bottom:1px solid #ddd;
+	width:100%;
+}
+body,html{
+	font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+.allcontent{
+	margin-top:20px;
+}
+.el-table .info-row {
+	background: #c9e5f5 
+}
+
+.el-table .positive-row {
+	background: #e2f0e4;
+}
+ul{
+	list-style: none
+}

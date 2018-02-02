@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src='../js/jquery-3.1.1.min.js'></script>
+	</head>
+	<body>
+		<div id='list'>
+			<p>我是ppppp</p>
+		</div>
+		
+	</body>
+	<script>
+		/* 新增的方法大多为了处理32位的UTF-16字符 
+		1.JavaScript 允许采用\uxxxx形式表示一个字符，其中xxxx表示字符的 Unicode 码点。 
+		
+		 以前的写法 "\u0061"
+		 es6中的写法
+		 '\u{20BB7}'
+		 大括号表示法与四字节的 UTF-16 编码是等价的
+		 
+		 let hello = 123;
+		 hell\u{6F} // 123
+		
+		
+		2.codePointAt()
+		  JavaScript内部，字符以UTF-16的格式储存，每个字符固定为2个字节。对于那些需要4个字节储存的字符（Unicode码点大于0xFFFF的字符），JavaScript会认为它们是两个字符。
+		  codePointAt方法会正确返回32位的UTF-16字符的码点
+		 codePointAt方法是测试一个字符由两个字节还是由四个字节组成的最简单方法。
+		
+		3.String.fromCodePoint() 
+		ES5提供String.fromCharCode方法，用于从码点返回对应字符。
+		fromCodePoint方法定义在String对象上，而codePointAt方法定义在字符串的实例对象上。
+		
+		4.字符串的遍历器接口
+		ES6为字符串添加了遍历器接口。使字符串可以被for...of循环遍历。
+		
+		5.At()方法
+		ES5 对字符串对象提供charAt方法，返回字符串给定位置的字符。该方法不能识别码点大于0xFFFF的字符。
+		目前，有一个提案，提出字符串实例的at方法，可以识别 Unicode 编号大于0xFFFF的字符，返回正确的字符。
+		
+		6.normalize()
+		ES6 提供字符串实例的normalize()方法，用来将字符的不同表示方法统一为同样的形式，这称为 Unicode 正规化。
+		
+		7.includes(),startsWith(),endsWith();
+		ES5中只有一个方法indexof方法可以确定一个字符是否包含在另一个字符串中。ES6又提供了三种新方法。
+		indcludes() :返回布尔值，判断是否找到了参数字符串
+		startswith():返回布尔值，判断参数的字符是否在源字符串的头部。
+		endsWith():返回布尔值，判断参数字符串是否在源字符串的尾部。
+		var s = 'Hello world!';
+
+		s.startsWith('Hello') // true
+		s.endsWith('!') // true
+		s.includes('o') // true
+		
+		8.repeat();
+		会返回一个新的字符串，同时参数表示将原来的重复N次。
+		'hello'.repeat(2) // "hellohello"
+		'na'.repeat(0) // ""
+		参数如果是小数，会被取整
+		'na'.repeat(2.9) // 'nana';
+		如果repeat的参数是负数或者Infinity，会报错。
+		参数NaN等同于0。 'na'.repeat(NaN) // ""
+		如果repeat的参数是字符串，则会先转换成数字。 'na'.repeat('3') // "nanana"
+		
+		9.padStart(),padEnd();
+		ES2107引入了字符串补全的功能，如果某个字符串不够制定长度。会在头部或者尾部补全，padStart()用于头部补全，padEnd()用于尾部补全。
+		'x'.padStart(5, 'ab') // 'ababx'
+		'x'.padStart(4, 'ab') // 'abax'
+		
+		'x'.padEnd(5, 'ab') // 'xabab'
+		'x'.padEnd(4, 'ab') // 'xaba'
+		
+		10.模板字符串
+		传统的模板
+		$('#result').append(
+		  'There are <b>' + basket.count + '</b> ' +
+		  'items in your basket, ' +
+		  '<em>' + basket.onSale +
+		  '</em> are on sale!'
+		);
+		ES6引入了模板字符串的概念
+		$('#result').append(‘ There are <b>${basket.count}</b> items
+		   in your basket, <em>${basket.onSale}</em>
+		  are on sale!‘)
+		  相当于没有引号了，不需要注意拼接的时候一些单引号双引号的问题。用${basket.count}代替变量
+		  
+		  
+		  var name = "Bob", time = "today";
+		  `Hello ${name}, how are you ${time}?`
+		* 
+		* console.log(`string text line 1
+			string text line 2`);
+		* // 输出是两行。 因为会换行了
+		* 自己写的例子：
+		* let [a,b]=['黄致鹏','好帅'];
+		$('#list').append(
+			`<ul>
+			<li>link1${a}</li>
+			<li>link2${b}</li>
+		</ul>`)
+		* 
+		* 
+		* $('#list').html(`
+			<ul>
+			  <li>first</li>
+			  <li>second</li>
+			</ul>
+			`.trim()); 消除换行
+		* 
+		* 
+		* 模板中可以放变量名，js表达式。可以进行运算，以及运用对象的属性。
+		* 还可以调用函数。
+		* 但是如果变量未定义的话 就会报错
+		* 
+		* `Hello ${'World'}`
+ 			如果模板中出现字符串而非变量的话，就会输出字符串
+		* 模板字符串甚至还能嵌套。
+		* 
+		* 在模板的字符串变量之中再嵌入另一个模板字符串。
+		* 
+		* 
+		* 11.实例：模板编译
+		* 
+		* 不会 看不懂==
+		* 
+		* 12.标签模板== 
+		* 看懂一点
+		* 理解其用到的地方把
+		* alert`123`  == alert(123) 就是相当于执行里面的alert操作了
+		* 但是如果模板里面有变量，那么就会先处理变量，然后在执行函数了
+		* tag函数的运用，他的参数这样解释 ，第一个 是一个数组 ，是不需要解析的部分，第二个到第N个都是需要解析的变量，当然是解析好的 例子如上所示
+		* 例如：
+		* tag`Hello ${ a + b } world ${ a * b }`;
+		* 
+		/ 等同于
+		  tag(['Hello ', ' world ', ''], 15, 50);
+		* 
+		* tag函数所有参数的实际值如下。
+
+			第一个参数：['Hello ', ' world ', '']
+			第二个参数: 15
+			第三个参数：50
+		* var a = 5;
+			var b = 10;
+			
+			function tag(s, v1, v2) {
+			  console.log(s[0]);
+			  console.log(s[1]);
+			  console.log(s[2]);
+			  console.log(v1);
+			  console.log(v2);
+			
+			  return "OK";
+			}
+			
+			tag`Hello ${ a + b } world ${ a * b}`;
+			// "Hello "
+			// " world "
+			// ""
+			// 15
+			// 50
+			// "OK"
+			'标签模板'的一个重要应用。就是过滤字符串，防止用户输入恶意内容
+			标签模板的另一个应用，就是多语言转换（国际化处理）。
+			除此之外，你甚至可以使用标签模板，在JavaScript语言之中嵌入其他语言。  看不懂咯
+			
+			
+			13.String.raw();
+			String.raw方法可以作为处理模板字符串的基本方法，它会将所有变量替换，而且对斜杠进行转义，方便下一步作为字符串来使用。
+		* *
+		 * */
+
+
+
+			
+			
+		
+		
+	</script>
+</html>

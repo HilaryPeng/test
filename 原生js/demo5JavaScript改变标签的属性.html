@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>javascript改变ＨＴＭＬ的元素、内容、事件、属性</title>
+	</head>
+	<style>
+		#box{
+			width:200px;
+			height:200px;
+			background:#000;
+			color:green;
+			
+		}
+	</style>
+	<body>
+		<p id="box">我是一个p</p>
+		<button id="btn1">出现</button>
+		<button id="btn2">消失</button>
+	</body>
+	<script>
+		
+		//JavaScript 能够改变页面中的所有 HTML 元素
+		//如需改变 HTML 元素的内容，请使用这个语法:document.getElementById(id).innerHTML=new HTML
+		
+		//JavaScript 能够对页面中的所有事件做出反应
+		
+		//JavaScript 能够改变页面中的所有 HTML 属性
+		//如需改变 HTML 元素的属性，请使用这个语法：document.getElementById(id).attribute=new value
+		//列如：document.getElementById("image").src="landscape.jpg";
+		//JavaScript 能够改变页面中的所有 CSS 样式
+		//document.getElementById(id).style.property=new style
+		//列如：document.getElementById("p2").style.color="blue";
+		//Visibility 
+		var btn1=document.getElementById("btn1");
+		var btn2=document.getElementById("btn2");
+		btn1.onclick=function(){
+			var box=document.getElementById("box");
+			box.style.visibility="visible";
+		}
+		btn2.onclick=function(){
+			var box=document.getElementById("box");
+			box.style.visibility="hidden";
+		}
+		//visible 仅仅只会隐藏元素  元素照样有高度 而display:non则会使元素没有一点高度
+		
+//		onload 和 onunload 事件会在用户进入或离开页面时被触发。
+//		onload 事件可用于检测访问者的浏览器类型和浏览器版本，并基于这些信息来加载网页的正确版本。
+//		onload 和 onunload 事件可用于处理 cookie。
+	</script>
+</html>
+	

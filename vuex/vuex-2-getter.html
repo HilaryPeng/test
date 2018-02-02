@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+/*
+	getter
+	什么是getter？作用是什么
+	有时候我们需要从store中的state中派生出一些状态，就是说 我们使用的时候会对数据进行一个过滤只使用自己需要的数据，如果有多个组件需要使用过滤后的数据那么我们该怎么处理呢？
+	这个时候就需要用到了getter
+	getter相当于store的计算属性，getter会将返回值就行计算并缓存起来，只有当依赖值发生变化的时候才会重新计算。
+	相当于vue中的computed 我们引用其值和引用state一样 
+	简单来用：
+	 computed:{
+		 	count:function(){
+		 		return this.$store.state.count,
+		 	}
+		 }
+	引入mapGetters来写
+	import {mapGetters} from 'vuex'
+	和mapState的写法一样
+	...mapGetters([
+				'item2'//单独写也是要加双引号的 不能直接写一个变量
+				])
+				//数组的写法 对象就是 item2:'item2' 即可
+
+
+
+*/		
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原生拖拽</title>
+</head>
+<style type="text/css">
+	.box,.box2{
+		width:200px;
+		height:200px;
+		border:1px solid #eee;
+		float:left;
+		margin-left:10px;
+	}
+</style>
+<script type="text/javascript" src='../js/jquery-3.1.1.min.js'></script>
+<body>
+	<p>在两个框中拖拽p元素</p>
+	<div class="box">
+		<p draggable='true'>我是一个元素</p>
+	</div>
+	<div class="box2" draggable='true'>
+		
+	</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+		$(document).on('dragstart','p',function(event){
+		// console.log('开始拖拽')
+		// console.log(event);
+		// event.dataTransfer.setData('text',event.target.id)
+		
+
+		})
+		// $('.box').on('drag','p',function(){
+		// 	$('.box,.box2').css({
+		// 		'border':'1px dashed red'
+		// 	})
+		// })
+		// $('.box').on('dragend','p',function(){
+		// 	$('.box,.box2').css({
+		// 		'border':'1px solid #eee'
+		// 	})
+		// })
+		document.addEventListener("dragover", function(event) {
+		    event.preventDefault();
+		}); //这一个配合drop 来使用 可以得到目标ID的东西
+		$(document).on('dragenter','.box2',function(){
+			// console.log('到达该目标')
+		})
+		// $(document).on('dragover','.box2',function(){
+		// 	console.log('在其他容器中拖动时')
+		// })
+		document.addEventListener('drag',function(event){
+			// console.log('正在拖拽')
+		})
+		document.addEventListener("drop", function(event) {
+		    event.preventDefault();
+			console.log(event.target)
+		    
+		});
+		$('.box').on('drap','p',function(){
+			console.log(13)
+		})
+	})
+	
+</script>
+</html>

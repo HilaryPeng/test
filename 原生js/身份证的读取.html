@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+	<body>
+	<object id="cardReader" type="application/x-syncard" width="0" height="0"></object>
+	﻿<button class="btn btn-info btn-ci-read-card" type="button">身份证读入</button>
+</body>
+<script type="text/javascript" src='../js/jquery-3.1.1.min.js'></script>
+<script type="text/javascript">
+	 var cr = document.getElementById("cardReader");
+          var crLoaded = !!cr.SetReadType;
+          // console.log(crLoaded)
+          //if (crLoaded) {
+            cr.SetReadType(0);  // 模式: 手动读卡
+            cr.SetPortNo(1001);  // 端口: 1001
+          //}
+          // 身份证读入按钮点击
+          var crUsed = false; // 读卡互斥锁
+          $(document).on("click", ".btn-ci-read-card", function() {
+
+
+            cr.ReadCard();
+
+            var genderCode = String(parseInt(cr.Sex) - 1);
+            var nationWithZu = cr.NationL + "族";
+            var $beforeLoanCusName = $("#cr").find('[data-field="beforeLoanCusName"]');
+            var $beforeLoanIdNo =   $("#cr").find('[data-field="beforeLoanIdNo"]');
+      
+            var ajaxData = {
+              idNo: cr.CardNo,  // 身份证号
+              customerName: cr.Name, //姓名
+              gender: cr.Sex, //性别 0 1
+              nationality: nationWithZu, //民族
+              birthday: cr.Born, //出生日期 
+              idBeginDate: cr.UserLifeB, //有效日期起始日期
+              idEndDate: cr.UserLifeE, //有效日期终止日期
+              idAddress: cr.Address, //住址
+              signOrgan: cr.Police,  //签发机关
+              idPhoto: cr.Base64Photo, //照片地址
+              beforeLoanCusName: $beforeLoanCusName.val(),
+              beforeLoanIdNo:$beforeLoanIdNo.val(),
+             
+              businessStatus:''
+            };
+  			console.log(ajaxData);
+	});
+
+</script>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js递归函数</title>
+</head>
+<body>
+	<script type="text/javascript">
+/*
+自己调用自己称为递归调用
+function fun(){ fun() ;console.log('mg')} //栈溢出  一直重复的调用下去 导致内存不足
+用递归来求 n的阶乘  
+5的阶乘 那就是 1*2*3*4*5
+写一个5的阶乘的函数
+
+
+
+
+
+
+
+
+
+*/
+function func(n){
+	if(n==1){
+		return 1
+	}
+	return n* func(n-1)
+}
+console.log(func(5))
+//for循环 
+func2(n){
+	for(let i=0;i<n;i++){
+		
+	}
+}
+
+
+
+
+	</script>
+</body>
+</html>

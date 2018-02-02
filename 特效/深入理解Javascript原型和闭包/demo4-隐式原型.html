@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>隐式原型</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+
+/*
+	上节提到，每个函数function都有一个prototype，即原型。每个对象都有一个__proto__，可称为隐式原型。
+	这个__proto__是一个隐藏的属性。JavaScript不希望开发者用到这个属性值。有的低版本浏览器甚至不支持这个属性值。
+
+*/
+var obj={}
+console.log(Object.prototype)
+console.log(obj.__proto__)
+//发现这两个属性是一样的
+//obj这个对象本质上是被Object函数创建的，因此obj.__proto__===Object.prototype
+//即每个对象都有一个__proto__属性，指向创建该对象的函数的prototype.
+//其中Object.prototype对象的__proto__该指向哪里呢 答案是null 
+
+//那么函数有__proto__么 函数是对象 那么肯定也是有的
+//那么是谁构造了函数呢？ --Function
+function fn(x,y){
+	return x+y
+};
+console.log(fn(10,20))
+//相当于 
+var fn1=new Function("x","y","return x+y");
+console.log(fn1(3,5))
+//对象的__proto__指向的是创建他的函数的prototype，就会出现Object.__proto__===Function.prototype.
+
+//自定义函数的__proto__指向Function.prototype,Object.__proto__指向Function.prototype
+//Function.prototype指向Function.prototype 成了一个循环
+	</script>
+</body>
+</html>
+</html>

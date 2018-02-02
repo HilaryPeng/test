@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>计时器的清除</title>
+	</head>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<body>
+		<button>清楚计时器</button>
+	</body>
+	<script>
+		
+		$(function(){
+			function a(){
+			console.log("弹出来");
+			};
+		var a=setInterval(a,1000);
+			
+			
+		$("button").click(function(){
+				console.log("jg");
+		clearInterval(a);
+		});
+		})
+		//清除计时器 一定要加名字；
+	</script>
+</html>

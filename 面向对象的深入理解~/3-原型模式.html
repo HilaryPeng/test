@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+			//五、Prototype模式
+	//js规定，每一个构造函数都有一个prototype属性，指向另一个对象，这个对象所有的属性和方法，都会被构造函数的实例继承。
+	//验证了我的想法，可以把一些不变的属性和方法，定义到prototype对象上。
+	function Cat(name,color){
+		this.name=name;
+		this.color=color;
+	}
+	Cat.prototype.type='猫科动物';
+	Cat.prototype.eat=function(){
+		console.log('铲屎的，你好');
+	}
+	var cat1=new Cat('大毛','黑色');
+	var cat2=new Cat('二毛','绿色');
+		
+	//六、Prototype模式的验证方法
+	//为了配合prototype属性，Javascript定义了一些辅助方法，帮助我们使用它，
+	//1. isPrototypeof() 这个方法用来判断，某个prototype对象和某个实例之间的关系
+	　　console.log(Cat.prototype.isPrototypeOf(cat1)); //true
+	//2.in运算符
+	//in运算符可以判断，某个实例是否含有某个属性，不管是不是本地属性。
+	   console.log('name' in cat2) //true
+	
+	
+		
+	</script>
+</html>

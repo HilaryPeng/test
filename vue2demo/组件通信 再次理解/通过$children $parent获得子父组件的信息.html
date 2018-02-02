@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$children</title>
+	<script type="text/javascript" src='../js/vue.min.js'></script>
+
+</head>
+<body>
+	<div id="app">
+		<child1></child1>
+		<child2></child2>
+	<button @click='doSomething'>点击我 我可获取子组件的信息</button>
+		<p>我是父组件中的信息：{{news}}</p>
+	</div>
+		
+		<div id="demo">
+			
+		<child1></child1>
+
+		</div>
+	<script>
+		
+	//先写两个注册的组件
+
+
+	Vue.component('Child1',{
+		template:`<div>{{message}}<button @click="getParent">dianji</button></div>`,
+		//其中组件的data 必须是一个函数 
+		// data:function(){
+		// 	return {
+
+		// 	}
+		// } 
+		//可以简写为  这是es6的简写
+		//因为component中不能使用实例的data，但是可以是用data声明变量，data的使用方式只能是函数
+		data (){
+			return {
+				message:"黄致鹏"
+			}
+		},
+		methods:{
+			getParent:function(){
+				console.log(this.$root)
+			}
+		}
+	})
+	Vue.component('Child2',{
+		template:'<div>{{message}}</div>',
+		//其中组件的data 必须是一个函数 
+		// data:function(){
+		// 	return {
+
+		// 	}
+		// } 
+		//可以简写为  这是es6的简写
+		data (){
+			return {
+				message:"汪洋琴"
+			}
+		}
+	})
+	var app=new Vue({
+		el:"#app",
+		data:{
+			news:'娃娃'
+		},
+		methods:{
+			doSomething:function(){
+				console.log(this.$children);
+				this.$children[0].message='致鹏'
+				//父组件访问子组件的数据 这样访问
+				//this.$children 返回的是一个数组 就是所有子组件的数组 排列顺序就是组件的上下顺序
+				//同时可以改变子组件里面的数据 并作出响应
+			}
+		}
+
+	})
+
+	var demo=new Vue({
+		el:"#demo",
+		data:{
+			
+		}
+
+	})
+
+	// 这个 $child 和$parent 好理解 就是可以通过这个访问父组件或者子组件的数据 来进行操作
+	</script>	
+</body>
+</html>

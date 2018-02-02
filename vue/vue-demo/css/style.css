@@ -1,0 +1,59 @@
+body,
+html {
+	font-family: "微软雅黑", "arial, helvetica, sans-serif";
+	font-weight: 300;
+}
+
+ul {
+	list-style: none;
+}
+
+.firsttable {
+	margin-top: 50px;
+}
+
+[v-cloak] {
+	display: none;
+}
+
+th {
+	font-weight: normal;
+}
+
+caption {
+	margin-bottom: 30px;
+	font-size: 24px;
+}
+
+.alertr {
+	margin-right: 30px;
+}
+
+.btn.active {
+	border-color: none;
+	border: none;
+}
+
+.btn:focus {
+	outline: none;
+}
+
+.add {
+	width: 90%;
+	margin: 0 auto;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+.secondnav,
+.thirednav {
+	display: none;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//如果是两个非构造函数的对象，要想让一个对象继承另一个对象.
+		var Chinese={
+			nation:'中国'
+		};
+		var Doctor={
+			career:'医生'
+		};
+		
+	//一、object的方法
+		function object(o){
+			function F(){};
+			F.prototype=o;
+			return new F();
+		}
+		
+		var Doctor=object(Chinese);
+		Doctor.career='医生';
+//	其实我的理解就是将这个函数重新赋予一个对象，而这个对象就是另一个对象的实例 ，在把其原来的属性挂到上面。
+		
+	</script>
+</html>

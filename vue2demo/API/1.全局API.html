@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='../js/vue.min.js'></script>
+</head>
+<body>
+	<div id="demo">
+		<p>{{msg}}</p>
+	</div>
+	<div id="demo2">
+		<p>{{msg}}</p>
+	</div>
+	<!-- 
+	1.vue.extend(options)
+	使用基础vue构造器，创建一个子类。参数是一个包含组件选项的对象。
+	data选项是特例。 在vue-extend必须是函数.如以下例子
+
+	2.vue.nextTick([callback,context])
+	参数 {function}[callback]
+		 {object}[context]
+	用法：在下次DOM更新循环结束之后执行延迟回调。在修改数据之后立即调用这个方法。获取更新后的DOM
+	不是太懂
+
+	3.Vue.set(target,key,value)
+	 第一个参数是数组或者对象 。key为字符串或者数字
+	 value 是返回的值
+	 用法：设置对象的属性。如果对象是响应式的。确保属性被创建后也是响应式的。同事触发视图更新。
+
+	 4.Vue.delete(target,key)
+	 删除对象的属性。如果对象是响应式的。确保删除能触发更新视图。这个方法主要用于避开Vue不能检测到属性被删除的限制。很少使用
+
+	 5.Vue.directive(id,[definition])
+	 注册或者获取全局指令
+
+	 6.Vue.filter('my-filter',function(value){
+		//返回处理的值
+	 })
+	 var myFilter=Vue.filter('my-filter')
+	 7.Vue.component(id,[definition])
+	 注册或者获取全局组件。注册会给自动使用给定的id设置组件的名称
+
+	 8.Vue.use(plugin)
+	 安装vue.js插件。如果插件是一个对象。必须提供install方法。
+
+	 9.Vue.mixin(mixin)
+	 全局注册一个混合，影响注册之后所有创建的每个vue实例。插件作者可以使用混合，向组件注入自定义行为。不推荐在应用代码中使用
+
+	 10.Vue.compile(template)
+	在render函数中编译模板字符串。只在独立构建时有效
+
+
+	 -->
+
+	 <script>
+	 	var Profile=Vue.extend({
+		template:'<p>{{firstName}}{{lastName}}aka{{alias}}</p>',
+		data:function(){
+			return {
+				firstName:'黄',
+				lastName:'致鹏',
+				alias:'123456'
+			}
+		}
+		})
+		//创建了Profile实例
+		var demo=new Profile({
+			el:"#demo",
+			data:{
+				msg:'你的名字'
+			}
+		});
+		var demo2=new Vue({
+			el:"#demo2",
+			data:{
+				msg:'你的名字'
+			}
+		});
+		demo2.msg='hello';
+		Vue.nextTick(function(){
+			console.log(demo2.msg)
+		})
+
+	 </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		/* 
+		 * 数值的扩展
+		 1.二进制和八进制表示法
+		 ES6提供了二进制和八进制数值的新写法。分别用前缀0b或者0o表示
+		 0b111110111 === 503 // true
+		 0o767 === 503 // true
+		 Es5中明确规定不允许采用0前缀表示八进制。es6表示可以用0前缀表示
+		 
+		 如果要将0b和0o前缀的字符串数值转为十进制，要使用Number方法。
+		 
+		 2.Number.isFinite(),Number.isNaN();
+		 ES6再Number对象上，新提供了Number.isFinite()和Number.isNaN()两个方法。
+		 Number.isFinite()用来检查一个数值是否为有限的  //只有是数字才为有限的 字符串、NAN、Infinity（无限大）都是false 
+		 Number.isNaN()用来检查一个值是否为NaN。
+		 传统的方法会先调用Number()将非数值的值转为数值。在进行判断。而ES6规定的不会有这个步骤，区别更清晰了。对于非数字类型的都返回false
+		 
+		3.Number.parseInt()和Number.parseFloat();
+		ES6将全局的方法ParseInt()和parseFloat()转移到Number上，其他的都完全一样。
+		这样做的目的，是逐步减少全局性方法，使得语言逐步模块化
+		Number.parseInt === parseInt // true
+		Number.parseFloat === parseFloat // true
+		
+		// ES5的写法
+		parseInt('12.34') // 12
+		parseFloat('123.45#') // 123.45
+		
+		// ES6的写法
+		Number.parseInt('12.34') // 12
+		Number.parseFloat('123.45#') // 123.45
+		
+		4.Number.isInteger()
+		这个函数用来判断一个数值是不是整数。整数和浮点数是同样的储存方法，3.0和3是一样的
+		
+		5.Number.EPSILON
+		ES6再Number对象上，新增一个极小的常量number.EPSILON
+		Number.EPSILON
+		// 2.220446049250313e-16
+		Number.EPSILON.toFixed(20)
+		// '0.00000000000000022204'
+		引入这个常量的目的是，由于浮点数的计算会存在一个误差范围
+		0.1+0.2=0.30000000000000004
+		而这个误差小于Number.EPSILON的时候，我们就认为得到了正确结果。
+		Number.EPSILON的实质是一个可以接受的误差范围。
+		
+		6.安全整数和Number.isSafeInteger()
+		对于计算数值的时候当超过2的53次方的时候就会出现误差，所以这个函数就是判断整数是否落在这个安全的范围内，记住是整数，放入小数会显示错误。
+		
+		7.Math对象的扩展。
+		ES6在MATH对象上新增了17个与数学相关的方法。
+		Math.trunc()  用于去除一个数的小数部分，并返回整数。
+		在内部为字符串的情况下，会进行转换为数值在进行去除。 当然如果是纯字母那么就胡返回NAN
+		
+		Math.sign() 方法会判断一个数是正数，负数还是零，对于非数值会先进行转换。
+		会返回的值 ： 1 表示为正数  -1表示为负数 0 返回0 -0返回-0 其他返回NAN
+		
+		Math.cbrt()方法计算一个数的立方根
+		Math.cbrt(8) // 2 
+		也是会先进性转换，其他的就返回NAN
+		
+		Math.clz32()JavaScript的整数使用32位二进制形式表示，Math.clz32方法返回一个数的32位无符号整数形式有多少个前导0。
+		
+		Math.imul() Math.imul方法返回两个数以32位带符号整数形式相乘的结果，返回的也是一个32位的带符号整数。
+		
+		Math.fround() 方法返回
+		对于整数来说，Math.fround方法返回结果不会有任何不同，区别主要是那些无法用64个二进制位精确表示的小数。这时，Math.fround方法会返回最接近这个小数的单精度浮点数。
+		
+		Math.hypot() 返回所有参数的平方和的平方根
+		Math.hypot(3, 4);        // 5
+		
+		
+		对数方法：
+		Math.expm1()
+		Math.expm1(x)返回ex - 1
+		
+		Math.log1p();
+		
+		Math.log10()
+		
+		Math.log2()
+		
+		8.Math.signbit() 
+		用来判断一个值的正负。
+		
+		9.指数运算符
+		**
+		*   2**2 =4 相当于2的2次方 
+		* 
+		 */
+		
+		
+	</script>
+</html>

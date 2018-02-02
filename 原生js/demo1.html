@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>demo1-js的简介</title>
+	</head>
+	<style>
+		body{
+			margin:30px;
+		}
+	</style>
+	<body>
+		<h3>JavaScript 是脚本语言</h3>
+
+		<p>JavaScript 是一种轻量级的编程语言。<br />
+		JavaScript 是可插入 HTML 页面的编程代码。<br />
+		JavaScript 插入 HTML 页面后，可由所有的现代浏览器执行。<br />
+		JavaScript 很容易学习</p>
+		<p id="demo">我是通过js获得ID进行改变的内容</p>
+		<p>js可以改变标签的属性 不仅仅是标签的内容 可以改变图片的src或者样式</p>
+		<div>
+			<input type="text" id="input"/><button id="btn">验证是否为数字</button>
+		</div>
+	</body>
+	<script>
+		document.write("<h1>我是通过原生js输出的</h1>");
+		document.write("<h2>我是通过原生js\
+		输\
+		出\
+		的</h2>");
+		document.write("Hello \World!");  //  \反斜杠对代码行进行换行。下面的例子会正确地显示：
+		//可以直接输出到文档里面；同时括号里面带上标签 
+		//区分
+		/*是多行的注释*/
+		var x=document.getElementById("demo")  //查找元素
+		x.innerHTML="Hello JavaScript";    //改变内容
+		
+		
+		function changeimg(){
+			var  img=document.getElementById("tupian");
+			img.src=""; 
+			//这样就改变图片的地址了；
+		}
+		var btn=document.getElementById("btn");
+		
+		btn.onclick=function(){
+			var value=document.getElementById("input").value;
+			if(value = "" ||  isNaN(value)){
+				console.log(value+123);
+				alert("您输入的不是数字")
+			}else{
+				alert("您输入的是数字");
+			}
+		}
+			
+		
+	</script>
+	
+	
+</html>

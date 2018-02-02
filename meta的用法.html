@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>meta标签详解及其用法</title>
+	</head>
+	<body>
+		<p></p>
+	</body>
+	<!--
+		关于meta的用法，meta属性在html中占据了很重要的位置，
+		1.声明文档所使用的字符编码
+		<meta charset='utf-8'>
+		2.声明文档的兼容模式
+		3.SEO优化
+		4.为移动设备添加viewport;
+		5.ios设备
+		6.iOS图标rel参数
+		7.iOS启动动画
+		8.Windows8磁铁颜色和磁贴图标
+		9.条件注释判断浏览器
+		10.sns社交标签
+		11.如果页面上出现很多http请求会自动转换成https
+		
+	-->
+	<!--
+		meta标签引言：
+		1.在搜索引擎中登录自己的个人网站；
+		2.在知名网站加入你个人网站的链接；
+		3.在论坛中发帖子宣传你的个人网站；
+		meta标签可以大大的提高你的网站被搜到的可能性；
+		meta标签分为两大部分；
+		http标题信息（http-equiv）和页面描述信息（Name）；
+		一：
+		 http-equiv类似于http的头部协议；它返回给浏览器一些有用的信息，以帮助正确和精确的显示网页内容。
+		1. Content-Type和Content-Language 
+		 说明：设定页面使用的字符集；用以说明主页制作所使用的的文字已经语言，浏览器会根据此来调用相应的字符显示page内容。
+		 就是设置字码 是什么语言；比如中文简体   繁体 英文 韩语
+		<Meta http-equiv="Content-Type" Content="text/html; Charset=gb2312">
+　　　　　 <Meta http-equiv="Content-Language" Content="zh-CN">
+		gb2312z国标汉字码；
+		2.Refresh(刷新)
+		说明：让网页多长时间刷新自己；或者多长时间后自动链接其他网页
+		例：<Meta http-equiv="Refresh" Content="30">
+　　　　　　     <Meta http-equiv="Refresh" Content="5; Url=http://www.xia8.net">
+			5s后自动跳转到某个网址；
+		3、Expires (期限)
+		说明：指定网页在缓存中的过期时间，如果网页过期，需要重新进入服务器调取；
+		<Meta http-equiv="Expires" Content="0">
+　　　　　	<Meta http-equiv="Expires" Content="Wed, 26 Feb 1997 08:21:57 GMT">
+		必须使用GMT的时间格式，或直接设为0(数字表示多少时间后过期)；
+		4.Pragma(cash模式)；
+		说明：禁止浏览器从本地缓存中调阅页面内容
+		<Meta http-equiv="Pragma" Content="No-cach">
+　　		注意：网页不保存在缓存中，每次访问都刷新页面。这样设定，访问者将无法脱机浏览。
+		5.Set-cookie(cookie的设定)
+		说明：浏览器访问某个页面时会将它存在缓存中，下次再访问时就可以从缓存中读取，以提高速度。当你希望访问者每次都刷新你广告的图标，或刷新你的计时器，就要禁用缓存。通常html文件没必要禁用缓存，对于ASP页面，就可以禁用缓存，因为每次看到的页面都是在服务器动态生成的，缓存失去意义。如果网页过期，那么存盘的cookie将被删除。
+		用法：
+		<meta http-equiv="Set-cookie" Content="cookievalue=xxx;expires=Wednesday,21-Oct-98 16:14:21 GET;path=/">
+		注意：必须使用GET的时间格式。
+		6.显示窗口的设定
+		说明：强制页面在当前窗口以独立页面显示
+		用法：<meta http-equiv="Window-target" Content="_top">
+		注意：这个方法是为了防止别人在框架里调用你的页面 Content可以为_top _blank _self _parent 	
+		7.Pics-label(网页RSAC等级评定)
+		说明：在IE的internet选项中有一项内容设置，可以防止浏览一些受限制的网站，而网站的限制级别就是通过该参数来设置的。
+		用法：<meta http-equiv="Pics-label" Content="(PICS-1.1)"
+		注意：不要将级别设置的太高。RSAC的评估系统提供了一种用来评价Web站点内容的标准。用户可以设置Microsoft Internet Explorer（IE3.0以上）来排除包含有色情和暴力内容的站点。上面这个例子中的HTML取自Microsoft的主页。代码中的（n 0 s 0 v 0 l 0）表示该站点不包含不健康内容。级别的评定是由RSAC，即美国娱乐委员会的评级机构评定的，如果你想进一步了解RSAC评估系统的等级内容，或者你需要评价自己的网站，可以访问RSAC的站点：http://www.rsac.org/。
+		8.Page-Enter、Page-Exit(进入与退出)；
+		说明：这个是页面被载入和调出的 一些特效。
+		//这个太复杂  一般不用得到。。
+		9.MSThemeCompatible(XP主题)
+		说明：是否在IE中关闭xp的主题。
+		用法：<Meta http-equiv="MSThemeCompatible" Content="Yes">
+		注意：关闭XP的蓝色立体按钮系统显示样式，从而和win2k很像。
+		//试了一下 没有卵用
+		
+		10.指明脚本类型
+		<meat http-equiv="Content-script-Type" Content="text/Javascript">
+			
+			
+	二、NAME变量
+	name 是用来描述网页的，对应于Content(网页内容)，以便于搜索引擎机器人查找、分类(目前几乎所有的搜索引擎都使用网上机器人自动查找meta值来给网页分类)；
+	name的value值（name=""）指定所提供信息的类型。有些值是已经定义好的。列入descript(说明),keyword(关键字),refresh(刷新)等，还可以指定其他任意值，如：creationdate(创建日期)。
+	document ID(文档编号)和level(等级)等；
+	1.keywords
+	说明：为搜索引擎提供关键字列表
+	用法：<meta name="keywords" content="关键词1，关键词2，...">
+	注意：各关键词间用英文逗号隔开，META的通常用处是指定搜索引擎用来提高搜索质量的关键词。当数个META元素提供文档语言从属信息 	时，搜索引擎会使用lang特性来过滤并通过用户的语言优先参照来显示搜索结果。例如：
+　　　　　　<Meta name="Kyewords" Lang="EN" Content="vacation,greece,sunshine">
+　　　　　　<Meta name="Kyewords" Lang="FR" Content="vacances,grè:ce,soleil">
+	2、Description (简介)
+　　  说明：Description用来告诉搜索引擎你的网站主要内容。
+　　  用法：<Meta name="Description" Content="你网页的简述">
+	3.Robots(机器人向导)
+	说明：Robots用来告诉搜索机器人哪些页面需要索引，哪些页面不需要索引。Content的参数有all  none  index  noindex follow  nofollow 默认是all
+	用法：<meta name="Robots" Content="ALL"
+	
+	all：文件将被检索，且页面上的链接可以被查询；
+　　   none：文件将不被检索，且页面上的链接不可以被查询；(和 "noindex, no follow" 起相同作用)
+　　	index：文件将被检索；（让robot/spider登录）
+　　   follow：页面上的链接可以被查询；
+　　　noindex：文件将不被检索，但页面上的链接可以被查询；(不让robot/spider登录)
+　　　nofollow：文件将不被检索，页面上的链接可以被查询。(不让robot/spider顺着此页的连接往下探找)
+    4、Author (作者)
+　　　说明：标注网页的作者或制作组
+　　　用法：<Meta name="Author" Content="张三，abc@sina.com">
+　　　注意：Content可以是：你或你的制作组的名字,或Email
+    5、Copyright (版权)
+　　　说明：标注版权
+　　　用法：<Meta name="Copyright" Content="本页版权归Zerospace所有。All Rights Reserved">
+	6.Generator (编辑器)
+　　　说明：编辑器的说明
+　　　用法：<Meta name="Generator" Content="PCDATA|FrontPage|">
+　　　注意：Content="你所用编辑器"
+　	7、revisit-after (重访)
+　　　说明：
+　　　用法：<META name="revisit-after" CONTENT="7 days" >
+　　　注意：
+
+
+		
+		
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	-->
+		
+	
+	
+	<script>
+		//meta标签详解：
+		//引言：
+		
+s
+		
+		
+	</script>
+</html>

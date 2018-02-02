@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vuex概念</title>
+	<script type="text/javascript" src='../js/vue.min.js'></script>
+</head>
+<body>
+	<div id="app">
+
+
+	</div>
+	<div>
+		<h2>vuex是什么？</h2>
+		<p>
+			vuex是一个专为vue.js应用程序开发的状态管理模式，它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。vuex也有调试工具  
+			这些是我看不懂的： vuex也集成到vue的官方调试工具 devtools extension,提供了诸如零配置的time-travel调试、状态快照导入导出等高级调试功能。
+
+		</p>
+		<h2>什么是状态管理模式</h2>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+
+			data(){
+				return {
+					count:0
+				}
+			},
+			template:`<div id='app'>{{count}}<button @click='increment'>点击</button></div>`
+			,
+			methods:{
+				increment:function(){
+					return this.count++
+				}
+			}
+		}).$mount('#app')
+
+/*
+
+看上面的代码 状态管理分为几个部分
+state :驱动应用的数据源   => data 
+view：以生命方式将state映射到视图 
+actions：响应在view上的用户输入导致状态的变化 => methods	
+
+什么是单向数据流
+state -> view -> actions -> state
+当遇到多个组件共享状态，单向数据流的简洁性很容易被破坏：
+1.多个视图依赖于同一状态
+2.来自不同的视图的行为需要变更同一状态
+
+所以我们把组件的共享状态抽取出来，以一个全局单例模式管理
+在这种模式下，我们的组件树构成了一个具体的"视图"，不管在树的哪个位置，任何组件都能获取状态后者触发行为！
+
+vuex的思想 几件了 Flux、Redux 和The Elm Architecture 。vuex以利用vue.js的细粒度数据响应机制来进行高效的状态更新
+对于简单的组件之间的通行 采用 global event bus即可。
+什么是global event bus 就是和我之前写的那个兄弟之间的通信，通过一个中介 来传递监听其中data的变化
+
+
+每一个vuex应用的核心就是store 。 store 基本上就是一个容器，包含着我们应用中大部分的状态 。vuex和单纯的全局对象有一下两点不同：
+1.vuex的状态存储是响应式的，当vue组件从store中读取状态的时候，若store中的状态发生变化，那么响应的组件也会响应的得到高效更新。
+2.我们不能直接改变store的状态。改变store的唯一途径就是显示的提交，这样使我们可以方便的跟踪每一个状态的变化，从而让我们能够实现一些工具帮助我们更好了解我们的应用
+
+
+
+
+
+
+// $mount 的用法
+//vm.$mount([elementOrSelector])
+参数  ID  或者其他的选择器
+返回的是实例本身 因为其中肯定有模板等
+如果不写$mount() 这个实例化处于为挂载状态，没有关联的DOM的DOM元素可以使用vm.$mount()手动挂载一个未挂载的实例
+
+这个方法有什么好处  这个方法返回的是实例本身，因而可以链式调用其他实例方法。
+
+
+*/
+	</script>
+</body>
+</html>

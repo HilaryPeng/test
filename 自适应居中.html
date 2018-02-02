@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>让一个块级元素自适应居中</title>
+	<script src='js/jquery-3.1.1.min.js'></script>
+</head>
+<style>
+/*	.box{
+		width:300px;
+		height:400px;
+		background:green;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-left:-150px;
+		margin-top:-200px;
+	}*/
+#box{
+	float:left;
+	width:400px;
+}
+ul {
+	list-style:none;
+}
+#box ul li{
+	height:40px;
+	width:100px;
+	text-align: center;
+	line-height:40px;
+	border:1px solid #ddd;
+}
+.clearfix:after{
+	content:"";
+	display:block;
+	clear:both;
+	height:0px;
+	visibility: hidden;
+}
+.parent{
+	display:table;
+	height:300px;
+	width:300px;
+	background:#ddd;
+}
+.child{
+	display:table-cell;
+	vertical-align:middle;
+	text-align:center;
+	font-size:18px;
+}
+.parent2 {
+	position:relative;
+	height:300px;
+	width:300px;
+	background:black;
+}
+.child2{
+	position:absolute;
+	top:50%;
+	color:#fff;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+.parent3{
+	background:pink;
+	position:relative;
+	height:300px;
+	width:300px;
+}
+.child3{
+	
+}
+</style>
+<body class='clearfix'>
+		<!-- <div id='box'>
+			<ul>
+				<li>link1</li>
+				<li>link2</li>
+				<li>link3</li>
+				<li>link4</li>
+				<li>link5</li>
+			</ul>
+		</div>	 -->
+
+<div class="parent">
+	<div class="child">我是一个快</div>
+</div>
+
+<div class="parent2">
+	<div class="child2">我是一个快</div>
+</div>
+
+<div class="parent3" id='parent3'>
+	<div  id='child3'>我是一个快</div>
+</div>
+</body>
+<script>
+	//这是宽高自知的情况下。如果宽高不知道呢 
+	//js的方法。上面有纯css的方法
+	// $(function(){
+
+	// 	function center(e){
+	// 		console.log(e);
+	// 		//传入的是选择到的标签
+	// 			//这里$(this)指向的是window
+	// 			$(this).width();
+	// 		var width=-$(e).width()/2;
+	// 		var height=-$(e).height()/2;
+	// 		console.log(width,height)
+	// 		$(e).css({
+	// 			"background":"green",
+	// 			'position':"absolute",
+	// 			'left':'50%',
+	// 			"top":'50%',
+	// 			"margin-left":width,
+	// 			'margin-top':height
+	// 		})
+	// 	}
+	// 	var box=document.getElementById('box');
+	// 	center(box);
+	// })
+	// //这个充其量只算是一个方法。而不是封装的插件 封装的方法
+	//vertacle-align 是什么意思
+
+
+	(function(window,$){function Center(child){
+		this.child=child;
+		
+		console.log($(child).width());
+
+		var kuan=-$(child).width()/2;
+		var gao=-$(child).height()/2;
+		var that=this;
+		this.init();
+		console.log(kuan,gao);
+		$(child).css({
+				'position':"absolute",
+				'left':'50%',
+				"top":'50%',
+				"margin-left":kuan,
+				'margin-top':gao
+			})
+	}
+	Center.prototype={
+		constructor:Center,
+		init:function(){
+			
+		}
+
+	}
+	window.Center=Center;
+})(window,$)
+var a= new Center(child3)
+</script>
+</html>

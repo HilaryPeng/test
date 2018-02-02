@@ -1,0 +1,84 @@
+.button {
+    width: 95%;
+    margin: 20px auto;
+}
+
+.weui-btn_default:not(.weui-btn_disabled):active {
+    color: rgba(255, 255, 255, .6);
+    background-color: #5391fa;
+}
+
+.weui-btn_default {
+    color: #fff;
+    background-color: #387ef5;
+}
+
+input[type="text"] {
+    box-sizing: border-box;
+    display: block;
+    padding-left: 0;
+    height: 34px;
+    line-height: 34px;
+    vertical-align: middle;
+    font-size: 14px;
+    border: 0;
+    float: right;
+}
+
+.height .weui-cell__bd,
+.height .weui-select {
+    height: 34px;
+    line-height: 34px;
+}
+
+.weui-cell__ft {
+    color: #666;
+    font-size: 14px;
+}
+
+input,
+select,
+textarea {
+    color: #666;
+    font-size: 14px !important;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: #666;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #666;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #666;
+    text-indent: 0;
+}
+
+.wrap{
+    display: table;
+    height: 60px;
+}
+#upImg{
+    display: table-cell;
+}
+#addImg{
+    display: table-cell;
+}
+.wrapImg{
+    position: relative;
+    margin-right: 10px;
+    display: inline-block;
+}
+.deleatimg{
+    display: block;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue的原理</title>
+</head>
+<body>
+	<script type="text/javascript">
+	/*
+	vue原理实现的过程分析
+	1.实现一个数据监听器Observer，能够对所有的数据对象进行监听，如有变动可拿到最新值并通知订阅者
+	2.实现一个指令解析器Comlie,对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定响应的更新函数
+	3.实现一个watcher，作为连接observer和compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的响应的回调函数，从而更新视图
+	4.mvvm入口函数 ，整合以上的三者
+	
+	实际可以参考官网的 深入响应式原理
+
+	*/
+	//1.实现observe
+		var data={name:'huangzhipeng'};
+		var person={name:'huangzhipeng',age:18}
+		observe(data);
+		observe(person)
+		function observe(data){
+			if(!data ||typeof data !='object'){
+				return;
+			}
+			//取出所有的属性进行遍历
+			Object.keys(data).forEach(function(key){
+				defineReactive(data,key,data[key]);
+			});
+		};
+		function defineReactive(data,key,val){
+			observe(val); //监听子属性
+			Object.defineProperty(data,key,{
+				enumberable:true, //是否可枚举
+				configurable:false,	//不能再次的进行的define
+				get:function(){
+					return val;
+				},
+				set:function(newVal){
+					console.log('监听到了值得变化',val,'-->',newVal)
+					val=newVal;
+				}
+			})
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>css动画兼容性</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/animate.css" />
+	</head>
+	<style>
+		.box{
+			width:300px;
+			animation-name:fadeInLeft;
+			animation-duration:1s;
+			animation-iteration-count:1;
+		}
+		.box img,.box2 img{
+			width:100%;
+		}
+		.box2{
+			width:300px;
+			animation-name:fadeInLeft;
+			animation-duration:2s;
+			animation-iteration-count:1;
+		}
+		
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		
+	</style>
+	<body>
+		<div class="box">
+			<img src="image/u=591918543,1544904101&fm=23&gp=0.jpg" alt="" />
+			
+		</div>
+		<div class="box2">
+			<img src="image/u=2078393815,165865793&fm=23&gp=0.jpg" alt="" />
+		</div>
+		
+	</body>
+</html>

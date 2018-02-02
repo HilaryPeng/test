@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组件通信再次理解</title>
+	<script type="text/javascript" src='../js/vue.min.js'></script>
+</head>
+<body>
+<div id="app">
+	<p>我是传向子模板的数据：{{text}}</p>
+	<child  v-bind:message='text'></child>
+	<coll-child v-bind:and-mesg2='ln'></coll-child>
+
+
+	<coll-child v-bind:and-mesg2='tek'></coll-child>
+	<p>cumputed 计算之前的值： {{num}}</p>
+	<p>cumputed 计算之后的值： {{num1}}</p>
+	<p>{{t()}}</p>
+	<button @click='getone'>点一下 改变num的值</button>
+</div>
+	<div id="demo">
+		{{student}}
+
+	</div>	
+
+</body>
+<script type="text/javascript">
+	//什么是子父组件 要懂什么时候是父 什么时候是子
+
+	//先声明一个全局模板
+
+	Vue.component('child',{
+		props:['message'],
+		template:`<span>{{messaget}}<button @click="doSomeing(messaget)">点击</button></span
+		>`,
+		data:{
+			messaget:''
+		},
+		methods:{
+			doSomeing:function(messaget){
+				console.log(messaget)
+				messaget='汪洋秦';
+				return  this.messaget
+				
+			}
+		},
+		computed:{
+			messaget:function(){
+				let t=this.message.split("");
+				t.push('123')
+				let str='';
+				for(let i=0;i<t.length;i++){
+					str=t[i]+str;
+				}
+				return 	str
+			}
+		},
+
+	})
+	//这是一个模板 普通的模板
+
+	Vue.component('collChild',{
+		props:['andMesg2'],
+		template:`<p> {{andMesg2}}<button @click='add'>点击加一</button></p>`,
+		methods:{
+			add:function(){
+				return this.andMesg2++
+			}
+		}
+	})
+	var app=new Vue({
+		el:'#app',
+		data:{
+			text:'黄致鹏',
+			ln:0,
+			tek:18,
+			num:10,
+		},
+		computed:{
+			num1:function(){
+				return this.num+10
+			}
+		},
+		methods:{
+			t:function(){
+				console.log()
+				let e=this.num1+10;
+				return e
+
+			},
+			getone:function(){
+				console.log(this.num);
+				this.num=100;
+				console.log(this.num1);
+				this.num1=200; //
+				console.log(this.num1);
+				//是可以改变num的值得
+			}
+		}
+	})
+	var demo=new Vue({
+		el:"#demo",
+		data:{
+			student:1
+		}
+	})
+	/*
+	这是一个最简单的  相当于 app是一个父组件，而child是一个子组件。然后其中的数据 message 是父组件 传给子组件的
+	而通过v-bind:message='text' 相当于为message 绑定了一个变量 ，而变量的数据 则有父组件来提供
+
+
+	模板中需要注意的事项 我们使用模板。因为HTML是不区分大小写的 所以我们在用驼峰式命名的prop 需要转换为相对应的短横线隔开式命名。
+	总结一下 ：
+	这个文档 主要是写模板与父组之间 是如何传递数据的 。这其中也稍微研究了一下计算属性与methods的关系。
+	什么是子父组件 很清楚明了了
+	 我创建的模板 在另一实例化的页面中使用了。而这个实例化的#app 就是父组件 其子组件就是模板
+
+	*/
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>变量的定义</title>
+	<link rel="stylesheet" href="css/jscss.css" />
+	<script>
+		 var x;
+		window.onload=function(){
+			 x=document.getElementById('box');
+			console.log(x);
+		}
+	</script>
+</head>
+<body>
+	<div id='box'></div>
+	<p>您可以把变量看做存储数据的容器。</p>
+	<ul>
+		<li>变量必须以字母开头</li>
+		<li>变量也能以 $ 和 _ 符号开头（不过我们不推荐这么做）</li>
+		<li>变量名称对大小写敏感（y 和 Y 是不同的变量）</li>
+	</ul>
+	姓名：<input type="text" />
+	电话号：<input type="number" />
+	<button id="btn">点击我提交数据</button>
+</body>
+<script>
+	//变量可以作为不同的类型；
+	//带有返回值的函数。函数会停止执行，并返回指定的值。整个 JavaScript 并不会停止执行，仅仅是函数。JavaScript 将继续执行代码，从调用函数的地方。函数调用将被返回值取代：
+	//这点就是return出现的长处了 当执行到这一步时 如果不符合条件 可以直接return false 而不用再向下执行了
+	//循环 
+	var a=1;
+	function xunhuan(){
+		for(var i=0;i<=100;i++){
+		document.write(i+"</br>");
+	}
+	}
+	function two(){
+		var j=0;
+		for(var i=0;i<=10;i++){
+				
+				document.write("i:"+i+"&nbsp&nbsp"+"j:"+j+"<br/>");
+				j++;
+			
+		}
+	};
+	
+	function lianggexunhuan(){
+		
+		for(var i=0;i<=10;i++){
+				for(var j=0;j<=10;j++){
+					document.write("i:"+i+"&nbsp&nbsp"+"j:"+j+"<br/>");
+				}
+		}
+	}
+	two(); //循环包含循环
+	//循环输出一个东西
+	//循环for里面的变量声明都是全局变量的。只有封闭在函数中才为局部变量
+
+</script>
+</html>

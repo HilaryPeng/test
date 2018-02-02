@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue-demo4</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<style>
+			.pink{
+				color:pink;
+			}
+			.red{
+				color:red;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<div id="app" class='container'>
+			<p v-bind:class='{pink:right}'>{{person.name}}</p>
+			<p v-bind:style='{color:red}'>{{person.age}}</p>
+			<p>{{person.love}}</p>
+			<p>{{num}}</p>
+			<!--v-bind:class= '{pinke:right}  中 right为变量'-->
+			<!--<p v-bind:style='{color:red}'>{{person.age}}</p>中 red为变量 需要自己在data中定义颜色-->
+			<button class='btn btn-info btn-sm' v-on:click="addNum">递增</button>
+			
+		</div>
+		
+		
+		
+		
+		
+			
+	</body>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el:"#app",
+			data:{
+				person:{
+					name:'黄致鹏',
+					age:'18',
+					love:'唱歌，游泳'
+				},
+				right:true,
+				red:'red',
+				num:0
+			},
+			methods:{
+				addNum:function(){
+					this.num++;
+				}
+			}
+			
+		})
+    
+    
+    
+    
+    //v-bind 用法
+	</script>
+
+</html>

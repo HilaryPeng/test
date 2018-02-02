@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<style>
+		.woshierzi{
+			display:none;
+		}
+		.woshibaba{
+			width:100px;
+			height:100px;
+			background:red;
+		}
+	</style>
+	<body>
+		<div class="woshibaba">
+			<input type="file" class="woshierzi"/>
+		</div>
+	</body>
+	<script>
+		$(function(){
+			$(".woshibaba").click(function(){
+				console.log("灰毛泡么");
+				
+				
+				
+				$(".woshierzi").click();
+			})
+			$(".woshierzi").click(function(event){
+					event.stopPropagation();
+				});  //
+		})
+	</script>
+</html>

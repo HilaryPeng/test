@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		function Animal(){
+			
+		}
+		Animal.prototype.level='动物';
+		function Cat(name,color){
+			this.name=name;
+			this.color=color;
+		}
+		
+		
+		
+		//由于第三种方法有缺点了所以就有第四种方法了，就是以一个空对象作为中介
+//		var F=function(){
+//			
+//		}
+//		F.prototype=Animal.prototype;
+//		Cat.prototype=new F();
+//		Cat.prototype.constructor=Cat;
+//		var cat1=new Cat('大毛','黑色');
+//这样就互相不干扰了		
+		
+		//奖上述封装成一个函数
+		function extend(Child,Parent){
+			var F=function(){};
+			F.prototype=Parent.prototype;
+			Child.prototype=new F();
+			Child.prototype.constructor=Child;
+			Child.uber=Parent.prototype;
+			//最后一行的意思；意思为子对象设置一个uber属性，这个属性直接指向父对象的prototype属性。这等于是在子对象上打开一条通道，可以直接调用子对象的方法。只是为了实现继承的备用性。纯属备用性质
+		};
+		extend(Cat,Animal);
+		var cat1=new Cat('咪咪','绿色 ');
+		
+		
+	</script>
+</html>

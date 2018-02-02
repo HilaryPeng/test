@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>封装一个创建表格的方法。只需要输入行数、列数</title>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <style>
+    .box table, th, td,tr{
+        border:1px solid #ddd;
+        mso-cellspacing: 0;
+        mso-line-spacing: 0;
+    }
+    table
+    {
+        width:100%;
+    }
+    tr{
+        height:40px;
+    }
+    th
+    {
+        height:50px;
+    }
+
+    </style>
+</head>
+<body>
+
+
+
+</body>
+<script type="text/javascript">
+
+        function Creattable(hang,line){
+            this.hang=hang;
+            this.line=line;
+            console.log(hang,line)
+            this.create=function(){
+               var textable='';
+               if(hang>0 && line>0){
+                    for(let i=0;i<line;i++){
+                        var td=''
+                        for(let i=0;i<hang;i++){
+                            td='<td></td>'+td;
+                        }
+                        console.log(td)
+                        textable='<tr>'+td+'</tr>'+textable;
+                    }
+                console.log(textable);
+                $('body').append(`<div id="box"><table><thead><tr>我是创建的表格</tr></thead><tbody>${textable}</tbody></table></div>`);
+            }
+            }
+        }
+        var a=new Creattable(3,4);
+//这个感觉只是写了一个构造函数，然后把其属性和方法放到了里面，这算是封装么？
+
+
+
+</script>
+</html>

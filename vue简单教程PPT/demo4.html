@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-on</title>
+	<script type="text/javascript" src='js/vue.js'></script>
+	<style type="text/css">
+		.box{
+			width:100px;
+			height:100px;
+			background:green;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<h2>v-on</h2>
+		<button v-on:click='doIt'>点击</button>
+		<div class="box" v-on:mouseover='enter' @mouseout='leave'></div>
+		<h2>v-if</h2>
+		<div class="item">
+			<ul>
+				<h2>one</h2>
+				<li v-for='i in item'>{{i}}</li>
+				<h2>two</h2>
+				<li v-for='(i,index) of item2'>{{i}}+++{{index}}</li>
+				<h3>three</h3>
+				<li v-for='(i,key,index) of item3'>{{index}}.{{key}}:{{i}}</li>
+				<h4>four</h4>
+				<li v-for='i in item4'>{{i.address}}</li>
+			</ul>
+		</div>
+	</div>
+
+
+
+
+	<script type="text/javascript">
+		var app= new Vue({
+			el:'#app',
+			data:{
+				item:10,
+				item2:['huangzhipeng','laoda'],
+				item3:{
+					name:'黄致鹏',
+					age:18,
+					leg:4
+				},
+				item4:[{
+					name:'黄致鹏',
+					age:'18',
+					sex:"男",
+					address:'上海'
+				},{
+					name:'张三',
+					age:18
+				}]
+			},
+			methods:{
+				doIt:function(){
+					alert('123')
+				},
+				enter:function(){
+					console.log(888)
+				},
+				leave:function(){
+					console.log('999')
+				}
+			}
+		})
+	</script>
+</body>
+</html>

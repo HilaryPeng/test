@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+	</head>
+	<body>
+		<div class="container">
+			<input type="text" class='form-control input-lg' style='margin-top:30px' id='message'/>
+			<button class='btn  btn-primary' >提交</button>
+		</div>
+	</body>
+	
+	<script src='js/jquery-1.11.1.min.js'></script>
+	<script>
+		var ws=new WebSocket("ws://localhost:8181")
+		ws.onopen=function(e){
+			console.log('握手建立之后我出现了')
+			
+		}
+		function sendMessage(){
+		
+			
+		}
+		$('.btn').click(function(){
+				ws.send('12345 上山老虎')
+		})
+		
+	</script>
+</html>

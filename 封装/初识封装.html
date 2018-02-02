@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初识封装</title>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<input type="text" id="inputbox">您输入了<span id="text"></span>个字
+</body>
+<script>
+//在input后面输出有几个字
+    //最简单的写法
+$(function(){
+        var input=document.getElementById('inputbox');
+        var  text=document.getElementById('text');
+        input.oninput=function(){
+            text.innerHTML=input.value.length;
+
+        }
+
+})
+
+
+
+</script>
+</html>

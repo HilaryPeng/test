@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-on</title>
+	<script type="text/javascript" src='js/vue.js'></script>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			box-sizing:border-box;
+		}
+		.header{
+			height:80px;
+			font-size:24px;
+			line-height:80px;
+			text-align:center;
+			background:#eee;
+		}
+		.slider{
+			min-height:400px;
+			background:#abc;
+			position:fixed;
+			left:0px;
+			top:80px;
+			width:200px;
+		}
+		.content{
+			padding-left:200px;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+	<my-head class='header'></my-head>
+	<my-slider class='slider'></my-slider>
+	<my-content class='content'></my-content>
+
+
+
+	</div>
+
+
+
+
+	<script type="text/javascript">
+		//先来注册组件吧 吧一个网页 分为 头部 侧边栏，与内容部分 
+		Vue.component('myHead',{
+			template:`<div>{{msg}}</div>`,
+			// data:function(){
+			// 	return{
+			// 		msg:'我是头部'
+			// 	}
+			// } //
+			data(){
+				return {
+					msg:'我是头部'
+				}
+			}
+		})
+		Vue.component('mySlider',{
+			template:`<div class=''>{{msg}}</div>`,
+			//template:'<div class="">{{msg}}</div>'
+			data:function(){
+				return{
+					msg:'侧边栏'
+				}
+			}
+		})
+		Vue.component('myContent',{
+			template:`<div>{{msg}}</div>`,
+			//template:"<div class='gj'>{{msg}}<img src=''></div>"
+			data:function(){
+				return{
+					msg:'内容'
+				}
+			}
+		})
+
+		var app= new Vue({
+			el:'#app',
+			data:{
+		
+			},
+			methods:{
+
+			}
+		})
+
+		//字符串的拼接
+		var a=new Date();
+		let b='当前的时间为：'+a+'等等' //es5的写法
+		let c=`当前的事件为：${a}等等`//ES6的写法
+		//函数的简写：
+		function demo(){
+			return{
+				 t:1
+			}
+		}
+		var demo=function(){
+			return {
+				t:1
+			}
+		}
+		//es6的箭头函数
+		var add=function(num2,num1){
+			return num2*num1
+		}
+
+		var add2=(num1,num2)=>{
+			return num1+num2
+		}
+		var x=function (e){
+			return e+1
+		}
+		var x1=e=>e+1;
+
+
+var a=2;
+function dosomething(){
+console.log(this.a)
+	
+
+}
+dosomething();
+	</script>
+
+</body>
+</html>

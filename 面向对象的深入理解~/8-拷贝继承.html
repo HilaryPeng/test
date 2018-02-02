@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//上面使用的是使用继承原型的方法，那么是不是也可以通过拷贝的方式来进行，就是拷贝父对象的属性和方法，拷贝进子对象，实现继承。
+		function Animal(){};
+		Animal.prototype.classes='动物';
+		function Cat(name,color){
+			this.name=name;
+			this.color=color;
+		}
+		function extand2(Child,Parent){
+			var p=Parent.prototype;
+			var c=Child.prototype;
+			for(var i in p){
+				c[i]=p[i];
+			}
+			//c.uber=p;
+			
+		}
+		extand2(Cat,Animal);
+		var cat1=new Cat('杨炳','黄色');
+		
+		
+		
+	</script>
+</html>

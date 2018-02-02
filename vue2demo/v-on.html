@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='js/vue.min.js'></script>
+	<style>
+		ul{
+			list-style:none;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+	<button v-on:click="greet">Greet</button>
+	<!-- 相当于传递了一个字符串当做参数了 -->
+	<button v-on:click="say('hello')">say hello</button>
+
+	<!-- 访问原生DOM事件 可以用特殊变量$event -->
+	<button v-on:click.once="warn('123456')">submit</button>
+	</div>
+
+	<script>
+	/*
+	v-on 
+	可以通过v-on指令监听DOM事件来触发一些JavaScript代码
+	内联
+
+	特殊变量$event
+
+	事件修饰符
+	event.preventDefault()阻止元素发生默认的行为 例如阻止a的链接
+	event.stopPropagation()阻止冒泡 都可以在method中处理的。
+	但是vue的企图是只用method来处理数据 而不是处理DOM的细节
+	提供了v-on的事件修饰符
+	.stop 阻止事件的冒泡
+	.prevent 提交事件不在重载页面
+	.captrue 使用事件捕获模式
+	.self 只在该元素本身触发时触发回调
+	.once 事件只会触发一次
+
+	键值修饰符
+	在监听键盘事件时。我们需要监听常见的键值，我们可以为v-on上添加键盘事件的关键修饰符。
+
+	.enter 
+	.tab
+	.delete
+	.esc
+	.space
+	.up
+	.down
+	.left
+	.right
+	2.1新增
+	.ctrl
+	.alt
+	.shift
+	.meta
+	.middle 鼠标滑轮
+	以上是一些常用的键值
+	还可以通过全局的config.keyCodes对象自定义键值修饰别名
+	Vue.config.KeyCodes.fi=112
+	v-on:Keyup.fi;
+	 */
+
+	var app=new Vue({
+		el:"#app",
+		data:{
+			name:'vue'
+		},
+		methods:{
+			greet:function(event){
+				console.log(this.name);
+				console.log(event)
+				if(event){
+					console.log(event.type)
+					console.log(event.target)
+				}
+			},
+			say:function(message){
+				alert(message)
+			},
+			warn:function(message){
+				
+				
+					alert(message);
+
+				
+				
+			}
+		}
+		
+	})
+
+
+	
+	</script>
+</body>
+</html>

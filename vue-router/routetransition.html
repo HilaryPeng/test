@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	</head>
+	<style>
+		*{
+		margin: 0;
+		padding: 0;
+	} 
+	body{
+		padding-top:40px;
+		padding-left:100px;
+	}
+	p{
+		margin: 0;
+	}
+	/* 这是模板中div的样式 通用的样式 所以说模板中的class不能写重名 */
+	.header{
+		position:absolute;
+		left:0px;
+		width:100%;
+		background:red;
+		color:#fff;
+		font-size:24px;
+		height:40px;
+		top:0px;
+		text-align:center;
+	}
+	.nav{
+	position:absolute;
+	left:0px;
+	width:100px;
+	height:100%;
+	background:#000;
+	color:#fff;
+	top:0px;
+	}
+	.content{
+		
+	}
+		
+	</style>
+	<body>
+		<div id="app">
+		<!--	<transition :name="transitionName">-->
+			
+			<router-view></router-view>   
+			<!--这个是盛放登录的模板-->
+			<router-view name='header'></router-view>
+			<!--这个是盛放头部-->
+			<router-view name='nav'></router-view>
+			
+			<!--这个是盛放导航-->
+			<router-view name='content'></router-view>
+			<!--这个是内容 所有的子路由都在其里面种展开 因为引用该模板的模板里面还有一个router-view 所有的内容页都在其里面展开即可-->
+		<!--	</transition>-->
+		</div>
+		<script>
+			const Login={
+				template:`<button v-on:click='login'>登录</button>`,
+				methods:{
+					login:function(){
+						this.$router.push("index")
+					}
+				}
+				//点击的方法要写到模板里面 不然是无法找的到的 所以说一些模板的方法 计算属性  周期钩子 需要传递的参数都在这里完成
+			}
+			const header={
+				template:`<div class='header'>我是头部</div>`
+				//头部模板
+			}
+			const nav={
+				template:`<div class='nav'>我是nav导航
+				
+				</div>`
+				//导航模板
+			} 
+			const content={
+				template:`<div class='content'>我是content
+				<p><router-link to='list1'>去列表页1</router-link></p>
+				<p><router-link to='list2'>去列表页2</router-link></p>
+				<router-view></router-view>
+				</div>`
+				//这个是内容 里面要有一个容器盛放子模板的内容 所以有了一个router-content
+			};
+			const list={
+				template:`
+			
+					<ul><li>我是默认列表页</li><li>我是默认列表页</li></ul>
+				
+				`
+			}
+			const list1={
+				template:`
+			
+					<ul><li>我是列表页1</li><li>我是列表页1</li></ul>
+				
+				`
+			}
+			const list2={
+				template:`
+				
+					<ul><li>我是列表页2</li><li>我是列表页2</li></ul>
+			
+				`
+			}
+			
+			
+//			const contentChild1={
+//				template:`<ul><li>我是列表1</li><ul>`
+//			}
+			const router=new VueRouter({
+				routes:[
+					{
+						path:'/',    //默认路径为登录页
+						component:Login
+					},
+					{
+						path:'/login',  // 登录页面也为登录模板	
+						component:Login
+					},
+					{
+					path:'/index',  //这里路径 一定要写成/index 不能写成index  
+					components:{  //这个是多个模板 所以要用components来表示 而不能用component
+						content:content , //对应到router-view的名字中
+						header:header, 
+						nav:nav  
+					},  //在这里嵌套
+					children:[{  //自路径 要写children  子组件的渲染会默认的在父组件所有的 router-view渲染。
+						path:'/list1',  //路径直接写/index就行 不必要写/index/list
+						component:list1
+					},{
+						path:'/list2',
+						component:list2
+					},
+					{
+						path:'/',  //默认的子路由渲染
+						component:list
+					}]
+					},
+					]
+				
+			});
+			new Vue({
+				router,   //启动路由
+			}).$mount('#app');
+/*
+ *  来总结一下
+ * 
+ * 
+ * 发现了一个z-index的东西 兄弟元素   如果在html文档中 谁在上面先被解析 都是绝对定位的情况下 ，谁就会在下面
+ */
+		</script>
+	</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*
+    Promise 对象
+    1.Promise的含义
+    Promise是异步编程的一种解决方案，比传统的解决方案--回调函数和事件 -- 更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原声提供了Promise对象。
+
+    所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是某个异步操作——的结果。从语法上说，Promise是一个对象，从它可以获取异步操作的消息。Promise提供统一的API，各种异步操作都可以用同样的方法进行处理。
+
+    Promise对象有以下两个特点。
+    1.对象的状态不受外界影响。Promise对象代表一个异步操作有三种状态分别是：
+        进行中pending，已成功 fulfilled，已失败 rejected
+    2.一旦状态改变，就不会在变，任何时候都可以得到这个结果
+        这个对象状态改变，只有两种可能：从pending变为fulfilled 或者pending变成rejected 也就是进行中变成成功，或者进行中变成失败。只要状态改变就会凝固，不会在变，会一直保持这个结果，这个时候称为resolved。如果改变已经发生了，你在对Promise对象添加回调函数，会立即得到这个结果，而事件的特点是，错过了再去监听 就得不到结果。
+
+
+    总结：promise 相当于一个容器 里面存储着最后的状态，可以直接获取到，而且一旦状态改变，就不可逆，相当于做出了约定。然后，我们就可以把异步操作以及同步操作的流程表达出来，避免了层层嵌套的回调函数。
+    缺点：无法取消，一旦新建就会立即执行，无法中途取消，二 如果不设置回调，内部抛出错误无法看得到。三 当处于pending是 也就是进行中 无法得知目前进展的阶段
+
+    如果某些事件不断的重复发生，使用stream模式是比promise更好的选择
+
+
+    2.概念完了 来学习用法，promise就是一个构造函数，可以new出来新的实例~
+
+    var promise = new Promise(function(resolve,reject){
+        if(操作成功){
+        resolve(value);
+        }else{
+        resolve(value);
+        }
+
+    })
+
+    promise接收一个函数作为参数，函数又有两个参数 分别是resolve和reject 。而这两个又是两个函数。
+    resolve函数的作用： 将promise对象的状态从pending转变为 fulfilled 也就是resolve状态，在异步成功后调用，并将异步操作的结果，作为参数传递出去，reject函数的作用是，将Promise对象的状态从 pending变为 rejected 也就是 从进行中变为失败，然后在异步失败的时候调用。将错误当做参数传递出去。
+    promise实例生成后，可以使用then方法分别制定resolved状态和rejected状态的回调函数。
+
+    promise.then(function(value){
+    
+    },function(error){
+    
+    });
+    其中then方法接收两个回调函数作为参数，第一个回调是promise状态变为resolved的时候调用，第二个是promise对象的状态变为rejected时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接收promise对象传出的值作为参数。
+
+        function  timeout(ms){
+        return new Promise((resolve,reject)=>{
+            setTimeout(resolve,ms,'done');
+        });
+    }
+    //timeout 返回一个promise实例 过一段时间会发生结果 过了指定的事件，promise实例状态改变了 就会触发then函数
+    timeout(100).then(function (value){
+        return console.log(value)
+    })
+    阮一峰老师写的 有点难 ，俺不是很理解了
+
+     */
+
+    //console.dir()可以显示一个对象所有的属性和方法
+
+
+    // var p=new Promise(function(resolve,reject){
+    //     //做一些异步操作
+    //     setTimeout(function(){
+    //         console.log('执行完成');
+    //         resolve('随便什么数据')
+    //         })
+    // },2000)
+    //promise 的构造函数接收一个参数 ，参数是函数 函数里面又有两个参数 一个reslove,reject，分别表示异步操作执行成功后的回调函数和异步操作执行失败后的回调函数。其实这里的’成功‘和失败来描述并不准确，应该是两种状态 分别是fullfiled rejected 
+
+    //这个new出来的对象会直接调用，所以我们一般是包在一个函数中，在需要的时候去执行这个函数。
+    function runAsync(){
+        var p = new Promise(function(resolve,reject){
+            //做一些异步操作
+            setTimeout(()=>{
+                console.log('先执行')
+                resolve('123')
+            },2000)
+        })
+        return p
+    }
+    function  runAsync2(){
+        var p= new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+               // console.log('后执行')
+                resolve('213')
+            },2000)
+        })
+        return p
+    }
+
+//回调的链式执行
+// runAsync().then(function(data){
+//     let t= Number(data);
+//     if(t>0){
+//         console.log('it is zheng')
+//     }else{
+//         console.log('it is fu')
+//     }
+//     return runAsync2()  //要返回执行的 然后链式调用then  链式调用 就避免了嵌套回调
+// }).then((data)=>{
+//     console.log(data)
+
+// })
+
+    function getNumber(){
+        var p = new Promise(function(reslove,reject){
+            setTimeout(function(){
+                var num = Math.floor(Math.random()*10);
+                // console.log(num)
+                if(num>10){
+                    reslove(num)
+                }else{
+                    reject('数字太pending变为rejected')
+                }
+            },1000)
+        })
+        return p
+    }
+getNumber().then(data=>{
+    console.log(data); 
+    return runAsync2(); 
+})
+.catch(error=>{
+   console.log(error);
+   return runAsync2();
+})
+.then(data=>{
+    console.log(data)
+})
+//这里的then传两个参数 这两个参数分别是函数
+
+
+//catch的用法
+
+// getNumber()
+// .then(data=>{
+//     console.log(data); 
+//     console.log(ggv)  //这个未定义时如果出现错误会被catch捕捉到 因此尽量的使用catch
+// })
+// .catch(function(reason){
+//     console.log(reason)
+// })
+//和以上的用法差不多  但是有另一个重要的作用：在执行reslove的回调时，如果抛出异常了，那么并不会报错卡死JS，会进入到catch的方法中。
+
+
+
+
+
+//all的用法
+//promise的all方法 提供了并行执行异步操作的能力，并且在所有的异步操作执行完成后才执行回调
+
+// Promise
+// .all([runAsync(),runAsync2()])
+// .then(function(results){
+//     console.log(results)
+// })
+//基本上试一下就知道啦 就是一起执行 全部执行完 返回一个额数组
+
+
+
+//race的用法
+//all的方法效果 实际上是 谁跑的慢，以谁为准执行回调，相对的说 race就是谁跑的快先执行谁
+
+// Promise
+// .race([runAsync(),runAsync2()])
+// .then(function(result){
+//     console.log(result)
+// })
+
+//最快的执行完之后可以立马执行then函数，而在其回调的时候 其他的并没有停止，仍旧在执行，
+//race的使用场景，比如我们可以给race某个异步请求设置超时时间，并且在其超时后设置对应的操作
+//
+// function resquestImg(){
+//     var p = new Promise((reslove,reject)=>{
+//         var img = new Image();
+//         img.onload=function(){
+//             reslove(img);
+
+//         }
+//         img.src='g1fd';
+//     });
+//     return p
+// }
+//用于请求计时
+
+
+// function timeout(){
+//     var p =new Promise(function(reslove,reject){
+//         setTimeout(()=>reject('图片请求超时'),5000)
+//     })
+//     return p
+// }
+// Promise
+// .race([resquestImg(),timeout()])
+// .then(results=>{
+//     console.log(reslutes);
+// })
+// .catch(reason=>{
+//     console.log(reason)
+// })
+
+
+</script>
+
+</body>
+</html>

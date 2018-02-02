@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css新特性</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	p>a{
+		color:red;
+	}
+	.textdec{
+		font-size:45px;
+		-webkit-text-fill-color:black;
+		-webkit-text-stroke-color:red;
+		-webkit-text-stroke-width:1.5px;
+	}
+	.manyculm{
+		column-count:3;
+		column-rule:1px dashed red;
+		colume-gap:10px;
+	}
+	</style>
+</head>
+
+<body>
+	<!-- 
+	1、	圆角
+	2.阴影
+	3.渐变和线性渐变（gradient:linear-gradient线性渐变 radial-gradient径向渐变）
+	4.文字阴影和盒子阴影 box-shadow text-shadow
+	5.总体的说 一开始是css3的选择器变化
+	增添了 p>a  即p 下面的第一个a元素
+	6.增添了很多新的选择器 ：first-child nth-of-type()
+	7.font-face客户端字体案例
+	 <p><font face="arial">arial courier verdana</font></p> 
+	 可以通过这种方式直接加载字体的
+	8.font-face服务端字体案例
+	@font-face{
+	font-family：起的名字 huang ,
+	src:地址
+	}
+	.class{
+	font-size:18px;
+	font-family:huang;
+	}
+	9.word-wrap案例
+	word-wrap:break-word;如果没有规定高度的话，相当于自动换行.
+	white-space:nowrap;表示不进行换行。
+	10.text-decoration;
+	 text-fill-color:文字内部填充颜色；
+	 text-stroke-color:文字边界填充颜色
+	 text-stroke-width:文字边界宽度
+	11.css多列布局
+	Column-count：表示布局几列。
+　　Column-rule：表示列与列之间的间隔条的样式
+　　Column-gap：表示列于列之间的间隔
+ 	12.增加了颜色的透明度
+ 	13.css盒子模型 flex;
+ 	14.css的transition属性
+ 	15.css的transform属性（旋转 放大 倾斜 缩小）
+ 	16.css的animation属性定义帧动画
+
+
+	 -->
+	<div style="width:100px;border:1px solid black;overflow:hidden">
+		dljglkajldjslagjlkdsjglkjaljlasfjdlsjfla
+	</div>
+	<div style="width:100px;border:1px solid black;word-wrap:break-word">
+		gjlajglkfjdlglaskjflkjsaldjlkasdjglkjsladjglkag自动换行
+	</div>
+	<br>
+	<h3>省略号</h3>
+	<div style="width:100px;border:1px solid black;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">
+		dljglkajldjslagjlkdsjglkjaljlasfjdlsjfla
+	</div>
+	<br>
+	<h3>text-decoration 文字填充颜色</h3>
+	<p class="textdec">文字填充颜色</p>
+	<br>
+	<h3>css多列布局</h3>
+	<p class="manyculm">
+		我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局我可以分为多列布局
+	</p>
+</body>
+</html>

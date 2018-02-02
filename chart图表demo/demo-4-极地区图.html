@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>demo4极地区图</title>
+		<script src='js/Chart.min.js'></script>
+	</head>
+
+	<body>
+		<canvas id="mySecondChart" width="500" height="500"></canvas>
+
+	</body>
+	<script>
+		var data = [{
+				value: 30,  //占百分之30
+				color: "red" //颜色
+			},
+			{
+				value: 90,
+				color: "#C7604C"
+			},
+			{
+				value: 24,
+				color: "#21323D"
+			},
+			{
+				value: 58,
+				color: "#9D9B7F"
+			},
+			{
+				value: 82,
+				color: "#7D4F6D"
+			},
+			{
+				value: 8,
+				color: "#584A5E"
+			}
+		]
+		var myZhuxing = new Chart(document.getElementById('mySecondChart').getContext('2d')).PolarArea(data);
+	</script>
+
+</html>

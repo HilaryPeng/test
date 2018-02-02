@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>一切皆是对象</title>
+</head>
+<body>
+
+
+
+
+	<script type="text/javascript">
+		function show(x){
+			console.log(typeof x);
+			console.log(typeof 10);
+			console.log(typeof 'abl');
+			console.log(typeof true);
+			console.log(typeof function(){});
+			console.log(typeof ['1',2,3]);
+			console.log(typeof {a:'黄致鹏',b:18});
+			console.log(typeof null);
+			console.log(typeof new Number(10));
+		}
+		show()
+/* 
+	使用typeof 可以吧所有的类型分为两类 一类为简单的值类型 ，一类为引用类型
+	判断一个变量是不是对象非常简单，值类型的判断用typeof 引用类型的类型判断用instanceof
+
+	对象--若干属性的集合
+
+*/
+	var obj={
+		a:10,
+		b:function(x){
+			cosole.log(this.a+x);
+		},
+		c:{
+			name:'黄致鹏',
+			age:18
+		}
+	}
+	//其中obj是自定义的一个对象，其中a,b,c就是它的属性，而且在c的属性中还有一个对象，又有name和age这两个属性
+
+	//一切引用类型都是对象，对象是属性的集合。
+	</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+		/* 2. 块级作用域
+		 * //为什么需要块级作用域?看ES5的例子
+					 	第一个：
+					 	var tem=new Date();
+					 	function f(){
+					 		console.log(tem);
+					 		if(false){
+					 			var tem='hello world';
+					 		}
+					 	}
+					 	f(); //输出为undefined
+					 	因为变量的提升所以覆盖了tme的值
+					 	
+					 	第二个：
+					 	
+					 	var s='hello';
+					 	for(var i=0;i<s.length;i++){
+					 		console.log(s[i]);
+					 	}
+					 	console.log(i); //5
+					 	发现i为5,i变成了全局变量 ;循环结束后并没有消失
+					 	
+					 	看ES6的块级作用域：
+					 	
+					 	function f1(){
+					 		let n=5;
+					 		if(true){
+					 			let n=10; 
+					 		};
+					 		console.log(n);  //5  说明了外层代码块不受内层代码块的影响。
+					 	}
+					 	f1()
+					 	
+					 	
+					 	块级作用域域函数声明
+					 	ES5规定，函数只能在顶层的作用域和函数作用域之中声明。不能在块级作用域中声明
+					 	
+					 	if(true){
+					 		function f(){}
+					 	} //情况1
+						 
+						 try{
+						 	function f(){
+						 		
+						 	}catch(e){
+						 		
+						 	}
+						 } //什么是try　这个函数我看了之后的理解是，对于一些出错的函数会直接报错从而不往下运行了，而如果有ｔｒｙ函数就会报错但是不影响继续向下解析了。
+						 这种情况应该都是错的,但是浏览器为了兼容以前的旧代码,还是支持在块级作用域之中声明函数.
+					 	ES6中明确了块级作用域,明确允许在块级作用域之中声明函数。
+					 	函数语句的声明和let一样在块级作用域之外不可引用！
+					 
+				function f() { console.log('我是在全局声明的一个函数'); }
+
+				(function() {
+					if(false) {
+
+						function f() { console.log('我是内部声明的一个函数'); }
+					}
+					f(); //报错
+
+				}());
+				考虑到环境导致的行为差异太大,应该避免在块级作用域内声明函数,如果确实需要,也应该写成函数表达式,而不是函数声明语句
+				//函数声明语句 
+						{
+							let a ='hello world';
+							function f(){return a}
+						}
+					//函数表达式
+					{
+						let a='hello world2';
+						let f2=function(){
+							return a;
+						}
+						console.log(f2());//
+					}
+					
+					有一个需要注意的地方，ES6的块级作用域允许声明函数的规则，只在使用大括号的情况下成立，如果没有使用大括号，就会报错
+					*/
+	</script>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href='css/animate.css'>
+	<script src='../js/vue.min.js'></script>
+	<style>
+	
+	.bounce-enter-active{
+		 animation: bounce-in .5s;
+	}
+	.bounce-leave-active{
+		animation: bounce-in .5s reverse;
+	}
+	@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+	
+	</style>
+</head>
+<body>
+	<div id="app">
+		<button @click="show=!show">点击我切换状态</button>
+		<transition name='bounce'>
+			<p v-if='show'>
+				黄致鹏
+			</p>
+
+		</transition>
+	</div>
+</body>
+<script>
+	var app=new Vue({
+		el:"#app",
+		data:{
+			show:true,
+		}
+	})
+	//自定义过渡类名。配合animate.css使用
+</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>style</title>
+	<script type="text/javascript" src='js/vue.min.js'></script>
+</head>
+<style type="text/css">
+	ul li{
+		float:left;
+		width:200px;
+		height:40px;
+		line-height:40px;
+		border:1px solid #eee;
+		text-align: center;
+		box-sizing: border-box;
+		cursor:pointer;
+	}
+	.clearfix:after{
+		content:'';
+		display:block;
+		height:0px;
+		clear:both;
+		visibility: hidden;
+	}
+	ul{
+		list-style: none
+	}
+	.box{
+		border:1px solid red;
+	}
+	ul li.active{
+		background:#ddd;
+	}
+	.box2{
+		width:100px;
+		height:100px;
+		border:1px solid #ddd;
+	}
+	.bag{
+		background:yellow;
+	}
+</style>
+<body>
+	<div id="app">
+	<div class="box">
+	<ul class='clearfix'>
+		<li v-for='(i,index) in item' :class='{active:index==isActive}' @click='cit(index)'>{{i}}</li>
+	</ul>
+	</div>
+
+	<div class="box2" :class='{bag:a}'>
+		
+	</div>
+	</div>
+
+
+</body>
+<script type="text/javascript">
+	var app=new Vue({
+		el:"#app",
+		methods:{
+			cit:function(e){
+				this.isActive=e;
+			}
+		},
+		data:{
+			item:["link1",'link2',"link3",'link4'],
+			isActive:2,
+			a:true
+		}
+	})
+</script>
+</html>

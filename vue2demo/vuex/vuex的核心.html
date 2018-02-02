@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vuex的核心</title>
+	<script type="text/javascript" src='../js/vue.min.js'></script>
+	<script type="text/javascript" src='../js/vuex.js'></script>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+/*
+	<h2>其核心一共有五个</h2>
+	<ul>
+		<li>1.state</li>
+		<li>2.getters</li>
+		<li>3.mutations</li>
+		<li>4.actions</li>
+		<li>5.modules</li>
+	</ul>
+	State
+	1.单一状态树
+	vuex使用 单一状态树  ，用一个对象就包含了全部的应用层级状态。至此它便作为一个 唯一数据源而存在，这也意味着 ，每个应用将紧紧包含一个store实例。可以看我们的实例 其实想对应的就是说 一个管理多个
+	2.在vue组件中 获得vuex的状态
+	通过 vue的 计算属性 computed 直接返回 这是最简单的方法
+	每次store.state.count 发生变化的时候 都会重新 求取计算属性，并且触发更新相应关联的DOM.
+	然而，这种模式导致组件依赖全局状态单例。在模块化的构建系统中，在每个需要使用state的组件中需要频繁的导入，并且在测试组件是需要模拟状态。！！
+	这么来说 通过computed的方法传入其变量 是有缺点的 那该怎么解决呢？
+
+	vuex通过store 选项，提供了一种机制 将状态 从根组件 注入到每一个子组件中 哦 
+	直接就是 store 就OK了
+
+	new Vue({
+  el: '#app',  
+  router,
+  store,  这样就把所有的实例注入到了所有的子组件		
+  template: '<App/>', 
+  components: {
+  	App
+}
+})
+
+在根实例中注册store选项，该store实例会注入到跟组件下的所有子组件中，且子组件能通过this.store访问到。
+
+
+*/	
+
+
+
+</script>
+</html>

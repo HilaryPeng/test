@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>promise</title>
+</head>
+<body>
+	<script type="text/javascript">
+	function asone(){ 
+		var promise=new Promise(function(resolve,reject){
+			//做一些异步操作 ，比如说请求一个接口
+			setTimeout(function(){
+				console.log('执行完成');
+				resolve('得到的是data');//表示执行成功了 执行失败则会给予rejected转台
+			},2000)
+		})
+	return promise
+}
+// asone().then(data=>{
+
+// })
+// .catch()
+
+//这里 我们没看出其好处 那么我们可以看多个函数 也就是说异步的结果要尽行处理 还要进行回调，然后还要回调，来个十几层 是不是能把人写傻 ，看一下pormise的解决方案
+function  astwo(){
+	var t=new Promise((reslove,reject)=>{
+		setTimeout(()=>{
+			console.log('two');
+			reslove('123165')
+		},1000)
+	})
+	return t
+}
+
+// asone().then(data=>{
+// 	console.log(data);
+// 	return astwo();
+// })
+// .then(data=>{
+// 	console.log(data)
+// })
+
+//发现会一步一步的执行下来 而且写法是不是十分简洁 看起来很舒服  这种是一种链式操作
+//我们不仅可以简化回调的写法，而且用维护状态、传递状态的方式来使得回调函数能够及时调用，它比传递callback函数要简单、灵活的多。
+
+//rejected 就是错误的方法all的方法
+Promise.all([asone(),astwo()])
+.then(result=>{
+	console.log(result); //返回的是一个数组~
+})
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js"></script>
+	</head>
+	<body>
+		<input type="text" id="ipt" value="请输入"/>
+		<button class="btn">我是一个按钮</button>
+	</body>
+	<script>
+		$(function(){
+			$(".btn").click(function(){
+				var a=$("#ipt").val(); //是可以获得的。
+				console.log(a);
+				var b=document.getElementById("ipt").value;
+				console.log(b);
+			})
+		})
+	
+	</script>
+</html>

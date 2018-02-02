@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>demo2柱形图</title>
+		<script src='js/Chart.min.js'></script>
+	</head>
+
+	<body>
+		<canvas id="mySecondChart" width="500" height="500"></canvas>
+
+	</body>
+	<script>
+		var data = {
+			labels: ["January", "February", "March", "April", "May", "June", "July"], //x轴
+			datasets: [{
+					fillColor: "rgba(220,220,220,0.5)", //内部颜色
+					strokeColor: "rgba(220,220,220,1)", //　边框颜色
+					data: [65, 59, 90, 81, 56, 55, 40] //y轴高低
+				},
+				{
+					fillColor: "rgba(151,187,205,0.5)",
+					strokeColor: "rgba(151,187,205,1)",
+					data: [28, 48, 40, 19, 96, 27, 100]
+				}
+			]
+		}
+		var myZhuxing = new Chart(document.getElementById('mySecondChart').getContext('2d')).Bar(data);
+	</script>
+
+</html>

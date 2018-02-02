@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		/*
+		 * 1  let命令
+		//基本用法 增加了块级作用域，只在let命令所在代码块内有效
+		{
+			let a=10;
+			b=1;
+		}
+		//输出 a //a is not defined
+		//输出b //b 是1
+		//因此挺适合用于for循环中如下面的例子
+		var a=[];
+		for(var i=0;i<10;i++){
+			 a[i] = function () {
+    			console.log(i);
+		  };
+		};
+		a[6](); //10  因为这个i是全局变量，结果是10 所以无论输入几其最后的i都为10
+		
+		
+		
+		var b=[];
+		for(let i=0;i<10;i++){
+			b[i]=function(){
+				console.log(i)
+			}
+		}
+		b[5]();//5  i只存在与循环的计数中，并不影响其他的作用域  //阮一峰老师的解释：变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量，所以最后输出的是6。
+		
+		
+		for(let i=0;i<10;i++){
+			let i='abc';
+			console.log(i);
+			//输出了十次的abc,表示循环里面的i与计数的i不是一个作用域，互不影响// 就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。
+		}
+		*/
+	</script>
+</html>

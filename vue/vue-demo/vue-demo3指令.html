@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>vue-demo3</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+		<div class="container">
+			<p>编辑姓名：<input type="text" v-model='data.name'/></p>
+			<p>姓名：{{data.name}}</p>
+			<p>年龄：{{data.age}}</p>
+			<p>学校：{{data.school}}</p>
+			<p>爱好：<input type="text" v-model='data.hobby'/></p>
+			<p>是否已婚：<span v-if='Ismarry'>是</span><span v-else>否</span></p>
+		</div>
+			
+	</body>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/vue.js"></script>
+	<script>
+		//model
+		var data={
+			name:'小明',
+			age:18,
+			school:'学校',
+			Ismarry:false,
+			hobby:['唱歌']
+		}
+		//viewmodel
+		new Vue({
+			el:'.container',
+			data:{
+				data:data,
+			
+			}
+			
+		})
+		
+		
+		//v-html 会覆盖掉原有的所有东西，并且有一定危险性
+		//v-text 与{{}}一样，但是如果标签没有text属性，该绑定会失效，例如再文本框上面使用v-text是没有效果的
+		//v-model
+		//v-if v-else v-show
+	</script>
+
+</html>

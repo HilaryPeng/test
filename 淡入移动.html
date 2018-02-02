@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>淡入并移动</title>
+		<script src="js/jquery-3.1.1.min.js"></script>
+	</head>
+	<body>
+	
+	<div style="position:relative;width:400px;height:400px;folat:left;overflow:hidden;">
+		
+    <div class="trunRight" style="position:absolute;width:200px;height:100px;left:-100px;">
+       
+      <div class="Theblock" style=" display:none">
+      	<img src="image/1-1F105000013.jpg" alt="" />
+      </div>
+       
+    </div>
+    
+</div>
+
+
+
+<div>
+    <input class="moveRight" type="button" value="moveRight" /> 
+</div>
+	</body>
+	<script>
+		
+	$('.moveRight').click(function () {
+    // alert(1);
+    $('.trunRight').animate({
+        left: "0px"
+    }, 1000);
+    $('.Theblock').fadeIn(2000);
+});
+//因为是两种效果合在一起，那么分开写就行了！！ 。好蠢啊
+
+	</script>
+</html>

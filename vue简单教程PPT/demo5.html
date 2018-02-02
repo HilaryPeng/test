@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>component</title>
+	<script type="text/javascript" src='js/vue.js'></script>
+</head>
+<body>
+	<div class="app">
+		{{msg}}
+	<myname></myname>
+	<child></child>
+	</div>
+
+	<div id="app2">
+		<myname></myname>
+	</div>
+
+
+	<script type="text/javascript">
+		//全局注册
+		Vue.component("myname",{
+			template:`<div id='app3'>我是创建的模板{{meg}}</div>`,
+			name:'app3',
+			data(){
+				return{
+					meg:'huangzhipeng'
+				}
+			}//es6
+			//data(){
+			// 	return {
+				//meg:'huangzhipeng'
+			// 	}
+			// }
+			
+		})
+		var child={
+			template:`<p>我是局部注册的模板</p>`
+		}
+		var app=new Vue({
+			el:".app",
+			data:{
+				msg:123
+			},
+			components:{
+				child
+			}
+
+		})
+		var app2=new Vue({
+			el:'#app2'
+		})
+
+
+
+	</script>
+</body>
+</html>

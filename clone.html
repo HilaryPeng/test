@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>复制</title>
+		<script src='js/jquery-3.1.1.min.js'></script>
+	</head>
+	<body>
+		<div class='box'>
+		<p class='pclone'>
+			复制我看看
+		</p>
+		</div>
+		<button class='btn'>点击复制</button>
+	</body>
+	<script>
+			$(function(){
+				$('.btn').click(function(){
+					$('.box').append($('.pclone').clone())
+				})
+			})
+		
+		
+	</script>
+</html>

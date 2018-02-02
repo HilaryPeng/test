@@ -1,0 +1,79 @@
+@box-width:300px;
+@box-height:300px;
+@box-color:#ddd;
+@yellow:#a12d45;
+@base:0.5;
+
+//可以发现，在这里面也有变量提升这一说。
+ul{
+    list-style:none;
+}
+.mt20{
+    margin-top:20px;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.bordertop{
+    border-top:1px solid red;
+    border-bottom:1px dashed @yellow;
+}
+
+.list{
+
+}
+.box{
+    height:@box-height;
+    width:@box-width;
+    background:@box-color;
+    .bordertop;
+    .mt20;
+    .list;
+    color:#ddd*@base;
+}
+.box p{
+    .left;
+}
+.left{float:left }
+.right{ float:right;}
+//& 表示父亲选择器
+//less里面还可以进行运算。
+//less里面内置了多种函数用于转换颜色，处理字符串，算数运算等。
+
+
+.box2{
+    width:100%;
+    & li{
+        .left;
+        width:30px;
+        height:30px;
+        background:@yellow;
+        .mt20;
+        margin-right:10px;
+        width:100px;
+        text-align: center;
+        line-height: 30px;
+    }
+    &:after{
+        content:'';
+        display:block;
+        height:0px;
+        clear:both;
+        visibility: hidden;
+
+    }
+
+}
+
+//less里面还有一些函数。
+//对于我来说的话，用less就只是定义变量然后嵌套使用.函数以及计算用的挺少的.对了 对于那个字符串拼接引用变量挺象es6的方法的。
+//用的时候 直接命令行编译一下运行就OK。
+
+
+
+
+
+
+
+

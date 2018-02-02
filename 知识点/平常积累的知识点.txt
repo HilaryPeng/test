@@ -1,0 +1,7 @@
+1.input框中的pattern属性  直接在input框中写patter=“regexp” //直接写正则表达式
+就可以验证了  regexp是正则表达式的意思
+2.http://www.cnblogs.com/chaoyuehedy/p/5692899.html 这是JavaScript中事件event的详解
+3. button:focus{outline:0;} /*解决呗选中出现边框的问题*/  
+4.navigator 对象属性 
+通过这个可以获取 浏览器的代码名字、版本、或者cup 等各种系统信息。还可以判断是什么系统平台
+			

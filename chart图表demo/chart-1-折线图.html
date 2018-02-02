@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>demo-1-折线图</title>
+		<script src='js/Chart.min.js'></script>
+	</head>
+	<body>
+		<canvas id='myfirstChart' width='400px' height='400px'></canvas>
+	</body>
+	<script>
+		var data={
+			labels:['一月','二月','三月','四月','五月','六月'],  //x轴图
+			datasets:[{
+				fillColor : "rgba(220,220,220,0.5)", //背景色
+				strokeColor : "rgba(220,220,220,1)", //连线的颜色
+				pointColor : "rgba(220,220,220,1)",  //点的颜色
+				pointStrokeColor : "#fff", // 点的边框颜色
+				data : [65,59,90,81,56,55]  //y轴高度 
+			},{
+			fillColor : "rgba(151,187,205,0.5)",
+			strokeColor : "rgba(151,187,205,1)",
+			pointColor : "rgba(151,187,205,1)",
+			pointStrokeColor : "#fff",
+			data : [28,48,40,19,96,27]
+		}] 
+		}
+		var ctx=document.getElementById("myfirstChart").getContext('2d'); 
+		 var  myLine=new Chart(ctx).Line(data);  //折线图
+	</script>
+</html>
+  

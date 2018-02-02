@@ -1,0 +1,53 @@
+ul {
+  list-style: none;
+}
+.mt20 {
+  margin-top: 20px;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.bordertop {
+  border-top: 1px solid red;
+  border-bottom: 1px dashed #a12d45;
+}
+.box {
+  height: 300px;
+  width: 300px;
+  background: #ddd;
+  border-top: 1px solid red;
+  border-bottom: 1px dashed #a12d45;
+  margin-top: 20px;
+  color: #6f6f6f;
+}
+.box p {
+  float: left;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.box2 {
+  width: 100%;
+}
+.box2 li {
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: #a12d45;
+  margin-top: 20px;
+  margin-right: 10px;
+  width: 100px;
+  text-align: center;
+  line-height: 30px;
+}
+.box2:after {
+  content: '';
+  display: block;
+  height: 0px;
+  clear: both;
+  visibility: hidden;
+}

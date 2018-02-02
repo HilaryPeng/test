@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>命名路由</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+	<div id='app'>
+		<p>Current route name:{{this.$route.name}}</p>
+		<ul>
+		<li><router-link :to="{ name: 'home' }">home</router-link></li>
+        <li><router-link :to="{ name: 'foo' }">foo</router-link></li>
+        <li><router-link :to="{ name: 'bar', params: { id: 123 }}">bar</router-link></li>
+
+		</ul>
+		<button @click='doSoming'>点击事件</button>
+		<router-view class="view"></router-view>
+	</div>
+</body>
+<script>
+	const Home = {
+		template:'<div>This is Home</div>'
+	}
+	const Foo = {
+		template:'<div>This is FOo</div>'
+	}
+	const Bar = {
+		template:'<div>This is{{$route.params.id}}</div>'
+	}
+	const router=new VueRouter({
+		routes:[
+		{
+			path:'/',name:'home',component:Home
+		},{
+			path:'/foo',name:'foo',component:Foo
+		},{
+			path:'/bar/:id',name:'bar',component:Bar
+		}
+		]
+
+
+	});
+	new Vue({
+		router,
+		methods:{
+			doSoming:function(){
+				console.log(this)
+			}
+		}
+		}).$mount('#app')
+
+//不太理解的是为什么模板中 会把id=app 在写一遍 其意义是什么  
+//试着换成其他的了。发现重名只是一个意外，也可以使用其他的 但是实例出来的方法应该就有些不同了吧。 
+//毕竟是一个新的demo
+//传参的意思就是 通过重新渲染出来的模板进行一个参数传递？ 也不一定是重新渲染的模板 估计这个人懒
+//也可以是写上去的模板 实例的时候会自动代理  而通过这种方式 可以进行一种路由的重新命名
+</script>
+</html>

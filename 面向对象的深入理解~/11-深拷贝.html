@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>深拷贝</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var Chinese={
+			nation:'中国'
+		}
+		var Doctor={
+			career:'医生'
+		}
+		function deepCopy(p,c){
+			var c=c||{};
+			for (var i in p){
+				if(typeof p[i]==='object'){
+					c[i]=(p[i].constructor===Array)?[]:{};
+					deepCopy(p[i],c[i]);
+				}else{
+					c[i]=p[i];
+				}
+			}
+			
+			return c;
+		}
+		Chinese.address=['北京','上海','成都'];
+		
+		var Doctor=deepCopy(Chinese);
+		//这样父对象就不会受到影响了
+		Chinese.address.push("深圳")
+	</script>
+</html>

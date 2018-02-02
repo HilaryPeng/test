@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src='../js/vue.min.js'></script>
+</head>
+<body>
+
+
+	<div id="app">
+		<my-input v-bind:msg='msg'  ref='child' v-on:doit='parentdo'></my-input>
+		<input type="" name="" v-model='msg'>
+
+	</div>
+
+
+	<script type="text/javascript">
+	Vue.component('myInput',{
+			template:`<div>子组件的input框<input type="text" v-bind:value='test' @change='dosomething'/></div>`,
+			data:function(){
+				return {
+					test:'',
+				}	
+			},
+			computed:function(){
+					this.test=this.msg;
+					// console.log(this.msg)
+					// return this.test;
+			},
+			props:['msg'],
+			methods:{
+				dosomething:function(){
+					console.log(this.test)
+					this.$emit('doit')
+				}
+			}
+		})
+
+		var app = new Vue({
+			el:"#app",
+			data:{
+				msg:'huang'
+			},
+			methods:{
+				parentdo:function(){
+					//console.log(this.$refs)
+					this.msg='13465';
+					console.log(this.$refs.child.test)
+				}
+			}
+		})
+	
+		
+	</script>
+</body>
+</html>

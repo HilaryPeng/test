@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>layer.js的运用</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<script src="layer-v3.0.1/layer/mobile/layer.js"></script>
+</head>
+<body>
+	<button id="button">我是一个弹框的按钮 我是一个弹框的按钮</button>
+</body>
+<script>
+//$(".button").click(function(){
+//		layer.msg('Hello layer');
+//})
+ var btn=document.getElementById("button");
+  btn.onclick=function(){
+  	layer.open({
+  		content:"hello layer",
+  		skin:"msg",
+  	
+  	});
+  	console.log(layer.open)
+  }
+
+
+</script>
+</html>

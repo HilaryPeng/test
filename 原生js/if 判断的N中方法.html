@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+
+
+<script type="text/javascript">
+var obj={};
+obj.Funtext=function(){};
+if(obj.Funtext){
+	console.log(true)
+}else{
+	console.log(false)
+}//true
+
+if(obj.Funtext()){
+	console.log('true obj.Funtext');
+}else{
+	console.log('false obj.Funtext');
+} //false
+
+
+
+
+
+
+var a=''; 
+if(a){
+	console.log('真');
+}else{
+	console.log('假')
+}
+
+/*
+真： 字符串除了空之外 全部为真
+	 数字除0外全部为真
+	数组也为真；
+	true 为真;
+	new 出来的对象 也为真;
+假：0 ，-0，
+	false为假
+	undefined;
+	null;
+	''，
+	已定义的变量但未赋值 
+
+最后关于函数的真假
+第一种：不带括号的，如果定义了为真，没有定义会报错
+第二种：带括号的，其实相当于调用函数，根据函数的返回值判断真假
+
+关于对象的真假
+只要不是空 都为真的
+定义的对象的属性字段，对与定义的对象的属性字段 判断方法和以上一样
+判断对象的方法 和判断上述函数所说的一样
+
+
+*/
+
+
+</script>
+</body>
+</html>

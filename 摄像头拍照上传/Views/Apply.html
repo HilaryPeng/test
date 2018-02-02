@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>车辆申请</title>
+    <link rel="stylesheet" href="../Static/frame/jquery-weui/css/weui.min.css">
+    <link rel="stylesheet" href="../Static/frame/jquery-weui/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="../Static/css/common.css">
+    <link rel="stylesheet" href="../Static/css/Apply.css">
+</head>
+
+<body>
+    <header>
+        <span class="title">用车申请</span>
+        <button id="back"></button>
+    </header>
+    <div class="content">
+        <div class="weui-cells">
+            <div class="weui-cell height">
+                <div class="weui-cell__bd">
+                    <p>申请人</p>
+                </div>
+                <div class="weui-cell__ft"><span id="UserName"></span></div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <div class="weui-cells" style="display: none;">
+            <div class="weui-cell height">
+                <div class="weui-cell__bd">
+                    <p>申请人所在部门</p>
+                </div>
+                <div class="weui-cell__ft"><span id="DepartmentName">运维组</span></div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <div class="weui-cells">
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__hd">
+                    <label for="StartTime" class="weui-label">开始时间</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input text-right blue" type="text" id="StartTime" placeholder="请选择开始时间">
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <div class="weui-cells">
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__hd">
+                    <label for="EndTime" class="weui-label">结束时间</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input type="text" class="weui-input text-right blue" id="EndTime" placeholder="请选择结束时间">
+                </div>
+                <div class="weui-cell__ft">
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <div class="weui-cells">
+            <div class="weui-cell height">
+                <div class="weui-cell__bd">
+                    <p>用车天数</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <span id="TotalTime">-- 天</span>
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <div class="weui-cells">
+            <div class="weui-cell height weui-cell_access">
+                <div class="weui-cell__bd">
+                    <label for="Departure" class="weui-label">起始地</label>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="text" class="weui-input text-right" placeholder="请输入起始地" value="郑州高新区人民法院" id="Departure">
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <div class="weui-cells">
+            <div class="weui-cell height weui-cell_access">
+                <div class="weui-cell__bd">
+                    <label for="RegionCode">派车区域</label>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="text" class="weui-input blue" placeholder="请选择派车范围" id="RegionCode">
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <div class="weui-cells">
+            <div class="weui-cell height weui-cell_access">
+                <div class="weui-cell__bd">
+                    <label for="Destination">目的地</label>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="text" placeholder="请输入目的地" class="weui-input text-right" id="Destination">
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <div class="weui-cells">
+            <div class="weui-cell height weui-cell_access">
+                <div class="weui-cell__bd">
+                    <label for="PeopleNumber">乘车人数</label>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="number" id="PeopleNumber" placeholder="请输入乘车人数" class="weui-input text-right" pattern="^[1-9][0-9]*$">
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <div class="weui-cells" id="DriverName" style="display: none;">
+            <div class="weui-cell height weui-cell_access">
+                <div class="weui-cell__bd">
+                    <p>司机</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input class="weui-input" type="text" placeholder="请选择司机" id="Driver">
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <!-- 选车 -->
+        <div class="weui-cells" id="Car" style="display: none;">
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">车辆</div>
+                <div class="weui-cell__ft">
+                    <input class="weui-input" type="text" placeholder="请选择车辆" id="SendCar">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" id="UseReason" placeholder="请输入用车事由" rows="5"></textarea>
+                    <div class="weui-textarea-counter text-666"><span class="textLength">0</span>/1000</div>
+                    <div id="DrivingLicense" style="display: block;">
+                        <div class="wrap">
+                            <div id="upImg" style="display: inline-block;">
+                                <!-- <div class="wrapImg">
+                                    <img src="../Static/images/banner.png" width="50" height="50" class="upimg" />
+                                    <img src="../Static/images/close.png" width="10" height="10" class="deleatimg">
+                                </div> -->
+                            </div>
+                            <i class="icon" id="addImg"><img src="../Static/images/addImg.png"></i>
+                            <input type="file" accept="image/*" style="display: none;" id="addImgFile">
+                        </div>
+                        <span style="font-size: 10px;display: block;">上传驾驶证信息</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <div class="weui-cells">
+            <div class="weui-cell height">
+                <div class="weui-cell__bd">
+                    <p>下一审批人</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <span id="ApproverName"></span>
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells -->
+        <div class="button">
+            <button class="weui-btn weui-btn_default" id="submit">提交</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="../Static/frame/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../Static/frame/jquery-weui/js/jquery-weui.min.js"></script>
+    <script type="text/javascript" src="../Static/frame/jquery-weui/js/swiper.min.js"></script>
+    <script type="text/javascript" src="../Static/js/common.js"></script>
+    <script src="../Static/js/Apply.js"></script>
+</body>
+
+</html>

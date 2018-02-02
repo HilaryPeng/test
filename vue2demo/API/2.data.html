@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='../js/vue.min.js'></script>
+</head>
+<body>
+
+	<!-- 
+	数据：
+	data:
+	vue实例的数据独享。vue将会递归的将data的属性转换为getter/setter，从而让data能够响应数据变化。对象必须是纯粹的对象，data只能是数据，不推荐观察拥有状态行为的对象。
+
+	实例创建，可以通过vm.$data访问原始数据对象。 vm.a相当于访问vm.$data.a
+
+	props
+	props可以是数组或者对象。用来接收来自父组件的数据。props可以是简单的数组。或者使用对象作为替代。对象允许配置高级选项。
+
+	propsDate
+	创建实例时传递props
+
+	computed
+	计算属性
+
+	methods:
+	类型 方法。
+
+	watch:
+	一个对象，键是需要观察的表达式，值是对应的回调函数。vue实例将会在实例化时调用$watch(),遍历watch对象的每一个属性。
+	在值改变的时候回触发watch事件
+
+	对象：
+	el:提供一个在页面上已存在的DOM元素作为Vue实例的挂载目标。可以是css选择器
+	在挂载之后可以通过 vm.$el访问
+
+	template: string
+	一个字符串模板作为vue实例的标识使用。模板将会替换挂载的元素，挂载元素的内容都将被忽略，除非模板的内容有分发slot.
+	如果值以#开始，则它用作选项符。将使用匹配元素的innerHTML作为模板。常用的技巧是用 <script type="x-template"> 包含模板。
+	如果 Vue 选项中包含 render 函数，template 选项将被忽略。
+	
+	render:
+	字符串模板的代替方案，允许发挥JavaScript最大的编程能力。render函数接收一个createElement方法作为第一个参数用来创建vnode.
+	如果组件是一个函数组件。render函数还会接收一个额外的context参数，为没有实例的函数组件提供上下文信息。
+
+	生命周期钩子：
+	所有的生命周期钩子绑定this上下文到实例中，因此你可以访问数据，对属性和方法进行计算。这意味着你不能使用箭头函数来定义一个生命周期的方法。
+	beforeCreate
+	created
+	beforeMount
+	mounted
+	beforeUpdate
+	updated
+	activeated kepp-alive组件激活时调用
+	deactivated keep-alive组件停用时调用
+	beforeDestroy 实例销毁之前调用
+	destroyed 销毁实例时调用
+	 -->
+</body>
+<script>
+	var  vm=new Vue({
+		data:{
+			a:1,
+			b:2,
+			c:3
+		},
+		watch:{
+			a:function(val,oldVal){
+				console.log('new:'+val+","+"old:"+oldVal)
+			},
+			b:'someMethod',
+			c:{
+				handler:function(vla,oldVal){},
+				deep:true
+			}
+		},
+		methods:{
+			someMethod:function(a,b){
+				return a+b
+			}
+		}
+	})
+
+</script>
+</html>

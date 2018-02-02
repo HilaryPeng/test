@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='js/vue.min.js'></script>
+</head>
+<style>
+	.box{
+		color:#000;
+	}
+	.active{
+		color:red;
+	}
+	.text2{
+		font-size:18px;
+	}
+	#app,#box{
+		margin-bottom:15px;
+		border:1px solid #ddd;
+	}
+</style>
+<body>
+<div id="app">
+<!-- v-bind:class -->
+	<div v-bind:class="{active:isActive}" class='box'>我是实验一</div>
+	<div v-bind:class='classObject'>我是实验二</div>
+	<div v-bind:class='textObj'>我是实验三</div>
+	<!-- 数组 -->
+	<div v-bind:class='[a,b]'>我是实验四</div>
+
+	<my-second v-bind:class='classObject'></my-second>
+
+	
+</div>
+	<!-- v-bind:style -->
+	<div id="box">
+		<p v-bind:style={"font-size":isnumber,"color":ddd}>我是box中的东西</p>
+
+	</div>
+<script>
+	/*
+	我们通常操作标签的属性和样式是非常频繁的。 我们可以使用v-bind命令来绑定实现操作。为了不影响拼接字符串 可以允许绑定是对象或者数组。
+
+	 */
+	Vue.component('my-second',{
+		template:"<p class='active'>我是模板二</p>"
+	})
+	//使用模板时记得要把模板放到实例化的前面
+	//
+	//
+	//可以通过是否为true或者false来进行显示隐藏div的类名
+	//可以与class共存
+	//也可以绑定一个对象
+	//绑定对象并使用计算属性
+	//绑定数组
+	//数组中元素当成对象判断并是否有这个类名
+	//
+	//
+	//用在组件上。
+	var app=new Vue({
+		el:"#app",
+		data:{
+			isActive:true,
+			classObject:{
+				text2:true
+			},
+			error:null,
+			a:"active",
+			b:"text2"
+		},
+		computed:{
+			textObj:function(){
+				  return {
+     	 active: false,
+      	'text-danger': false,
+  		  }
+			}
+		}
+	})
+
+	var box=new Vue({
+		el:"#box",
+		data:{
+			isnumber:"20px",
+			ddd:"#eee"
+		}
+	})
+	
+</script>
+</body>
+</html>

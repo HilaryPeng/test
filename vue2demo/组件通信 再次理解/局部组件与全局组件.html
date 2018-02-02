@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>局部组件与全局组件</title>
+	<script type="text/javascript" src='../js/vue.min.js'></script>
+</head>
+<body>
+	<div id="app">
+		<global></global>
+		<part></part>
+	</div>
+
+
+	<script type="text/javascript">
+		/*
+	注册一个全局组件语法格式
+	Vue.component(tagName,options)
+	tagName 是组件的名字 到时候要解析成 tag-name 因为HTml不区分大小写
+	options是配置项 包括 模板语句 方法，data  methods props 计算属性等等 
+	
+	组件分为全局组件和局部组件
+	*/
+//全局组件：
+	Vue.component('global',{
+		template:`<div>全局组件</div>`
+	})
+	Vue.component('tagName',{
+		template:`<div>局部</div>`
+	})
+	var Child={
+		template:'<div>局部</div>'
+	}
+
+	var app=new Vue({
+		el:'#app',
+		data:{
+
+		},
+		components:{
+			'part':Child
+		}
+		//注册局部组件  前面用引号，后面写模板名字 之后 <part></part>只有#App可以用
+		 //我注册的是全局组件 而不是局部的组件 ，所以说不能引用 tagName
+		 //这样才是局部注册组件 并应用到App中了
+
+		 //
+	})
+	
+
+	</script>
+</body>
+</html>

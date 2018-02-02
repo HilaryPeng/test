@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Props</title>
+	<script type="text/javascript" src='../js/vue.min.js'></script>
+</head>
+<body>
+	
+	<div id="app">
+	静态：	<child message='黄胡子彭'></child>
+		<!-- 这里 不要用v-bind 绑定message  只有动态的时候才用v-bind-->
+		动态：<child v-bind:message='msg'></child>
+	</div>
+
+	<script type="text/javascript">
+	/*
+	prop是父组件用来传递数据的一个自定义属性
+	分为静态prop 或者动态的prop
+
+
+
+	*/
+
+	Vue.component('Child',{
+		template:'<div>{{message}}</div>',
+		props:["message"]
+	})
+
+
+	var app=new Vue({
+		el:"#app",
+		data:{
+			msg:'text'
+		}
+
+	})
+
+	</script>
+</body>
+</html>

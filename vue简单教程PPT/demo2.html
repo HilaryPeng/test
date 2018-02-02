@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue 指令</title>
+	<script type="text/javascript" src='js/vue.js'></script>
+</head>
+<body>
+
+<div id="app">
+	<h2>v-text</h2>
+	<p>{{msg}}</p>
+	<p v-text='msg2'></p>
+	<h2>v-model</h2>
+	<input type="" name="" v-model='msg'>
+	<br>
+	<!-- radio -->
+
+	<label>
+
+	<input type="radio" name="sex" value='男' v-model='sex'>男
+	</label>
+	<label>
+	<input type="radio" name="sex" v-model='sex' value='女'>女
+	</label>
+	<p>{{sex}}</p>
+	<!-- checkbox -->
+	<label>
+		<input type="checkbox" value='1' v-model='text' name="">1
+	</label>
+	<label>
+		<input type="checkbox" value='2' v-model='text' name="">2
+	</label>
+	<label>
+		<input type="checkbox" value='3' v-model='text' name="">3
+	</label>
+	<label>
+		<input type="checkbox" value='4' v-model='text' name="">4
+	</label>
+	<p>{{text}}</p>
+
+	<h2>v-if</h2>
+
+	<p v-if='isTrue'>我是v-if 猜我出现么</p>
+	<p v-else>我是v-else v-if 出现的时候我不会出现</p>
+
+	
+
+</div>
+
+
+
+	<script type="text/javascript">
+//指令：
+//1. v-html 
+var app=new Vue({
+	el:"#app", // 作用域  
+	data:{  	//声明数据 无论用到什么数据 都要提前在这里声明 否则无法代理 可以试着输出一下data
+		msg:123,
+		msg2:456,
+		sex:'',
+		text:[],
+		isTrue:true
+	},
+	methods:{  //用来写一些方法 比如点击事件 表单验证啊 之类的 一般通过v-on指令绑定
+
+	},
+	computed:{
+		//计算属性，可以将数据 计算进行返回 适合绑定两个有关系的数据 
+	
+	}
+})
+
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>点击移除class再次点击还会触发事件么</title>
+		<script src="js/jquery-3.1.1.min.js"></script>
+	</head>
+	<body>
+			<button class="btn">我是一个按钮</button>
+	</body>
+	<script>
+		$(function(){
+			$(".btn").click(function(){
+				alert("1230");
+				$(".btn").removeClass("btn");
+			})
+			
+			
+			
+		})
+	</script>
+</html>

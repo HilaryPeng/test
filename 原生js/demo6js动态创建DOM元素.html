@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>动态添加新元素</title>
+</head>
+<body>
+	<div>
+		<p id="p1">我是第一个段落</p>
+		<p id="p2">我是第二个段落</p>
+	</div>
+	<script>
+	//动态添加
+		var newP=document.createElement("p"); //穿件一个文本节点 为p元素
+		var  newText=document.createTextNode("我是第三个段落，同时也是被js创建出来的");//创建一个文本
+		newP.appendChild(newText);//将文本放到节点中
+		var div=document.getElementsByTagName("div");
+		div[0].appendChild(newP);//将节点放到div中 添加元素的方法 appendChlid();
+	//删除
+		var p2=document.getElementById("p2");
+		div[0].removeChild(p2); //removeChlid()方法		
+		//必须要通过父元素才能删除子元素，因为DOM需要清楚您删除的元素。以及他的父元素、
+		var p1=document.getElementById("p1");
+		p1.parentNode.removeChild(p1);
+	</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>通过ws来实现股票的不断刷新</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script src='js/vue.js'></script>
+		<style>
+			.controller {
+				margin-top: 20px;
+				margin-bottom: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="container">
+				<h3>股票的及时反馈</h3>
+				<div class="controller">
+					<button class='begin btn btn-info' v-on:click='begin'>开始</button>
+					<button class='edit btn btn-danger' v-on:click='parse'>停止</button>
+				</div>
+				<table class='table table-responsive table-bordered'>
+					<thead>
+						<tr>
+							<td>股票名字</td>
+							<td>股票价格</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for='(key,value) in stocks'>
+							<td>{{key}}</td>
+							<td><button class='btn btn-danger'>{{value}}</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</body>
+	<script>
+			var ws = new WebSocket("ws://localhost:8181");
+		new Vue({
+			el: '#app',
+			data: {
+				a:ws,
+				stocks: {
+					"恒大绿洲": 95.0,
+					"万达影业": 50.0,
+					"中国石化": 550.0,
+					"胖东来": 300.0,
+					"苹果科技": 35.0
+				},
+			},
+			methods:{
+			
+				begin:function(){
+					
+				},
+				parse:function(){
+					.close();
+				}
+				
+				
+			}
+
+		})
+	</script>
+
+</html>

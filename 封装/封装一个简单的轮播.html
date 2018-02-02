@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播</title>
+	<script type="text/javascript" src='../js/jquery-3.1.1.min.js'></script>
+</head>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		padding-top:50px;
+	}
+	img{
+		display:block;
+	}
+	ul{
+		list-style: none;
+	}
+	#tabimg ul li,#tabimg2 ul li{
+		float:left;
+		transition:all 1s;
+
+	}
+/*	#tabimg ul li img,#taimg2 ul li img{
+		display:block;
+		width:100%;
+		margin:0 auto;
+		
+	}*/
+	#tabimg2{
+		background:yellow;
+	}
+	#tabimg{
+		background:pink;
+		position:relative;
+	}
+	.view{
+		width:600px;
+		overflow:hidden;
+		margin:0 auto;
+		text-align: center;
+	}
+	.tableft{
+		left:100px;
+		
+	}
+	.view ul{
+		transition:all 1s;
+	}
+	.tableright{
+		right:100px;
+		font-size:50px;
+		color:red;
+	}
+	.tableright,.tableft{
+		font-size:50px;
+		color:red;
+		position:absolute;
+		cursor:pointer;
+		top:50%;
+		transform: translate(-50%,-50%);
+		
+	}
+	.clearfix:after{
+		content:'';
+		display:block;
+		height:0px;
+		clear:both;
+		visibility: hidden;
+	}	
+</style>
+<body>
+	<div id="tabimg">
+		<div class="view">
+			<ul class='clearfix'>
+				<li><img src="../image/u=1273680509,3144235336&fm=23&gp=0.jpg" alt=""></li>
+				<li><img src="../image/u=2078393815,165865793&fm=23&gp=0.jpg" alt=""></li>
+				<li><img src="../image/u=591918543,1544904101&fm=23&gp=0.jpg" alt=""></li>
+				<li><img src="../image/1.jpg" alt=""></li>
+			</ul>
+		</div>	
+		<span class='tableft'><</span>
+		<span class='tableright'>></span>
+	</div>
+
+
+	<div id="tabimg2">
+		<div class="view">
+			<ul class='clearfix'>
+				<li><img src="../image/u=1273680509,3144235336&fm=23&gp=0.jpg" alt=""></li>
+				<li><img src="../image/u=2078393815,165865793&fm=23&gp=0.jpg" alt=""></li>
+				<li><img src="../image/u=591918543,1544904101&fm=23&gp=0.jpg" alt=""></li>
+				<li><img src="../image/1.jpg" alt=""></li>
+			</ul>
+		</div>	
+		<span class='tableft'><</span>
+		<span class='tableright'>></span>
+	</div>
+
+
+	<div id="three">
+		<div class="view">
+			<ul class='clearfix'>
+				<li><img src="../image/u=1273680509,3144235336&fm=23&gp=0.jpg" alt=""></li>
+				<li><img src="../image/u=2078393815,165865793&fm=23&gp=0.jpg" alt=""></li>
+				<li><img src="../image/u=591918543,1544904101&fm=23&gp=0.jpg" alt=""></li>
+				<li><img src="../image/1.jpg" alt=""></li>
+			</ul>
+		</div>	
+		<span class='tableft'><</span>
+		<span class='tableright'>></span>
+	</div>
+<div id="div">我是div</div>
+	<script type="text/javascript">
+		// $(function(){
+		// 	$('#tabimg ul li img').width($(".view").width());
+		// 	$('#tabimg ul').width($('.view ul li img').width()*4);
+		// 	var i=0,left='';
+		// 	var width=$(".view").width();
+		// 	$('.tableft').click(function(){
+		// 		i++;
+		// 		if(i>3){
+		// 			return i=3;
+		// 		}else{
+		// 		var left=-width*i+'px'
+		// 		$('.view ul').css('margin-left',left)
+		// 		}
+		// 	});
+		// 	$(".tableright").click(function(){
+		// 		i--;
+		// 		if(i<0){
+		// 			return i=0
+		// 		}else{
+		// 			var right=-width*i+'px';
+		// 			$('.view ul').css('margin-left',right)
+		// 		}
+		// 	})
+
+		// })
+//就把这个封装起来  分一下 什么是私有属性 和共享属性
+// 太难了。。 这个封装不起来 我需要传入什么参数呢？
+
+
+(function(window,$){
+	var Carousel = function(id){
+		this.id=id;
+		this.init(id);
+	}
+	Carousel.prototype={
+		constructor:Carousel,
+		init:function(id){
+			//设置其属性
+			$(id).css({
+				'position':'relative'
+			});
+			$(id).find('li').css({
+				'transition':'all 1s',
+				'float':'left'
+			})
+			var t=$(id).find('li').length;  //私有内部的属性
+			var width=$(id).find('.view').width();
+			var	ulwidth=$(id).find('ul');
+			var imgwidth=$(id).find('img');
+			imgwidth.width(width)
+			ulwidth.width(t*width);
+			var that=this;
+			var i=0,left='';
+			$(id).find('.tableft').click(function(){
+				i++;
+				if(i>3){
+					return i=3;
+				}else{
+					var left=-width*i+'px'
+					console.log(left)
+					ulwidth.css('margin-left',left)
+				}
+			})
+			$(id).find('.tableright').click(function(){
+				i--;
+				if(i<0){
+					return i=0
+				}else{
+					var right=-width*i+'px';
+					ulwidth.css('margin-left',right)
+				}
+			});
+		}
+	}
+	window.Carousel=Carousel
+})(window,$)
+new Carousel("#tabimg");
+new Carousel('#tabimg2');
+new Carousel('#three');
+</script>
+</body>
+</html>

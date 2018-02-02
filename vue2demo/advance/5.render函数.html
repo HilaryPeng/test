@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>过渡状态</title>
+	<script src='../js/vue.min.js'></script>
+</head>
+<body>
+	<div id="demo">
+	<h1>
+<!-- 		<a href="#hello-world" name='hello-world'>
+			Hello world!
+		</a> -->
+
+		<anchored-heading></anchored-heading>
+	</h1>
+
+	</div>
+	<script>
+		var demo=new Vue({
+			el:"#demo",
+			data:{
+				
+			},
+		})
+	var getChildrenTextContent = function (children) {
+  return children.map(function (node) {
+    return node.children
+      ? getChildrenTextContent(node.children)
+      : node.text
+  }).join('')
+}
+Vue.component('anchored-heading', {
+  render: function (createElement) {
+    // create kebabCase id
+    var headingId = getChildrenTextContent(this.$slots.default)
+      .toLowerCase()
+      .replace(/\W+/g, '-')
+      .replace(/(^\-|\-$)/g, '')
+    return createElement(
+      'h' + this.level,
+      [
+        createElement('a', {
+          attrs: {
+            name: headingId,
+            href: '#' + headingId
+          }
+        }, this.$slots.default)
+      ]
+    )
+  },
+  props: {
+    level: {
+      type: Number,
+      required: true
+    }
+  }
+})
+
+/*
+render是什么意思？
+vue推荐在绝大多数情况下使用template来创建HTML。然而在一些场景中，你真的需要JavaScript的编程能力。这就是render函数
+什么鬼
+
+
+createElement 参数
+第二件你需要熟悉的是如何在createElement函数中生成模板。这里是createElement接受的参数。
+
+ */
+	</script>
+</body>
+</html>

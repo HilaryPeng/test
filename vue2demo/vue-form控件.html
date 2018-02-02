@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='js/vue.min.js'></script>
+</head>
+<style>
+	label,select{
+		display:block;
+	}
+</style>
+<body>
+	<div id="app">
+
+	<!-- 文本框 -->
+		<input type="text" v-model='msg'>
+		<p>{{msg}}</p>
+		<textarea name="" id="" cols="30" rows="10" v-model='msg'></textarea>
+	<!-- 复选框 -->
+	<label for="checkbox">
+	<input type="checkbox" id='checkbox' v-model='checked'>
+	{{test}}</label>
+	<!-- 多个复选框 -->
+	<label >
+		<input type="checkbox" value='jack' v-model='checkName'>
+		jack
+	</label>
+	<label >
+		<input type="checkbox" value='黄致鹏' v-model='checkName'>
+		黄致鹏
+	</label>
+	<label >
+		<input type="checkbox" value='汪洋琴' v-model='checkName'>
+		汪洋琴
+	</label>
+	<span>选中的名字：{{checkName}}</span>
+	<!-- 单选按钮 -->
+	<label >
+		<input type="radio"  value='女' v-model='radio'>
+		女
+	</label>
+	<label >
+		<input type="radio"  value='男' v-model='radio'>
+		男
+	</label>
+	<label >
+		<input type="radio"  value='人妖' v-model='radio'>
+		人妖
+	</label>
+	<span>选中的：{{radio}}</span>
+	<!-- 下拉列表 -->
+	<select name="" id="" v-model='select'  >
+		<option value="" disabled>请选择</option>
+		<option v-for='item in items'>{{item.text}}</option>
+		
+	</select>
+	<span>select:{{select}}</span>
+	<!-- 通过v-bind绑定不同选择情况下不同的值 -->
+		<input
+	  type="checkbox"
+	  v-model="toggle"
+	  v-bind:true-value="a"
+	  v-bind:false-value="b"
+	>是谁
+	<span>{{toggle}}</span>
+
+	<input type="text" v-model.lazy='msg'>
+
+	</div>
+
+
+<script>
+	var app=new Vue({
+		el:"#app",
+		data:{
+			msg:'黄致鹏',
+			checked:true,
+			test:"帅",
+			checkName:[],
+			radio:"",
+			select:"",
+			toggle:"",
+			a:"黄致鹏",
+			b:"汪洋琴",
+			items: [
+      { text: 'One', value: 'A' },
+      { text: 'Two', value: 'B' },
+      { text: 'Three', value: 'C' }
+    ]
+		}
+	})
+	/*
+	multiple 属性是 HTML5 中的新属性。
+	multiple支持多个值文件上传字段。
+	表单修饰符
+	.lazy
+	在默认情况下，v-model 在input事件中同步输入框的值与数据，可以添加一个修饰符lazy。从而转变在change事件中同步.就是输入完才会进行同步更新而不是实时更新
+	.number 
+	返回数字类型
+	.trim 
+	自动过滤用户输入的首位空格
+
+	 */
+</script>	
+</body>
+</html>

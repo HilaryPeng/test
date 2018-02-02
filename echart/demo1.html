@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/echarts.js"></script>
+</head>
+<body>
+    <div id="box" style="height:400px;width:600px;"></div>
+    <script type="text/javascript">
+        //初始化echarts实例
+        var myChart=echarts.init(document.getElementById('box'));
+        var option;
+        option = {
+            title: {  //标题
+                show:true, //  表示是否显示
+                text: '我是第一个实例', // 主标题文本
+                link:'http://www.baidu.com',  //标题连接网页
+                target:''  ,//指定窗口打开主标题超链接。就是在当前还是新窗口打开
+                textStyle: "" ,//样式把
+                textAlign:'left' ,//是在哪个地方对其
+                textBaseline:'' ,//标题文本垂直对齐，
+                subtext:'我是副标题 ',
+                subline:'',
+                subtarget:'',
+                padding:'10px', //默认5px
+                itemGap:'' ,//主副标题之间的间距
+                zlevel:'', //zlevel 的值
+                left: '' ,//距离容器左侧的距离
+                right:'',
+                top:"",
+                bottom:"",
+                backgroundColor:"", //背景色，默认透明。
+                borderColor:"", //标题边框颜色
+                shadowBlur:"" ,//阴影模糊的大小
+                shadowColor:" " ,//阴影颜色。
+
+
+            },
+            tooltip: {},
+
+            xAxis: {
+                data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+            },
+            yAxis: {},
+            series: [{
+                name: "销量", //放到柱形图上面出现的提示信息的标题
+                type: 'bar', //出现柱形图的类型。
+                data:[5,20,36,10,10,20]   //出现的数据。和上面的衬衫等相对应。
+            }],
+            textStyle:{
+                color:'rgba(255,255,255,.3)'
+            }
+
+        };
+        //使用刚指定的配置和数据显示图表。
+        myChart.setOption(option);
+
+
+
+
+
+    </script>
+</body>
+</html>

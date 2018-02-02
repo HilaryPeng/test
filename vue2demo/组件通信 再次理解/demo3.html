@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>一个示例</title>
+</head>
+<body>
+	<div id="app">
+			
+	<!-- v-on:input == oninput  v-on:click == onclick   input框中事件其实还有一个oninput 事件-->
+	<price v-bind:value="bingk" v-on:something='todo'></price>
+	</div>
+	
+	<script type="text/javascript" src='../js/vue.min.js'></script>
+	<script type="text/javascript">
+			//构建一个输入框的模板 然后输入的时候触发啊父组件 通过父组件得到总数 
+		Vue.component('price',{
+			template:`<input v-bind:value='value' v-on:change='dosomething()' type='number'>`,
+			props:['value'],
+			data: function(){
+				return {something:'15',
+				t:18}
+			},
+			methods:{
+				dosomething:function(){
+					console.log(this.something);
+					this.$mount('somthing');
+				}
+			}
+		})
+		var app=new Vue({
+			el:"#app",
+			data:{
+				something:'15',
+				bingk:"123",
+			},
+			methods:{
+				todo:function(){
+					console.log(123)
+				}
+			}
+		})
+/*
+	在这里面发现 在模板中 v-model 是不生效的  怎么让一个v-model的input框在模板中生效？
+	必须满足两个条件：1.接受一个value属性 2.在有新的input值时触发input事件
+*/
+	</script>
+</body>
+</html>

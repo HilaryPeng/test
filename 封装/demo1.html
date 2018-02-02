@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装插件</title>
+	<style type="text/css">
+		#demo1{
+			width:500px;
+			height:200px;
+			border:1px solid #ddd;
+		}
+
+	</style>
+	<script type="text/javascript" src='../js/jquery-3.1.1.min.js'></script>
+</head>
+<body>
+	<h3>点击add可以添加input中的内容 并实现变颜色</h3>
+
+	<div id="demo1">
+		<input type="text" name="" id='input1'>
+		<button id='btn1'>add</button>
+		
+
+	</div>
+</body>
+<script>
+		// var demo1=document.getElementById('demo1');
+		// var btn1=document.getElementById('btn1');
+		// var input1=document.getElementById("input1");
+		// btn1.onclick=function(){
+		// 	var t=input1.value;
+		// 	demo1.style.backgroundColor='#ddd';
+		// 	var template=document.createElement('div');
+		// 	template.innerHTML=t;
+		// 	demo1.appendChild(template);
+		// }
+		(function(window,$){function Add(id,input,btn){
+			this.id=id;
+			this.input=input;
+			this.btn=btn;
+			this.init();
+		}
+			Add.prototype={
+				constructor:Add,
+				init:function(){
+					var that=this;
+					this.btn.onclick=function(){
+					console.log(that);
+					that.id.style.backgroundColor='#ddd';
+					console.log($(this))
+					};
+
+				}	
+			}
+
+			// (this.init=function(){
+			// 	that.btn.onclick=function(){
+			// 		console.log(that);
+			// 		that.id.style.backgroundColor='#ddd';
+			// 	}
+			// })()	
+		window.Add=Add;
+	})(window,$)
+	var t=new Add(demo1,input1,btn1)
+//首先是 一个构造函数 有一些参数需要传入 然后是一个闭包 里面会有一些参数 自执行函数 (function(){})() 方法是挂到原型上面 这样实例会去原型寻找，而不需要每次都实例出来一个方法 ，节约空间~
+
+</script>
+</html>

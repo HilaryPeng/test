@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src='js/vue.min.js'></script>
+</head>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	ul{
+		list-style: none;
+	}
+	ul li{
+		float:left;
+		width:200px;
+		height:40px;
+		line-height:40px;
+		text-align: center;
+		background:#eee;
+	}
+	ul li.active{
+		background:yellow;
+	}
+	ul li.isTwo{
+		background:green;
+	}
+</style>
+<body>
+	<div id="app">
+		<ul>
+
+			<li v-for='(i,index) in item'>
+				<span>14654165</span>
+				<span>14654165</span>
+				<span>14654165</span>
+				<span>14654165</span>
+
+				<span>14654165</span>
+				<span>14654165</span>
+				<span>14654165</span>
+				<span>14654165</span>
+				<span>14654165</span>
+				<span>14654165</span>
+				<span>14654165</span>
+
+				<span>14654165</span>
+				<span>14654165</span>
+
+			<span>14654165</span>{{i}}</li>
+		</ul>
+
+<!-- active ： 0==isActive 是一个条件 就是是否等于 也就是ture 或者false -->
+	</div>
+
+
+</body>
+<script type="text/javascript">
+	var app =new Vue({
+		el:"#app",
+		data:{
+			item:[],
+			isActive:0,
+			isTwo:5
+		},
+		methods:{
+
+		},
+		created:function(){
+			setTimeout(()=>{
+				this.item.push("linke1"),
+				this.item.push('linke2')
+			},1000)
+		}
+	})
+
+	//解决方案是 所有的需要的块都写入进去， 只是在第一个 给一些样式控制这个快消失！！这样就可以让第一个和后面所有迭代的元素不一样了
+</script>
+</html>
