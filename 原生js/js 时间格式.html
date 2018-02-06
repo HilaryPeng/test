@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		function formatSeconds(value){
+			var secondTime = parseInt(value);//秒
+			var minuteTime = 0 ;//分
+			var hourTime = 0;//小时
+			if(secondTime>60){
+				minuteTime = parseInt(secondTime/60);
+				secondTime = parseInt(secondTime%60);
+				if(minuteTime >60){
+					hourTime = parseInt(minuteTime / 60);
+					minuteTime = parseInt(minuteTime%60);
+				}
+			}
+			if(hourTime>0){
+				result = parseInt(hourTime)+":"+parseInt(minuteTime)+":"+parseInt(secondTime);
+			}else if(minuteTime>0 && hourTime==0){
+				minuteTime=parseInt(minuteTime).toString();
+				if(minuteTime.length<2){
+					minuteTime="0"+minuteTime
+					console.log(minuteTime)
+				}
+				result = "00:"+minuteTime+":"+parseInt(secondTime);
+			}else{
+				result = "00:00:"+parseInt(secondTime);
+			}
+		 	
+		 	return result;
+		}
+		formatSeconds(100)
+	</script>
+</body>
+</html>
