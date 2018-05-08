@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css闪烁动画</title>
+</head>
+<style>
+     .box{
+         width:100px;
+         height:100px;
+         background-color: #000;
+         animation: fadePre 1.5s infinite linear ;
+     }
+    @-webkit-keyframes fadePre{
+        0%{
+            background:black;
+        }
+        50%{
+            background:red;
+        }
+        100%{
+            background:black;
+        }
+
+
+    }
+
+</style>
+<body>
+    <div class="box">
+        
+    </div>
+</body>
+</html>
