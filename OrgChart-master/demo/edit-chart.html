@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Organization Chart Plugin</title>
+<!--   <link rel="icon" href="img/logo.png">
+  <link rel="stylesheet" href="css/font-awesome.min.css"> 
+ -->  <!-- 字体样式 -->
+  <link rel="stylesheet" href="css/jquery.orgchart.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style type="text/css">
+  /*s样式*/
+    #chart-container { background-color: #eee; height: 500px;float:left; width:600px;}
+    .orgchart { background: #fff; }
+    .orgchart.view-state .edge { display: none; }
+    .orgchart .node { width: 150px; }
+    .orgchart .node .title .symbol { margin-top: 1px; }
+    #selected-node{
+      display:none;
+    }
+    .list ul{
+      list-style:none;
+      float:left;
+      width:200px;
+      z-index:10000000;
+    }
+    .list ul li{
+      height:30px;
+      line-height:30px;
+      width:100px;
+      box-sizing:border-box;
+      text-align: center;
+      margin-top:20px;
+      background:#eee;
+      position:relative;
+    }
+    .list ul li span{
+      color:red;
+      position:absolute;
+      right:8px;
+      display:none;
+      cursor:pointer;
+    }
+    .box{
+      background:pink;
+      width:100px;
+      height:100px;
+    }
+    .ui-state-hover{
+      background:green;
+    }
+    .orgchart table {
+      border: 1px solid;
+    }
+    .orgchart .second-menu-icon {
+      display:inline-block;
+      width:10px;
+      height:10px;
+      background:red;
+      transition: opacity .5s;
+      opacity: 0;
+      right: -5px;
+      top: -5px;
+      z-index: 2;
+      color: rgba(68, 157, 68, 0.5);
+      font-size: 18px;
+      position: absolute;
+      color:red;
+    }
+    .orgchart .second-menu-icon:hover { color: #449d44; }
+    .orgchart .node:hover .second-menu-icon { opacity: 1; }
+    .orgchart .node .second-menu {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: -70px;
+      border-radius: 35px;
+      box-shadow: 0 0 10px 1px #999;
+      background-color: #fff;
+      z-index: 1;
+    }
+    .orgchart .node .second-menu .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      float: left;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+   <div class="box">
+    </div>
+    <div class="list" id='draggable'>
+    <ul>
+      <li>张三<span>+</span></li>
+      <li>李四<span>+</span></li>
+      <li>王五<span>+</span></li>
+      <li>周六<span>+</span></li>
+      <li>今天<span>+</span></li>
+      <li>明天<span>+</span></li>
+      <li>昨天<span>+</span></li>
+      <li>后天<span>+</span></li>
+      <button id='btn'>点击我添加节点</button>
+      <button id='btn2'>trigger</button>
+      <button id='btn3'>得到所有数据结构</button>
+    </ul>
+
+  </div>
+  <div id="chart-container">
+   
+  </div>
+
+  <input type="text" id="selected-node" class="selected-node-group">
+
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- <script type="text/javascript" src="js/html2canvas.min.js"></script> -->  
+  <!-- 导出为PDF的图格式 我们不需要 -->
+
+  <script type="text/javascript" src="js/jquery.orgchart.js"></script> 
+  <!-- <script type="text/javascript" src='js/jquery-ui.min.js'></script> -->
+  <!-- 结构JS -->
+  <script type="text/javascript">
+
+    $(function(){
+      $('.node').delegate('.addnewi','click',function(event) {
+        debugger
+        console.log(this)
+      });
+      $('.list ul li span').click(function(){
+        var $chartContainer = $('#chart-container'); //添加的是哪个模块
+        var $node = $('#selected-node').data('node');   //在哪个节点进行添加
+        var a=$(this).parent('li').text().toString();
+        let b=a.substring(0,a.length-1);
+        var nodeVals=[b];
+         var hasChild = $node.parent().attr('colspan') > 0 ? true : false; //判断是否有子节点 以下不用管 添加即可
+        if (!hasChild) {
+          //天机子节点
+          var rel = nodeVals.length > 1 ? '110' : '100';
+          console.log(oc)
+          oc.addChildren($node, {
+              'children': nodeVals.map(function(item) {
+                return { 'name': item, 'relationship': rel, 'Id': getId() };
+              })
+            }, $.extend({}, $chartContainer.find('.orgchart').data('options'), { depth: 0 }));
+        } else {
+          oc.addSiblings($node.closest('tr').siblings('.nodes').find('.node:first'),
+            { 'siblings': nodeVals.map(function(item) { return { 'name': item, 'relationship': '110', 'Id': getId() }; })
+          });
+        }
+    $(this).parent('li').remove();
+      })
+
+      $('#btn3').click(function(){
+       console.log(oc.getHierarchy());
+      })
+    var datascource = {
+      'name': '一级结构',
+      'id':1,
+      'children': [
+        { 'name': '二级结构','id':2 },
+        { 'name': '二级结构2' ,'id':3},
+        { 'name': '二级结构3','id':4 }
+      ]
+    };
+
+    var getId = function() {
+      return new String((new Date().getTime()) * 1000 + Math.floor(Math.random() * 1001));
+    };
+    function getNodetext($node){
+
+    }
+    var oc = $('#chart-container').orgchart({
+      'data' : datascource, //数据源
+      'parentNodeSymbol': 'fa-th-large', // 使用字体真棒图表 暗示该节点有子节点
+      'nodeID': 'id',
+      'createNode': function($node, data) {
+        $node[0].id = getId();
+        var secondMenuIcon = $('<i>', {
+          'class': 'fa fa-info-circle second-menu-icon',
+          click: function() {
+         var $node= $(this).parent('.node');
+          var $parent = $node.closest('table').parent();
+          var d=$parent.find('.title');
+          let a=[];
+          d.each(function(e){
+            console.log(d[e].innerText)
+           a.push(d[e].innerText);
+          })
+          console.log(a)
+          // $node = $('#selected-node').data('node');
+        // console.log($(this).parent('.node').parent('table'));
+          if (!$node) {
+            alert('Please select one node in orgchart');
+            return;
+          } else if ($node[0] === $('.orgchart').find('.node:first')[0]) {
+            alert('整只结构无法删除')
+        }else{
+        oc.removeNodes($node);
+        $('#selected-node').val('').data('node', null);
+            }
+            }
+          });
+
+          var secondMenu = `<span class='addnewi'></span>`;
+          $node.append(secondMenuIcon).append(secondMenu);
+      },
+      'draggable': true, //允许拖拽
+
+    });
+         
+    oc.$chartContainer.on('click', '.node', function() {
+      var $this = $(this); 
+      $('#selected-node').val($this.find('.title').text()).data('node', $this);  
+      $('.list ul li span').show();
+
+    });
+    $('input[name="chart-state"]').on('click', function() {
+      //编辑操作 只是一个显示隐藏的操作
+      $('.orgchart').toggleClass('view-state', this.value !== 'view');
+      $('#edit-panel').toggleClass('view-state', this.value === 'view');
+      if ($(this).val() === 'edit') {
+        //如果是编辑的话 那么就要进行操作 
+        $('.orgchart').find('tr').removeClass('hidden')
+          .find('td').removeClass('hidden')
+          .find('.node').removeClass('slide-up slide-down slide-right slide-left');
+      } else {
+        $('#btn-reset').trigger('click');
+        //重置操作 trigger就是触发该按钮的点击事件
+      }
+    });
+
+    $('input[name="node-type"]').on('click', function() {
+      //选择节点操作
+      var $this = $(this);
+      if ($this.val() === 'parent') {
+        //当是父节点的时候 执行什么操作
+        $('#edit-panel').addClass('edit-parent-node');
+        $('#new-nodelist').children(':gt(0)').remove();
+      } else {
+        //否则执行什么操作
+        $('#edit-panel').removeClass('edit-parent-node');
+      }
+    });
+
+    $('#btn-add-input').on('click', function() {
+      //添加操作新的标签
+      $('#new-nodelist').append('<li><input type="text" class="new-node"></li>');
+    });
+
+    $('#btn-remove-input').on('click', function() {
+      //删除操作 删除新的标签
+      var inputs = $('#new-nodelist').children('li');
+      if (inputs.length > 1) {
+        inputs.last().remove();
+      }
+    });
+
+    $('#btn-add-nodes').on('click', function() {
+      //点击添加
+      var $chartContainer = $('#chart-container'); //得到是哪个对象
+      var nodeVals = [];  //创建数组
+
+      $('#new-nodelist').find('.new-node').each(function(index, item) {
+        // index 是选择器index的位置，item 是当前的元素
+        var validVal = item.value.trim(); // 删除字符串开始和末尾的空格 防止出现空格等元素
+        if (validVal.length) {  //如果不为空 
+          nodeVals.push(validVal); //放到数组中 每次只有一个元素
+        }
+      });
+
+      var $node = $('#selected-node').data('node'); //是往哪个节点添加元素了  也就是 我们也需要在拖拽的过程中 选择到是哪个节点
+      if (!nodeVals.length) {
+        alert('Please input value for new node');
+        return;
+      }
+      var nodeType = $('input[name="node-type"]:checked');
+      if (!nodeType.length) {
+        alert('Please select a node type');
+        return;
+      }
+      if (nodeType.val() !== 'parent' && !$('.orgchart').length) {
+        alert('Please creat the root node firstly when you want to build up the orgchart from the scratch');
+        return;
+      }
+      if (nodeType.val() !== 'parent' && !$node) {
+        alert('Please select one node in orgchart');
+        return;
+      }
+      if (nodeType.val() === 'parent') { 
+         //如果选择付钱元素
+        // if (!$chartContainer.children('.orgchart').length) {// if the original chart has been deleted
+        //   oc = $chartContainer.orgchart({
+        //     'data' : { 'name': nodeVals[0] }, 
+        //      //oc 重新初始化   加上该元素 
+        //     // 'exportFilename': 'SportsChart', 
+        //     'parentNodeSymbol': 'fa-th-large',
+        //     'createNode': function($node, data) {
+        //       $node[0].id = getId(); 
+        //     }
+        //   });
+        //   //重新初始化一遍
+        //   console.log(oc)
+        //   oc.$chart.addClass('view-state');
+        // } else {
+        //   oc.addParent($chartContainer.find('.node:first'), { 'name': nodeVals[0], 'Id': getId() });
+        // }
+        console.log(oc)
+      } else if (nodeType.val() === 'siblings') {
+        // 兄弟元素
+        // oc.addSiblings($node,
+        //   { 'siblings': nodeVals.map(function(item) { return { 'name': item, 'relationship': '110', 'Id': getId() }; })
+        //   //添加兄弟节点 我们也不要
+        // });
+        console.log('不添加兄弟节点')
+      } else {
+        var hasChild = $node.parent().attr('colspan') > 0 ? true : false;
+        if (!hasChild) {
+          //天机子节点
+          var rel = nodeVals.length > 1 ? '110' : '100';
+          oc.addChildren($node, {
+              'children': nodeVals.map(function(item) {
+                return { 'name': item, 'relationship': rel, 'Id': getId() };
+              })
+            }, $.extend({}, $chartContainer.find('.orgchart').data('options'), { depth: 0 }));
+        } else {
+          oc.addSiblings($node.closest('tr').siblings('.nodes').find('.node:first'),
+            { 'siblings': nodeVals.map(function(item) { return { 'name': item, 'relationship': '110', 'Id': getId() }; })
+          });
+        }
+      }
+    });
+
+    $('#btn-delete-nodes').on('click', function() {
+      //删除该节点
+      var $node = $('#selected-node').data('node');
+      if (!$node) {
+        alert('Please select one node in orgchart');
+        return;
+      } else if ($node[0] === $('.orgchart').find('.node:first')[0]) {
+        if (!window.confirm('Are you sure you want to delete the whole chart?')) {
+          return;
+        }
+      }
+      oc.removeNodes($node);
+      $('#selected-node').val('').data('node', null);
+    });
+
+    $('#btn-reset').on('click', function() {
+      //重置所有的节点
+      $('.orgchart').find('.focused').removeClass('focused');
+      $('#selected-node').val('');
+      $('#new-nodelist').find('input:first').val('').parent().siblings().remove();
+      $('#node-type-panel').find('input').prop('checked', false);
+    });
+    // oc.$chart.on('nodedropped.orgchart', function(event) {
+    //   //拖拽节点
+    //   console.log('draggedNode:' + event.draggedNode.children('.title').text()
+    //     + ', dragZone:' + event.dragZone.children('.title').text()
+    //     + ', dropZone:' + event.dropZone.children('.title').text()
+    //   );
+    // });
+    
+  });
+  </script>
+  </body>
+</html>

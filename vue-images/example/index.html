@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>vue-images</title>
+  <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+  <meta name="keywords" content="vue,vuejs,vue component,lightbox,vue lightbox,vue images,image,images,ui,javascript">
+  <meta name="description" content="A simple, responsive Lightbox component for displaying an array of images.">
+  <meta property="og:locale" content="zh-cn">
+  <meta property="og:title" content="vue-images">
+  <meta property="og:description" content="A simple, responsive Lightbox component for displaying an array of images.">
+  <meta property="og:url" content="https://littlewin-wang.github.io/vue-images/example/">
+  <meta property="og:site_name" content="vue-images">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<div class="page-wrapper">
+  <div class="container">
+    <nav class="left-col">
+      <ul class="page-nav">
+        <li class="page-nav__item">
+          <a class="page-nav__link" href="#examples">Examples</a>
+        </li>
+        <li class="page-nav__item">
+          <a class="page-nav__link" href="#getting-started">Getting started</a>
+        </li>
+        <li class="page-nav__item">
+          <a class="page-nav__link" href="#options">Options</a>
+        </li>
+        <li class="page-nav__item">
+          <a class="page-nav__link" href="#license">License</a>
+        </li>
+        <li class="page-nav__item">
+          <a class="page-nav__link" href="#help">Help</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="right-col">
+      <div class="page-content">
+        <header class="page-header">
+          <h1 class="page-header__title">vue images</h1>
+          <p class="page-header__subtitle">A simple, responsive Lightbox component for <a href="https://vuejs.org/" target="_blank">Vue.js</a> to display an array of images.</p>
+        </header>
+        <div class="page-subheader">
+          <a href="https://github.com/littlewin-wang/vue-images" class="page-subheader__link" target="_blank">Code and Docs on GitHub</a>
+						<span class="page-subheader__button">
+              <a class="github-button" id="github-stars-button" href="https://github.com/littlewin-wang/vue-images" data-icon="octicon-star" data-style="mega" data-count-href="/littlewin-wang/vue-images/stargazers" data-count-api="/repos/littlewin-wang/vue-images#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star littlewin-wang/vue-images on GitHub">Star</a>
+						</span>
+        </div>
+        <div class="page-body">
+          <section id="examples" class="section-examples">
+            <h2>Examples</h2>
+            <div id="example">
+              <div style="margin-bottom: 20px;">
+                <p>Photos courtesy of <a href="https://unsplash.com/" target="_blank">Unsplash</a>.</p>                    <p>Support your keyboard to navigate <kbd>left</kbd> <kbd>right</kbd> <kbd>esc</kbd>. Support mouse scroll to navigate. Support mouse touch move to navigate.</p>
+                <p>Also, try resizing your browser window.</p>
+              </div>
+              <div id="demo">
+                <vue-images :imgs="images"
+                            :modalclose="modalclose"
+                            :keyinput="keyinput"
+                            :mousescroll="mousescroll"
+                            :showclosebutton="showclosebutton"
+                            :showcaption="showcaption"
+                            :imagecountseparator="imagecountseparator"
+                            :showimagecount="showimagecount"
+                            :showthumbnails="showthumbnails">
+                </vue-images>
+              </div>
+            </div>
+          </section>
+
+          <section id="getting-started" class="section-getting-started">
+            <h2>Getting Started</h2>
+            <p>1. Import using module:</p>
+            <pre>// Install using npm
+npm install vue-images --save
+
+// In ES6 module
+import vueImages from 'vue-images'</pre>
+            <pre>
+new Vue({
+  el: '#demo',
+  data () {
+    return {
+      images: [...],
+      ...(other parameters)
+    }
+  },
+  components: {
+    vueImages: vueImages
+  }
+})</pre>
+
+
+            <p>2. Import using script tag:</p>
+							<pre><code>&lt;script src="../node-modules/vue-images/dist/vue-images.js"&gt;&lt;/script&gt;</code></pre>
+
+            <pre>
+new Vue({
+  el: '#demo',
+  data () {
+    return {
+      images: [...],
+      ...(other parameters)
+    }
+  },
+  components: {
+    vueImages: vueImages.default
+  }
+})</pre>
+
+          </section>
+
+          <section id="options" class="section-options">
+            <h2>Options</h2>
+            <div class="options-table-container">
+              <table class="options-table">
+                <thead>
+                <tr>
+                  <th align="left">Property</th>
+                  <th align="left">Type</th>
+                  <th align="left">Default</th>
+                  <th align="left">Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td align="left"><a href="#images">images</a></td>
+                  <td align="left">array</td>
+                  <td align="left">undefined</td>
+                  <td align="left">Required. An array of objects containing valid src and srcset values of img element</td>
+                </tr>
+                <tr>
+                  <td align="left">modalclose</td>
+                  <td align="left">bool</td>
+                  <td align="left">true</td>
+                  <td align="left">Allow users to exit the lightbox by clicking the backdrop</td>
+                </tr>
+                <tr>
+                  <td align="left">keyinput</td>
+                  <td align="left">bool</td>
+                  <td align="left">true</td>
+                  <td align="left">Supports keyboard input - <kbd>esc</kbd>, <kbd>←</kbd>, and <kbd>→</kbd></td>
+                </tr>
+                <tr>
+                  <td align="left">mousescroll</td>
+                  <td align="left">bool</td>
+                  <td align="left">true</td>
+                  <td align="left">Supports mouse scroll</td>
+                </tr>
+                <tr>
+                  <td align="left">showclosebutton</td>
+                  <td align="left">bool</td>
+                  <td align="left">true</td>
+                  <td align="left">Optionally display a close <kbd>X</kbd> button in top right corner</td>
+                </tr>
+                <tr>
+                  <td align="left">showcaption</td>
+                  <td align="left">bool</td>
+                  <td align="left">true</td>
+                  <td align="left">Optionally display a caption under the image</td>
+                </tr>
+                <tr>
+                  <td align="left">imagecountseparator</td>
+                  <td align="left">string</td>
+                  <td align="left">' of '</td>
+                  <td align="left">Custom separator for the image count</td>
+                </tr>
+                <tr>
+                  <td align="left">showimagecount</td>
+                  <td align="left">bool</td>
+                  <td align="left">true</td>
+                  <td align="left">Optionally display image index, e.g., "3 of 20"</td>
+                </tr>
+                <tr>
+                  <td align="left">showthumbnails</td>
+                  <td align="left">bool</td>
+                  <td align="left">false</td>
+                  <td align="left">Optionally display thumbnails beneath the Lightbox</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <h2>Images</h2>
+            <div class="options-table-container" id="images">
+              <table class="options-table">
+                <thead>
+                <tr>
+                  <th align="left">Property</th>
+                  <th align="left">Type</th>
+                  <th align="left">Default</th>
+                  <th align="left">Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td align="left">imageUrl</td>
+                  <td align="left">string</td>
+                  <td align="left">undefined</td>
+                  <td align="left"><b>Required.</b> The primary image path</td>
+                </tr>
+                <tr>
+                  <td align="left">caption</td>
+                  <td align="left">string</td>
+                  <td align="left">undefined</td>
+                  <td align="left">Displayed beneath the current image. Great for description or attribution</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="license" class="section-license">
+            <h2>License</h2>
+            <p>vue images is free to use for personal and commercial projects under <a target="_blank" href="https://github.com/littlewin-wang/vue-images/blob/master/LICENSE">the MIT license</a>.</p>
+            <p>Attribution is not required, but greatly appreciated. It does not have to be user-facing and can remain within the code.</p>
+          </section>
+
+          <section id="help" class="section-help">
+            <h2>Help</h2>
+
+            <h3>Have a question?</h3>
+            <p>Follow the <a target="_blank" href="https://github.com/littlewin-wang/vue-images#start-guide">quick start guide</a> on GitHub to get up and running quickly. Please do not use Github Issues to report personal support requests.</p>
+
+            <h3>Found a bug?</h3>
+            <p>If you find a bug, please read the <a target="_blank" href="https://github.com/littlewin-wang/vue-images#change-log">Change Log</a> before you <a target="_blank" href="https://github.com/littlewin-wang/vue-images/issues">report the issue</a>.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+    <footer class="page-footer">
+      <span class="page-footer__copyright--small">Copyright </span>
+      <span class="page-footer__copyright--large">&copy; </span>
+      <a target="_blank" href="https://github.com/littlewin-wang" target="_blank">Littlewin</a> 2017
+    </footer>
+  </div>
+</div>
+<script>
+  document.getElementById('github-stars-button').dataset.style = window.innerWidth > 480 ? 'mega': null;
+</script>
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.9/vue.min.js"></script>
+<script src="../dist/vue-images.js"></script>
+<script src="index.js"></script>
+</body>

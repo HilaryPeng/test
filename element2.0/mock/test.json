@@ -1,0 +1,79 @@
+{
+
+  "posts": [
+    { "id": 1, "title": "json-server", "author": "typicode" }
+  ],
+  "comments": [
+    { "id": 1, "body": "some comment", "postId": 1 }
+  ],
+  "profile": { "name": "typicode" },
+
+  "admin":{
+  	"name":"admin",
+  	"password":"admin"
+  },
+  "news" :{
+      "dialognews":true, 
+      "newtitle":"消息提醒",
+      "newsmessage":"饮一壶浊酒饮一壶浊酒饮一壶浊酒饮一壶浊酒饮一壶浊酒饮一壶浊酒饮一壶浊酒饮一壶浊酒饮一壶浊酒饮一壶浊酒饮一壶浊酒饮一壶浊酒",
+      "footerbutton":"已阅"
+  },
+  "token":{
+    "token":"key"
+  },
+
+  "roles":{
+    "admin":"admin"
+  },
+
+  "code":[{
+    "id": "01",
+  "codename":"账号类型"}
+  ,{
+    "id":"02",
+    "codename":"账号状态"
+  },{
+    "id":"03",
+    "codename":"性别"
+  },{
+    "id":"04",
+    "codename":"批次状态"
+  },{
+    "id":"05",
+    "codename":"客户类型"
+  }],
+  "tableDate":[{
+    "id":1,
+    "code":"Branchstat",
+    "name":"待开业",
+    "shortname":"handsome",
+    "edit":false
+  },{
+    "id":2,
+    "code":"JavaScript",
+    "name":"未开业",
+    "shortname":"js",
+    "edit":false
+
+  },{
+    "id":3,
+    "code":"Html",
+    "name":"已开业",
+    "shortname":"hl",
+    "edit":false
+
+  },{
+    "id":4,
+    "code":"ecmascript",
+    "name":"未开业",
+    "shortname":"es6",
+    "edit":false
+  }],
+  "result":[{"id":"SYS000001","content":"姓名"},
+    {"id":"SYS000005","content":"410721199508133056"},
+    {"id":"SYS000006","content":"15565319710"},{"id":"SYS000001","content":"姓名"},
+    {"id":"SYS000005","content":"410721199508133056"},
+    {"id":"SYS000006","content":"15565319710"}  ]
+  
+
+}
