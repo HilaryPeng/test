@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+        在实际项目中 我们可能需要根据后台返回的数据类型不同 去做不同的判断 这种时候我们需要去做类型判断然后做对应的操作
+        平常我们都可以用typeof来判断 当不是数组或者对象的时候 也还行 但是某些情况下 就无法做出判断了
+        例如当判断一个值是数组还是对象时 用typeof返回的都是"object" 所以这种情况无法做出判断
+        let a = {name:"146"} ;let b =[1,2,3];
+        typeof a = "object" typeof b = "object";
+        从网上看有instanceof curstructor 判断变量
+        通用方法：
+        1.判断是否是数组的方法
+        function isArry(o){
+            return Object.prototype.toString.call(o) == "[Object Array]";
+        }
+        let b = "gjlg" Object.prototype.toString.call(b) // "[object String]"
+        let a = true Object.prototype.toString.call(a) // "[object Boolean]"
+        let c = 123  Object.prototype.toString.call(c) // "[object Number]"
+        这里可以延伸下 call与 和apply的方法
+        2.使用jQuery封装好的办法
+        $.isPlainObject();
+        $.isArray(obj);
+        $.isFunction(obj)
+        3.使用instanceof
+            var a = {name:'黄致鹏'}
+            a instanceof Object //true
+            a instanceof Array // false
+            注意 只能用于数组与对象 不能判断String 和 boolean类型
+        4.使用cursortructor方法
+            var a = [1,2,3,0];
+            a.constructor == Array  //true
+     */
+</script>
+</html>

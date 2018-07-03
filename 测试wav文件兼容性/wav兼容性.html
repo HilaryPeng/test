@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>wav兼容性问题</title>
+</head>
+<script>
+    function playSound(){ 
+         //IE放 背景音乐
+        var snd_ie = document.getElementById('snd_ie');
+        snd_ie.src = "audio/a.wav";
+
+        //chrome
+        var snd_chrome = document.getElementById('snd_chrome');
+        snd_chrome.data = "audio/a.wav"
+    }
+    function stopSound(){
+        var snd_ie = document.getElementById('snd_ie');
+        snd_ie.src = "";
+
+
+        var snd_chrome = document.getElementById('snd_chrome');
+        snd_chrome.data = ""
+    }
+</script>
+<body>
+    <audio src="audio/a.wav" controls></audio>
+    <bgsound id='snd_ie' src="" loop=-1  width="300" height="100"></bgsound >
+    <!--<object id='snd_chrome' width="100px" height="100px" type="audio/x-wav" data=""></object>-->
+    <input type="button" value="开始" onclick="playSound()">
+    <input type="button" value="暂停" onclick="stopSound()">
+</body>
+</html>
