@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // function calcAll(n){
+    //     let t;
+    //     let number = 0;
+    //     let number1 = 1;
+    //     let count = 0;
+    //     function calc(n) {
+    //         if(n === 0){
+    //             return 0;
+    //         }
+    //         if(n === 1){
+    //             return 1
+    //         }
+    //         if(count === n){
+    //             return t; 
+    //         }
+    //         t = number + number1;
+    //         number = number1;
+    //         number1 = t;
+    //         count ++ ;
+    //         return calc(n)
+    //     }
+    //     return calc(n)
+    // }
+    // let x = calcAll(8);
+    // console.log(x);
+    //有很大的优化空间 特别是对于空间复杂度上 占用空间较多。
+    //将其转换为数组即为 Fn = F(n-1) + Fn(n -2);
+    //斐波那契数列的时间复杂度为
+    let n = 8;
+    function calcT(n){  
+        if(n < 0) throw new Error('输入的数字不能小于0');
+        if(n === 0 || n === 1 ){
+            return 1
+        }
+        return calcT(n-1)+calcT(n-2)
+    }
+    //时间复杂度 O(2的n次方);
+    let t = calcT(8);
+    console.log(t);
+</script>
+</html>

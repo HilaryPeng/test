@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html, body{
+            height: 100%
+        }
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        .box{
+            height: 100%;
+            display:flex;
+            flex-direction: column
+        }
+        .box1 {
+            width: 100%;
+            background: white;
+            height: 100px
+        }
+        .box2{
+            width: 100%;
+            height: 20px;
+            background: pink;
+            flex-shrink: 1
+        }
+        .box3{
+            flex: 1;
+            background: red;
+            overflow-y:hidden;
+        }
+        .p3{
+            height: 20px;
+            width: 100%;
+            background:green
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="box">
+            <div class="box1" id="box1"></div>
+            <div class="box2" id="box2"></div>
+            <div class="box3" id="box3">
+                <div class="p3" id="p3"></div>
+            </div>
+    </div>
+</body>
+<script>
+    var box1 = document.getElementById('box1');
+    var box2 = document.getElementById('box2');
+    var box3 = document.getElementById('box3');
+    var p3 = document.getElementById('p3');
+    setTimeout(() => {
+        box1.style.display = 'none';
+    },2000)
+    setTimeout(() => {
+        p3.style.height='500px'
+    },4000)
+
+    setTimeout(() => {
+        box1.style.display = 'block';
+    },6000)
+
+
+</script>
+</html>

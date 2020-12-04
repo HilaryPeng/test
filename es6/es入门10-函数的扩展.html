@@ -195,7 +195,7 @@
 		 (1) 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。 this的问题
 		 (2)不可以当作构造函数，也就是说，不能用new命令，否则会报错
 		 (3)不可以使用arguments对象，该对象在函数体内不存在，如果用只能用rest参数代替。
-		 (4)不可以使用yield命令，因此箭头函数不能用错Generator函数
+		 (4)不可以使用yield命令，因此箭头函数不能用于Generator函数
 		 上面四点中，this的对象原来时可以改变的，但是在箭头函数中，this时固定的
 		  function foo(){
 			setTimeout(()=>{console.log('id:',this.id)},100);
