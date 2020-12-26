@@ -42,13 +42,13 @@
 //  let a = new Sun();
 //  console.log(a)
 
- /** 
-  * 组合继承
-  * 原型和构造函数结合到一起
-  * 但他会会在执行过程中调用两次超类型的构造函数：一次是创建子类型原型的时候，一次是在子类型构造函数内部调用。
-  * 两次调用分别会在 SubType.prototype 和 新实例对象上创建重复的属性。只是在查找时新实例对象属性覆盖了 SubType.prototype 上的重复属性而已。
-  * 为了避免重复调用超类型的构造函数，我们将寄生式继承与组合时继承结合起来。
-  */
+/** 
+ * 组合继承
+ * 原型和构造函数结合到一起
+ * 但他会会在执行过程中调用两次超类型的构造函数：一次是创建子类型原型的时候，一次是在子类型构造函数内部调用。
+ * 两次调用分别会在 SubType.prototype 和 新实例对象上创建重复的属性。只是在查找时新实例对象属性覆盖了 SubType.prototype 上的重复属性而已。
+ * 为了避免重复调用超类型的构造函数，我们将寄生式继承与组合时继承结合起来。
+ */
 
 //   function SuperType(name,age){
 //       this.name = name;
@@ -67,7 +67,7 @@
 
 //   let a = new SupType('apeng',13,'nan')
 //   console.log(a);
-  // 继承父类的name,age,get
+// 继承父类的name,age,get
 
 /** 
  * 原型式继承
@@ -79,59 +79,55 @@
 
 
 
- /**
-  * 寄生式继承
-  * 创建一个封装继承过程的函数，在该函数内部以某种方式增强对象，最后返回对象。
-  * 使用寄生式继承为对象添加的函数无法复用，与构造函数模式类似。
-  * 相当于方法不是在原型链上。
-  */
+/**
+ * 寄生式继承
+ * 创建一个封装继承过程的函数，在该函数内部以某种方式增强对象，最后返回对象。
+ * 使用寄生式继承为对象添加的函数无法复用，与构造函数模式类似。
+ * 相当于方法不是在原型链上。
+ */
 
 
-  /**
-   * 寄生组合式继承
-   * 
-   * 
-   * 
-   */
+/**
+ * 寄生组合式继承
+ * 
+ * 
+ * 
+ */
 // 使用寄生模式让子类型的 prototype 指向 超类型原型的副本
 function inheritPrototype(subType, superType) {
-  subType.prototype = Object.create(superType.prototype)
-  subType.prototype.constructor = subType
+    subType.prototype = Object.create(superType.prototype);
+    subType.prototype.constructor = subType;
 }
 
-function SuperType (name) {
-  this.name = name
-  this.colors = [ 'red', 'blue', 'green' ]
+function SuperType(name) {
+    this.name = name;
+    this.colors = ['red', 'blue', 'green'];
 }
 SuperType.prototype.getName = function() {
-  console.log('getName', this.name)
-  return this.name
+    console.log('getName', this.name)
+    return this.name
 }
 
-function SubType (name, age) {
-  // 继承属性
-  SuperType.call(this, name)
-  this.age = age
+function SubType(name, age) {
+    // 继承属性
+    SuperType.call(this, name);
+    this.age = age;
 }
 
 // 继承方法，替代原先的 SubType.prototype = new SuperType()
 inheritPrototype(SubType, SuperType)
 
-SubType.prototype.getAge = function () {
-  console.log('getAge', this.age)
-  return this.age
+SubType.prototype.getAge = function() {
+    console.log('getAge', this.age);
+    return this.age;
 }
 let a = new SubType('apeng', 23);
 console.log(a)
-class cat extends Animal{
-  constructor(name){
-    super(name);
-  }
-  say(){
-    return this.name;
-  }
+class cat extends Animal {
+    constructor(name) {
+        super(name);
+    }
+    say() {
+        return this.name;
+    }
 }
-
-
-
-

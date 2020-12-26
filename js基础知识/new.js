@@ -5,18 +5,34 @@
  * 3.执行构造函数
  * 4.返回新对象。
  */
-function SuperType(name,age){
+function SuperType(name, age) {
     this.name = name;
     this.age = age;
 }
-function newCustom(Constructor,...args){
+
+function newCustom(Constructor, ...args) {
     let o = Object.create(Constructor.prototype);
     let val = Constructor.apply(o, args);
     return isPrimitive(val) ? o : val;
 }
-function isPrimitive(val){
+
+function isPrimitive(val) {
     return typeof val !== 'object' || val === null
 }
 
-let a = newCustom(SuperType, 'qpeng','23');
+let a = newCustom(SuperType, 'qpeng', '23');
 console.log(a);
+
+
+var x = 10;
+
+function foo(y) {
+    var z = 30;
+
+    function bar(q) {
+        return x + y + z + q;
+    }
+    return bar;
+}
+var bar = foo(20);
+bar(40);
